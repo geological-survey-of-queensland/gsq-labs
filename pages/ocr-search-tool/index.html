@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-AU">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>OCR Search Tool : GSQ Labs</title>
+
+	<link rel="stylesheet" type="text/css" href="/cue/css/qg.css" media="all">
+	<!--[if lt IE 8]><link rel="stylesheet" href="/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/theme/agency.css" media="all">
+    
+	<link href="/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+    
+	<link rel="shortcut icon" href="/cue/images/favicon.ico">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js" ></script>
+
+  <style>
+    em {color: red;}
+    #map {
+      width: 50%;
+      height: 0;
+      padding-bottom: 50%;
+      margin: auto;
+
+    }
+/*center the contents of the footer div*/
+	#footer {
+	  text-align: center;
+	}
+
+/*change color of buttons to dark grey in hex*/
+	.btn {
+
+				  background-color: #4d4d4d;
+				  border-color: #4d4d4d;
+				  color: white;
+				}
+	/*change hover color of buttons to slightly lighter grey in hex*/
+	.btn:hover {
+				  background-color: #666666;
+				  border-color: #666666;
+				  color: white;
+				}
+
+	/*change color of accordian to very light grey in hex*/
+	.accordion-button {
+				  background-color: #f8f9fa;
+				  color: black;
+				}
+	/*change color of div class  header to #f2f2f2 hex*/
+
+	/*#header {
+				  background-color: #f2f2f2;
+				}*/
+	#breadcrumbs {
+				  background-color: none;
+				}
+	
+
+
+    @media (max-width: 767px) {
+      #map {
+        width: 100%;
+        padding-bottom: 100%;
+
+      }
+    }
+
+	pre {
+    white-space: pre-wrap;
+}
+
+  </style>
+</head>
+
+<body class="application" id="qld-gov-au">
+	
+	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
+	<div id="access">
+		<h2>Skip links and keyboard navigation</h2>
+		<ul>
+			<li><a href="#content">Skip to content</a></li>
+			
+			<li><a href="#footer">Skip to footer</a></li>
+			<li><a href="http://www.qld.gov.au/help/accessibility/keyboard.html#section-aria-keyboard-navigation">Use tab and cursor keys to move around the page (more information)</a></li>
+		</ul>
+	</div>
+
+	<div id="header"><div class="box-sizing"><div class="max-width">
+		<h2>Site header</h2>
+		
+        <a id="qg-coa" href="http://www.qld.gov.au/">
+            <!--[if gte IE 7]><!--><img src="/theme/qg-coa.png" width="287" height="50" alt="Queensland Government"><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]-->
+            <img src="/cue/images/qg-coa-print.png" class="print-version" alt="">
+        </a>
+        
+		<ul id="tools">
+			<li><a accesskey="3" href="/sitemap/sitemap.xml" target="_blank">Site map</a></li>
+			<li><a accesskey="4" href="https://www.resources.qld.gov.au/contact-us#geological-survey-of-queensland">Contact us</a></li>
+			<li><a href="/help/">Help</a></li>
+			<li><a href="https://github.com/geological-survey-of-queensland">GitHub</a></li>
+			<li class="last-child">
+			</li>
+		</ul>
+        
+       <!-- <h2 id="site-name"><a href="/" accesskey="2">-->
+            <!--[if gte IE 7]><!--><!--<img src="/theme/site-name.png" height="28" alt="GSQ Labs">--><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
+          <!--  <img src="/theme/site-name-print.png" height="28" class="print-version" alt="">-->
+       <!-- </a></h2> -->
+	
+        
+	</div></div></div>
+
+	
+	
+
+	<div id="page-container"><div class="max-width">
+	
+		
+		
+		
+		<div id="content-container">
+		
+			
+		
+		
+			
+			
+				
+            <div id="breadcrumbs">
+                <h2>You are here:</h2>
+                <ol>
+                    <li><a href="/index.html">GSQ labs home</a></li>
+
+                </ol>
+            </div>
+            <div id="content">
+            
+				<div class="article"><div class="box-sizing">
+					
+<div class="container">
+ 
+ <div class="row">
+
+ <div class="regex-search">
+    <div class="col-12">
+      <h2>Search within GSQ reports (beta)</h2><br>
+	  <p>This engine is using the <a href = "https://opensearch.org/docs/latest/query-dsl/full-text/#simple-query-string" target="_blank">simple query syntax</a>. Which is not overly efficient however enables versatile searching options. Searches are done on a document database with text snippets of approx 600 word segments within the GSQ OCR reports. OCR accuracy can vary so text matches may be missed. Only a subset of GSQ reports have been OCR'd.</p>
+      <h4>Text search</h4>
+      <div class="row">
+        <div class="col-12">
+          <input id="text" class="form-control" type="text" placeholder="e.g vanadium + shale" onkeydown="handleEnter(event, 'wordSearchButton')" /><br>
+        </div>
+      </div>
+      <div class="accordion" id="optionsAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOptions" aria-expanded="false" aria-controls="collapseOptions">
+              <strong>More search fields </strong>
+            </button>
+          </h2>
+          <div id="collapseOptions" class="accordion-collapse collapse" aria-labelledby="optionsAccordion">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-4">
+                  <input id="name" class="form-control" type="text" placeholder="Name" /><br>
+                </div>
+                 <div class="col-4">
+                  <input id="title" class="form-control" type="text" placeholder="Title" /><br>
+                </div> 
+                <div class="col-4">
+                  <input id="permit" class="form-control" type="text" placeholder="Permit" /><br>
+                </div>				
+              </div>
+
+              <div class="row">
+                <div class="col-4">
+                  <input id="owner" class="form-control" type="text" placeholder="Owner" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="author" class="form-control" type="text" placeholder="Author" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="commodity" class="form-control" type="text" placeholder="Commodity" /><br>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <input id="reportType" class="form-control" type="text" placeholder="Report Type" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="geofeatures" class="form-control" type="text" placeholder="Geo Features" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="category" class="form-control" type="text" placeholder="Category" /><br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <input id="geoAge" class="form-control" type="text" placeholder="Geo Age" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="mapRef" class="form-control" type="text" placeholder="Map Reference" /><br>
+                </div>
+                <div class="col-4">
+                  <input id="comSymbol" class="form-control" type="text" placeholder="Com Symbol" /><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<br>
+				
+				<label class="form-check-label" for="numResults">
+				# of results 
+			  </label>	
+			                <div class="col-2">
+                  <input id="numResults" class="form-control" type="number" value="30" /><br>
+                </div>					
+				<div class="form-check">
+			  <input class="form-check-input" type="checkbox" id="useSpatial" >
+			  <label class="form-check-label" for="useSpatial">
+				Use spatial bounds 
+			  </label>
+			</div><br>
+
+
+        </div>
+		
+	  <div>
+	        <span><p><button id="wordSearchButton" onclick="shipIt('text')" class="btn btn-primary">Search</button></span></p><br>
+	  </div>
+		<div class="col-12">
+          <input id="spatialBounds" class="form-control" type="text" placeholder="Top left bottom right coords [[x,y],[x,y]]" /><br>
+
+                <div id="map"></div>    <br>
+
+
+
+
+
+   <div class="accordion" id="optionsAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOptions2" aria-expanded="false" aria-controls="collapseOptions">
+              <strong>Advanced (JSON query) </strong>
+            </button>
+          </h2>
+          <div id="collapseOptions2" class="accordion-collapse collapse" aria-labelledby="optionsAccordion">
+            <div class="accordion-body">
+ 	  <div class="json-search">
+
+      <p>Example structures in <a href="https://opensearch.org/docs/latest/query-dsl/full-text/" target="_blank">Open Search docs</a></p>
+      <pre><textarea id="jsonSearch" class="form-control" rows="5" placeholder="Enter JSON (doc filename field - name, doc text field - text)" onkeydown="handleEnter(event, 'jsonSearchButton')"></textarea></pre><br>
+      <button id="jsonSearchButton" onclick="shipIt('jsonSearch')" class="btn btn-primary">Search</button><br>
+	  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+		</div>
+	</div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <br><h3>Results</h3>
+      <div id="results"></div>
+	  <br>
+	  <br>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+
+<script>
+  // Initialize the map
+  var map = L.map('map').setView([-20, 146], 4);
+
+  // Add a tile layer to the map
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Add an event listener for map view change
+  map.on('moveend', function() {
+    // Get the map bounds
+    var bounds = map.getBounds();
+
+	
+	var coords = [[0,0],[0,0]]
+	coords[0][0] = bounds.getNorthWest().lng.toFixed(3);
+	coords[0][1] = bounds.getNorthWest().lat.toFixed(3);
+	coords[1][0] = bounds.getSouthEast().lng.toFixed(3);
+	coords[1][1] = bounds.getSouthEast().lat.toFixed(3);
+	var coordString = "[["+coords[0][0]+","+coords[0][1]+"],["+ coords[1][0]+ ","+coords[1][1]+"]]" ;
+	console.log(coordString );
+	document.getElementById("spatialBounds").value = coordString;
+  });
+</script>
+<script>
+  function handleEnter(event, buttonId) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById(buttonId).click();
+    }
+  }
+</script>
+<script>
+  function createJSON() {
+    var jsonData = {};
+
+    // Get the input fields within the specified HTML structure
+    var inputs = document.querySelectorAll('.regex-search input');
+
+    inputs.forEach(function(input) {
+      var id = input.id;
+      var value = input.value.trim();
+
+      if (value !== '') {
+        jsonData[id] = value;
+      }
+    });
+  var checkbox = document.getElementById('useSpatial');
+
+  // Get the value of the checkbox
+  var isChecked = checkbox.checked;
+  jsonData.useSpatial = isChecked;
+    console.log(JSON.stringify(jsonData));
+	return jsonData;
+  }
+function shipIt(source)
+{
+	var showQuant = document.getElementById('numResults');
+
+	
+	var inputData = createJSON();
+	if (inputData.numResults === undefined || inputData.numResults === null || inputData.numResults <1)
+	{
+		inputData.numResults = 30;
+	}
+	console.log(inputData);
+	document.getElementById("results").innerHTML = '<p>Searching...</p>';
+	var endpoint = '';
+	var requestJson = {};
+
+	if (source == 'text')
+	{
+
+		//add key filter
+		var baseSpatialFilter = {
+				"geo_shape": {
+				  "spatial": {
+					"shape": {
+					  "type": "envelope",
+					  "coordinates": [[129.639,-6.053],[160.225,-34.380]]
+					},
+					"relation": "within"
+							}
+						}
+					};
+					
+
+
+
+		
+		
+		
+		var baseQuery = {
+		  "query": {
+			"bool": {
+			  "must": []
+			}
+		  },
+		  "size": inputData.numResults,
+		  "highlight": {
+			"fields": {
+			  "text": {}
+			}
+		  }
+		};
+		
+		if (inputData.useSpatial === true)
+			{
+				var coordinates;
+
+				try {
+				  coordinates = JSON.parse(inputData.spatialBounds);
+				  // Assign the parsed coordinates to the baseSpatialFilter object
+				  baseSpatialFilter.geo_shape.spatial.shape.coordinates = coordinates;
+				  baseQuery.query.bool.filter = baseSpatialFilter;
+				} catch (error) {
+				  console.log("Invalid JSON:", error);
+				}
+			}
+		delete inputData.useSpatial;
+		delete inputData.spatialBounds;
+		delete inputData.numResults;
+		
+		
+//cycle through the input and add regex search 
+	// example Input JSON with keys and values
+	/*var inputData = {
+	  "text": "asdf",
+	  "name": "a",
+	  "title": "d",
+	  "permit": "f",
+	  "owner": "ds",
+	  "author": "e",
+	  "commodity": "ee",
+	  "reportType": "ss",
+	  "geofeatures": "aa",
+	  "category": "ff",
+	  "geoAge": "ee",
+	  "mapRef": "w",
+	  "comSymbol": "ww",
+	  "spatialBounds": "[[136.538,-10.876],[151.831,-25.364]]",
+	  "useSpatial": true
+	};*/
+
+	// Iterate through the input JSON
+	for (var key in inputData) {
+	  // Skip if the value is empty or the key is "useSpatial"
+	  if (!inputData[key] || key === "useSpatial") {
+		continue;
+	  }
+
+	  // Create a new regex query object
+	  var regexQuery = {
+		"regexp": {
+		  [key]: {
+			"value": inputData[key],
+			"flags": "ALL",
+			"case_insensitive": true,
+			"max_determinized_states": 10000,
+			"rewrite": "constant_score"
+		  }
+		}
+	  };
+	  
+	  var simpleQuery =   {
+                    "simple_query_string": {
+                      "fields": [ key ],
+                      "query": inputData[key]
+                    }
+                  }
+
+	  // Add the regex query object to the must array
+	  baseQuery.query.bool.must.push(simpleQuery);
+	}
+
+	// Log the updated baseQuery object to the console
+	console.log(JSON.stringify(baseQuery));
+		
+		requestJson = baseQuery;
+	}
+	else if (source == 'jsonSearch')
+		{
+			//check if jsonSearch value is valid JSON
+			try {
+			  JSON.parse(document.getElementById('jsonSearch').value);
+			} catch (error) {
+			  console.log("Invalid JSON:", error);
+			  document.getElementById("results").innerHTML = '<p>Invalid JSON</p>';
+			  return null;
+			}
+			//if valid, parse it
+			var query = document.getElementById('jsonSearch').value;
+			requestJson = JSON.parse(query);
+		
+		}
+	
+	else 
+	{
+		document.getElementById("results").innerHTML = '<p>Invalid request</p>';
+		console.log('invalid argument');
+		return null;
+	}
+	//send the data
+
+			var xhr = new XMLHttpRequest();
+			var payload = requestJson;
+			payload = JSON.stringify(payload);
+			xhr.open('POST', 'https://d3fuwrimedi1ab.cloudfront.net');
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.onload = function() {
+				if (xhr.status !== 200) {
+					alert('Request failed,  returned status of ' + xhr.status);
+					document.getElementById("results").innerHTML = '<p>Invalid request</p>';
+				}
+				else {
+					var cfResponseObject = JSON.parse(xhr.responseText);
+					displayIt(cfResponseObject);
+				}
+			};
+			xhr.send(payload);
+	
+	
+}
+function displayIt(response)
+{
+	var displayHtml = convertToHTML(response);
+	//document.getElementById("results").innerHTML = '<pre>'+ JSON.stringify(response, undefined, 2) + '</pre>';
+	document.getElementById("results").innerHTML = displayHtml;
+}
+
+
+// Convert search results to HTML
+function convertToHTML(searchResults) {
+  let html = '<h8><em>Matches: '+searchResults.hits.total.value +' Showing: ' + searchResults.hits.hits.length + '</em></h8><br><br>';
+
+  const hits = searchResults.hits.hits;
+  for (let i = 0; i < hits.length; i++) {
+    const hit = hits[i];
+    const name = hit._source.name;
+	const id = hit._id;
+	const title = hit._source.title;
+	const author = hit._source.author;
+	const dateEnd = hit._source.dateEnd;
+	const fullSource = hit._source;
+	const resourceUrl = 'https://geoscience.data.qld.gov.au/data/report/' + name;
+	var highlights = [];
+	if (hit.highlight)
+	{
+		highlights = hit.highlight.text;
+	}
+	else
+	{
+		highlights.push(hit._source.text);
+	}
+    
+
+    // Add name as heading
+
+	html += `<h7><a href = ` + resourceUrl + ` target="_blank">${title}</a></h7><br>`;
+	html += `<h8><strong>${name}</strong>: <i>${author} (${dateEnd})</i></h8><br>`;
+
+    // Add highlights as rows of text
+    for (let j = 0; j < highlights.length; j++) {
+      const highlight = highlights[j];
+      html += `<p>${highlight}</p>`;
+    }
+	//add link that expands to show the fullSource content in pre tag 
+	html += `<em><a href="javascript:toggle('` + id + `')">Show full json</a></em><br>`;
+	html += `<pre id="` + id + `" style="display:none">` + JSON.stringify(fullSource, undefined, 2) + `</pre>`;
+	html += `<br>`;
+
+
+
+
+
+  }
+
+  return html;
+}
+
+// Toggle the display of an element
+function toggle(id) {
+  const element = document.getElementById(id);
+  if (element.style.display === 'none') {
+	element.style.display = 'block';
+  } else {
+	element.style.display = 'none';
+  }
+}
+
+
+
+
+
+</script>
+				</div>
+				
+			</div>
+			
+			
+
+			
+			
+			
+			
+			
+            
+
+			
+		</div>
+	</div></div>
+
+	
+	<div id="footer">
+
+		
+		<div class="max-width"><div class="box-sizing">
+			<h2>Site footer</h2>
+			<ul>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/copyright/">Copyright</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/disclaimer/">Disclaimer</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/privacy/">Privacy</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/right-to-information/">Right to information</a></li>
+				<li><a href="http://www.qld.gov.au/help/access/">Accessibility</a></li>
+				<li><a href="http://www.smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+				<li id="languages"><a href="http://www.qld.gov.au/languages/">Other languages</a></li>
+			</ul>
+			<p class="legal">&copy; The State of Queensland (Department of Resources) 2010&ndash;2023</p>
+			<p><a href="http://www.qld.gov.au/" accesskey="1">Queensland Government</a></p>
+			<div id="qg-branding"><p><img class="tagline" src="/theme/qg-tagline-footer.png" alt="Great state. Great opportunity."></p></div>
+		</div></div>
+	</div>
+    
+    
+	
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript"><!--
+			// OPTIONAL: manually specify the current page title (to determine which menus are open onload)  
+			//var currentPageTitle = '_INSERT_PAGE_TITLE_HERE_';  
+			--></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <!--<![endif]-->
+	<script type="text/javascript" src="/cue/js/qg.js"></script>
+
+</body>
+</html>
