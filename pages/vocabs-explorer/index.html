@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-AU">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>OCR Search Tool : GSQ Labs</title>
+
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
+	<!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
+    
+	<link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+    
+	<link rel="shortcut icon" href="/gsq-labs/cue/images/favicon.ico">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Include JSON-LD library from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/1.0.2/jsonld.min.js"></script>
+  <script src="js/ttl2jsonld.js"></script>
+
+
+  <style>
+
+
+/*center the contents of the footer div*/
+	#footer {
+	  text-align: center;
+	}
+
+/*change color of buttons to dark grey in hex*/
+	.btn {
+
+				  background-color: #4d4d4d;
+				  border-color: #4d4d4d;
+				  color: white;
+				}
+	.btn-secondary {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	.btn-primary {
+
+				background-color: #0b0b0b;
+				border-color: #080808;
+				color: white;
+				}
+				.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary:focus:active,
+.btn-primary.focus:active,
+.btn:first-child:active {
+				background-color: #4d4d4d; /* Change this to your desired gray color */
+				border-color: #4d4d4d;
+				color: white;
+				}
+	  .btn-secondary:active, .btn-secondary:focus {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	/*change hover color of buttons to slightly lighter grey in hex*/
+	.btn:hover {
+				  background-color: #666666;
+				  border-color: #666666;
+				  color: white;
+				}
+
+
+	/*change color of accordian to very light grey in hex*/
+	.accordion-button {
+				  background-color: #f8f9fa;
+				  color: black;
+				}
+	/*change color of div class  header to #f2f2f2 hex*/
+
+	/*#header {
+				  background-color: #f2f2f2;
+				}*/
+	#breadcrumbs {
+				  background-color: none;
+				}
+	
+				.tree-container {
+            padding-bottom: 200px;
+        }
+
+
+        .expander {
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(17, 17, 18);
+        }
+
+        .concept-details {
+            list-style-type: none;
+            padding-left: 20px;
+            display: none;
+        }
+        li {
+            list-style-type: none;
+        }
+        p {
+            line-height: 0.9;
+        }
+        #dropdownMenuButton {
+            width: 100%; /* Full width */
+            padding: 12px; /* Larger padding for better touch target on mobile devices */
+            font-size: 1.25rem; /* Larger font size for better readability on mobile devices */
+        }
+        .dropdown-menu {
+    width: 100%; /* Full width */
+	z-index: 9999;
+	overflow: auto;
+	height: 400px;
+   }
+
+
+            .dropdown-item {
+                font-size: 1.2rem; /* 20% larger */
+            }
+            button {
+                margin: 2px; /* 2 pixels gap */
+            }
+
+    @media (max-width: 767px) {
+      #map {
+        width: 100%;
+        padding-bottom: 100%;
+
+      }
+    }
+
+	pre {
+    white-space: pre-wrap;
+}
+
+
+
+
+  </style>
+</head>
+
+<body class="application" id="qld-gov-au">
+	
+	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
+	<div id="access">
+		<h2>Skip links and keyboard navigation</h2>
+		<ul>
+			<li><a href="#content">Skip to content</a></li>
+			
+			<li><a href="#footer">Skip to footer</a></li>
+			<li><a href="http://www.qld.gov.au/help/accessibility/keyboard.html#section-aria-keyboard-navigation">Use tab and cursor keys to move around the page (more information)</a></li>
+		</ul>
+	</div>
+
+	<div id="header"><div class="box-sizing"><div class="max-width">
+		<h2>Site header</h2>
+		
+        <a id="qg-coa" href="http://www.qld.gov.au/">
+            <!--[if gte IE 7]><!--><img src="/gsq-labs/theme/qg-coa.png" width="287" height="50" alt="Queensland Government"><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]-->
+            <img src="/gsq-labs/cue/images/qg-coa-print.png" class="print-version" alt="">
+        </a>
+        
+		<ul id="tools">
+			<li><a accesskey="4" href="https://www.resources.qld.gov.au/contact-us#geological-survey-of-queensland">Contact us</a></li>
+			<li><a href="/gsq-labs/pages/help/">Help</a></li>
+			<li><a href="https://github.com/geological-survey-of-queensland">GitHub</a></li>
+			<li class="last-child">
+			</li>
+		</ul>
+        
+       <!-- <h2 id="site-name"><a href="/" accesskey="2">-->
+            <!--[if gte IE 7]><!--><!--<img src="/gsq-labs/theme/site-name.png" height="28" alt="GSQ Labs">--><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
+          <!--  <img src="/gsq-labs/theme/site-name-print.png" height="28" class="print-version" alt="">-->
+       <!-- </a></h2> -->
+    
+	</div></div></div>
+	<div id="page-container"><div class="max-width">
+	<div id="content-container">	
+            <div id="breadcrumbs">
+                <h2>You are here:</h2>
+                <ol>
+                    <li><a href="/gsq-labs/">GSQ labs home</a></li>
+
+                </ol>
+            </div>
+            <div id="content">
+            
+				<div class="article"><div class="box-sizing">
+					
+<div class="container">
+	<h2>GSQ-Vocab explorer</h2><br>
+	<p>This tool connects to the selected <a href="https://github.com/geological-survey-of-queensland/vocabularies/tree/master/vocabularies-gsq" target="_blank">GSQ vocabs</a> and displayes the raw .ttl format data in a readable manner. It does not replace the source of truth location for our <a href = "https://vocabs.gsq.digital" target="_blank">vocabs</a>.</p>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="dropdown">
+					<button class="btn btn-primary btn-block btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						Vocab: [select vocab from list]
+					</button>
+				
+					<ul id="listContainer" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<!-- Your list items go here -->
+					</ul>
+				</div>
+				</div>
+		</div>
+	</div>
+	<div class="container mt-5">
+	
+		<div class="row mt-4">
+			<div class="col">
+				<h2>SKOS Collections</h2>
+				<div id="collectionButtons"></div>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div class="col">
+				<h2 id="concept-scheme-label">Terms</h2>
+				<input type="text" id="filterInput" class="form-control" placeholder="Filter skos:prefLabel (regex)..."><br>
+				<div id="skosTree" class="tree-container"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap JS and Popper.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+var skosData = {};
+var selectedVocab = '[select vocab from list]';
+
+// Fetch data from GitHub API
+fetch('https://api.github.com/repos/geological-survey-of-queensland/vocabularies/contents/vocabularies-gsq')
+    .then(response => response.json())
+    .then(data => {
+        // Select the container where you want to add the list
+        const listContainer = document.getElementById('listContainer');
+
+        // Filter data to only include files that end in .ttl
+        const ttlFiles = data.filter(item => item.name.endsWith('.ttl'));
+
+        // Create a filter input and add it to the list container
+        const filterInput = document.createElement('input');
+        filterInput.type = 'text';
+        filterInput.placeholder = 'Filter (regex)...';
+        filterInput.style.width = '100%'; // Make the input the same width as the list container
+        filterInput.style.border = '1px solid grey'; // Add a grey border
+        filterInput.style.padding = '0.375rem 0.75rem'; // Add padding to match the dropdown items
+        filterInput.style.marginBottom = '0.5rem'; // Add some margin at the bottom
+        filterInput.oninput = function() {
+            const filter = this.value.toUpperCase();
+            listContainer.querySelectorAll('li').forEach(li => {
+                const text = li.textContent.toUpperCase();
+                li.style.display = text.includes(filter) ? '' : 'none';
+            });
+        };
+        listContainer.appendChild(filterInput);
+
+		
+
+        // Iterate over the array of files
+        ttlFiles.forEach(item => {
+            // Create a new list item and link element
+            const listItem = document.createElement('li');
+            listItem.className = 'dropdown-item';
+            const link = document.createElement('a');
+            link.textContent = item.name;
+            link.href = '#';
+
+            // Add an event listener to the link
+            link.addEventListener('click', async (event) => {
+                event.preventDefault();
+
+                // Fetch and convert data when link is clicked
+                await fetchAndConvertData(item.download_url);
+                refreshDisplay();
+
+                // Update the button text
+                document.getElementById('dropdownMenuButton').textContent = 'Vocab: ' + item.name;
+
+                // Scroll to the top of the page
+                window.scrollTo(0, 0);
+
+                // Clear the filter input
+                filterInput.value = '';
+                filterInput.oninput();
+            });
+
+            // Append the link to the list item, and the list item to the list container
+            listItem.appendChild(link);
+            listContainer.appendChild(listItem);
+        });
+    });
+
+    async function fetchAndConvertData(url) {
+    const response = await fetch(url);
+    const data = await response.text();
+    //console.log(data);
+    if (url.endsWith('.ttl')) {
+        ttlData = await data;
+        // CONVERT TTL TO JSON-LD FORMAT
+        try {
+            var t = ttlData;
+            skosData = await ttl2jsonld.parse(t);
+            //console.log('converted json-ld: ', skosData);
+            updateConceptSchemeLabel();
+            
+        } catch (e) {
+            console.log(e);
+            alert(e);
+        }
+    } else {
+        skosData = JSON.parse(data);
+        updateConceptSchemeLabel();
+        
+    }
+    
+}
+
+let selectedCollection = null;
+let collectionButtons = [];
+
+function updateConceptSchemeLabel() {
+    // Find the concept scheme in skosData
+    const conceptScheme = skosData['@graph'].find(item => 
+        Array.isArray(item['@type']) 
+            ? item['@type'].includes('skos:ConceptScheme') 
+            : item['@type'] === 'skos:ConceptScheme'
+    );
+
+    // Find the English prefLabel
+    let prefLabel;
+    if (conceptScheme && conceptScheme['skos:prefLabel']) {
+        if (Array.isArray(conceptScheme['skos:prefLabel'])) {
+            const englishLabel = conceptScheme['skos:prefLabel'].find(label => label['@language'] === 'en');
+            prefLabel = englishLabel ? englishLabel['@value'] : undefined;
+        } else {
+            prefLabel = conceptScheme['skos:prefLabel']['@value'];
+        }
+    }
+
+    // Extract the text after the colon in the @id value of reg:status
+    let status;
+    if (conceptScheme && conceptScheme['reg:status'] && conceptScheme['reg:status']['@id']) {
+        status = conceptScheme['reg:status']['@id'].split(':').pop();
+    }
+
+    // Append status to prefLabel
+    if (status) {
+        prefLabel += ` (${status})`;
+    }
+
+    // Update the concept-scheme-label element
+    const labelElement = document.getElementById('concept-scheme-label');
+    if (labelElement) {
+        labelElement.textContent = prefLabel;
+    }
+}
+
+function refreshDisplay() {
+    // Clear existing tree and collection buttons
+    document.getElementById('skosTree').innerHTML = '';
+    document.getElementById('collectionButtons').innerHTML = '';
+    collectionButtons = []; // Reset collection buttons array
+    updateConceptSchemeLabel();
+    // Find the collections in the @graph array
+    const collections = skosData['@graph'].filter(item => item['@type'].includes('skos:Collection'));
+
+    // Display vocabulary collections as buttons
+    const collectionButtonsContainer = document.getElementById('collectionButtons');
+    if (collections && collections.length > 0) {
+        collections.forEach(collection => {
+            const collectionUri = collection['@id'];
+            const collectionButton = document.createElement('button');
+            collectionButton.classList.add('btn', 'btn-secondary');
+            collectionButton.textContent = collection['skos:prefLabel']['@value'];
+            collectionButtonsContainer.appendChild(collectionButton);
+            collectionButtons.push({ uri: collectionUri, button: collectionButton }); // Add button to array
+
+    // Add event listener for collection selection
+    collectionButton.addEventListener('click', () => {
+        // Toggle collection selection
+        if (selectedCollection === collectionUri) {
+            selectedCollection = null;
+            collectionButton.classList.remove('btn-primary');
+            collectionButton.classList.add('btn-secondary');
+            // Display all concepts
+            displayAllConcepts();
+        } else {
+            selectedCollection = collectionUri;
+            collectionButton.classList.remove('btn-secondary');
+            collectionButton.classList.add('btn-primary');
+            // Deselect other collections
+            collectionButtons.forEach(item => {
+                if (item.uri !== collectionUri) {
+                    item.button.classList.remove('btn-primary');
+                    item.button.classList.add('btn-secondary');
+                }
+            });
+            // Display concepts for the selected collection
+            displayConceptsForCollection(collection);
+        }
+
+        // Clear the regex filter text
+        document.getElementById('filterInput').value = '';
+    });
+        });
+    } else {
+        // No collections available
+        const noCollectionsMessage = document.createElement('p');
+        noCollectionsMessage.textContent = 'No collections available.';
+        collectionButtonsContainer.appendChild(noCollectionsMessage);
+    }
+
+    // Display all concepts by default
+    displayAllConcepts();
+}
+
+function displayAllConcepts(filterText = '') {
+    // Clear existing tree
+    document.getElementById('skosTree').innerHTML = '';
+
+    // Create a new regex from the filter text
+    const regex = new RegExp(filterText, 'i');
+
+    // Display all concepts that match the filter text
+    skosData['@graph'].forEach(concept => {
+        let prefLabel;
+        if (concept['skos:prefLabel']) {
+            if (Array.isArray(concept['skos:prefLabel'])) {
+                const englishLabel = concept['skos:prefLabel'].find(label => label['@language'] === 'en');
+                prefLabel = englishLabel ? englishLabel['@value'] : undefined;
+            } else {
+                prefLabel = concept['skos:prefLabel']['@value'];
+            }
+        }
+
+        if (prefLabel && regex.test(prefLabel)) {
+            createTree(concept, document.getElementById('skosTree'));
+        }
+    });
+    updateConceptSchemeLabel();
+}
+
+function displayConceptsForCollection(collection) {
+    // Clear existing tree
+    document.getElementById('skosTree').innerHTML = '';
+
+    // Display concepts for the selected collection
+    if (collection['skos:member'] && collection['skos:member'].length > 0) {
+        collection['skos:member'].forEach(conceptRef => {
+            // Find the full concept object in the @graph array
+            const concept = skosData['@graph'].find(item => item['@id'] === conceptRef['@id']);
+            if (concept) {
+                createTree(concept, document.getElementById('skosTree'));
+            }
+        });
+    } else {
+        // No concepts available
+        const noConceptsMessage = document.createElement('p');
+        noConceptsMessage.textContent = 'No concepts available for this collection.';
+        document.getElementById('skosTree').appendChild(noConceptsMessage);
+    }
+    updateConceptSchemeLabel();
+}
+
+function createTree(concept, parentElement) {
+    const listItem = document.createElement('li');
+    
+    let label;
+    if (concept['skos:prefLabel']) {
+        if (Array.isArray(concept['skos:prefLabel'])) {
+            const englishLabel = concept['skos:prefLabel'].find(label => label['@language'] === 'en');
+            label = englishLabel ? englishLabel['@value'] : undefined;
+        } else {
+            label = concept['skos:prefLabel']['@value'];
+        }
+    } else {
+        label = concept["@id"];
+    }
+
+    const definition = concept["skos:definition"] ? concept["skos:definition"]['@value'] : 'No definition available';
+
+    const idParts = concept["@id"].split(':');
+    const idContext = skosData['@context'][idParts[0]];
+    const id = idContext ? `${idContext}${idParts[1]}` : concept["@id"];
+
+    listItem.innerHTML = `
+        <h4>${label}</h4>
+        <p><strong>IRI:</strong> <a target="_blank"></a></p>
+        <p><strong>Definition:</strong> ${definition}</p>
+        <a href="#" class="more-info">More info</a>
+        <div class="extra-info" style="display: none;">
+            <pre>${JSON.stringify(concept, null, 4)}</pre>
+        </div><br><br>
+    `;
+
+    listItem.querySelector('a[target="_blank"]').setAttribute('href', id);
+    listItem.querySelector('a[target="_blank"]').textContent = id;
+
+    listItem.querySelector('.more-info').addEventListener('click', function(e) {
+        e.preventDefault();
+        const extraInfo = this.nextElementSibling;
+        if (extraInfo.style.display === 'none') {
+            extraInfo.style.display = 'block';
+        } else {
+            extraInfo.style.display = 'none';
+        }
+    });
+
+    parentElement.appendChild(listItem);
+}
+document.getElementById('filterInput').addEventListener('input', function() {
+    displayAllConcepts(this.value);
+
+    // Deselect all collection buttons
+    collectionButtons.forEach(item => {
+        item.button.classList.remove('btn-primary');
+        item.button.classList.add('btn-secondary');
+    });
+    selectedCollection = null;
+});
+</script>
+				</div>
+				
+			</div>
+			
+
+			
+		</div>
+	</div></div>
+
+	
+	<div id="footer">
+
+		
+		<div class="max-width"><div class="box-sizing">
+			<h2>Site footer</h2>
+			<ul>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/copyright/">Copyright</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/disclaimer/">Disclaimer</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/privacy/">Privacy</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/right-to-information/">Right to information</a></li>
+				<li><a href="http://www.qld.gov.au/help/access/">Accessibility</a></li>
+				<li><a href="http://www.smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+				<li id="languages"><a href="http://www.qld.gov.au/languages/">Other languages</a></li>
+			</ul>
+			<p class="legal">&copy; The State of Queensland (Department of Resources) 2010&ndash;2023</p>
+			<p><a href="http://www.qld.gov.au/" accesskey="1">Queensland Government</a></p>
+			<div id="qg-branding"><p><img class="tagline" src="/gsq-labs/theme/qg-tagline-footer.png" alt="Great state. Great opportunity."></p></div>
+		</div></div>
+	</div>
+    
+    
+	
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript"><!--
+			// OPTIONAL: manually specify the current page title (to determine which menus are open onload)  
+			//var currentPageTitle = '_INSERT_PAGE_TITLE_HERE_';  
+			--></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+
+    <!--<![endif]-->
+	<script type="text/javascript" src="/gsq-labs/cue/js/qg.js"></script>
+
+</body>
+</html>
