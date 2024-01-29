@@ -520,8 +520,6 @@ function createTree(concept, parentElement) {
     listItem.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-	    filterInput.value = '';
-	    filterInput.oninput();
             const targetElement = document.getElementById(this.getAttribute('href').substring(1));
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
