@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-AU">
 <head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,7 +109,7 @@
             list-style-type: none;
         }
         p {
-            line-height: 0.9;
+            line-height: 1.0;
         }
         #dropdownMenuButton {
             width: 100%; /* Full width */
@@ -496,10 +497,16 @@ function createTree(concept, parentElement) {
     const idContext = skosData['@context'][idParts[0]];
     const id = idContext ? `${idContext}${idParts[1]}` : concept["@id"];
 
+    // Check if 'skos:broader' and 'skos:narrower' exist and extract the @id values
+    const broader = concept['skos:broader'] ? (Array.isArray(concept['skos:broader']) ? concept['skos:broader'].map(item => `<a href="#${item['@id']}">${item['@id']}</a>`).join(', ') : `<a href="#${concept['skos:broader']['@id']}">${concept['skos:broader']['@id']}</a>`) : undefined;
+    const narrower = concept['skos:narrower'] ? (Array.isArray(concept['skos:narrower']) ? concept['skos:narrower'].map(item => `<a href="#${item['@id']}">${item['@id']}</a>`).join(', ') : `<a href="#${concept['skos:narrower']['@id']}">${concept['skos:narrower']['@id']}</a>`) : undefined;
+
     listItem.innerHTML = `
-        <h4>${label}</h4>
+        <h4 id="${concept["@id"]}">${label}</h4>
         <p><strong>IRI:</strong> <a target="_blank"></a></p>
         <p><strong>Definition:</strong> ${definition}</p>
+        ${broader ? `<p><strong>Broader:</strong> ${broader}</p>` : ''}
+        ${narrower ? `<p><strong>Narrower:</strong> ${narrower}</p>` : ''}
         <a href="#" class="more-info">More info</a>
         <div class="extra-info" style="display: none;">
             <pre>${JSON.stringify(concept, null, 4)}</pre>
@@ -508,6 +515,17 @@ function createTree(concept, parentElement) {
 
     listItem.querySelector('a[target="_blank"]').setAttribute('href', id);
     listItem.querySelector('a[target="_blank"]').textContent = id;
+
+    // Add event listeners to the anchors
+    listItem.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.getElementById(this.getAttribute('href').substring(1));
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 
     listItem.querySelector('.more-info').addEventListener('click', function(e) {
         e.preventDefault();
