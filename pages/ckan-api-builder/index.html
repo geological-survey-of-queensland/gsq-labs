@@ -779,7 +779,7 @@ for (var field in globalSearchConfig) {
 
 
     // Join q and fl arrays with '+'
-    q = q.join('+');
+    q = q.map(element => encodeURIComponent(element)).join('+');
     fl = fl.join(',');
 
     //bbox component
@@ -789,7 +789,7 @@ for (var field in globalSearchConfig) {
         bboxComponent = '';
     }
 
-    var queryUrl = baseUrl + '?q=' + encodeURIComponent(q) + '&fl=' + encodeURIComponent(fl) + '&sort=' + encodeURIComponent(sort) + '&start=' + encodeURIComponent('0')  + '&rows=' + encodeURIComponent(rows) + bboxComponent;
+    var queryUrl = baseUrl + '?q=' + q + '&fl=' + encodeURIComponent(fl) + '&sort=' + encodeURIComponent(sort) + '&start=' + encodeURIComponent('0')  + '&rows=' + encodeURIComponent(rows) + bboxComponent;
 
 
     //check if summary results checkbox is true then generate faceted search parameters
