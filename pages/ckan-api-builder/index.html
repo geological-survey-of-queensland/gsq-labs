@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>CKAN API Request Builder : GSQ Labs</title>
+
+  <link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
+  <!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+  <link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
+  
+  <link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+  <link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+  <link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+  
+  <link rel="shortcut icon" href="/gsq-labs/cue/images/favicon.ico">
+  
+  
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <!-- Include DataTables Buttons CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
+	<!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
+    
+	<link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+    
+	<link rel="shortcut icon" href="/gsq-labs/cue/images/favicon.ico">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+
+
+<style>
+pre {
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    color: black;
+}
+
+#field-list {
+    height: 70vh; /* Adjust this value as needed */
+    overflow-y: auto;
+}
+
+form-group form-inline {
+    font-size: 9pt;
+}
+
+
+#heading-text {
+    text-align: left;
+    font-size: 10pt;    
+}
+
+.center-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#description {
+    width: 100%;
+    align-items: center;
+
+}
+
+
+/*change color of buttons to dark grey in hex*/
+.btn {
+
+background-color: #4d4d4d;
+border-color: #4d4d4d;
+color: white;
+}
+.btn-secondary {
+
+background-color: #4d4d4d;
+border-color: #4d4d4d;
+color: white;
+}
+.btn-primary {
+
+background-color: #0b0b0b;
+border-color: #080808;
+color: white;
+}
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary:focus:active,
+.btn-primary.focus:active,
+.btn:first-child:active {
+background-color: #0b0b0b;
+border-color: #0b0b0b;
+color: white;
+}
+.btn-secondary:active, .btn-secondary:focus {
+
+background-color: #4d4d4d;
+border-color: #4d4d4d;
+color: white;
+}
+/*change hover color of buttons to slightly lighter grey in hex*/
+.btn:hover {
+background-color: #666666;
+border-color: #666666;
+color: white;
+}
+
+
+/*change color of accordian to very light grey in hex*/
+.accordion-button {
+background-color: #f8f9fa;
+color: black;
+}
+
+.highlight-border {
+    border: 2px solid maroon !important;
+    /* You can adjust the color, thickness, and other properties as needed */
+}
+
+.map-filter {
+    width: 100%; /* Ensure the map takes up the full width of its container */
+    height: 100%; /* Ensure the map takes up the full height of its container */
+    margin: 0 auto; /* Center the map horizontally */
+    border: 2px solid lightgray; 
+}
+
+.options-list {
+    align-items: center;
+
+}
+</style>
+</head>
+<body>
+
+	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
+	<div id="access">
+		<h2>Skip links and keyboard navigation</h2>
+		<ul>
+			<li><a href="#content">Skip to content</a></li>
+			
+			<li><a href="#footer">Skip to footer</a></li>
+			<li><a href="http://www.qld.gov.au/help/accessibility/keyboard.html#section-aria-keyboard-navigation">Use tab and cursor keys to move around the page (more information)</a></li>
+		</ul>
+	</div>
+
+	<div id="header"><div class="box-sizing"><div class="max-width">
+		<h2>Site header</h2>
+		
+        <a id="qg-coa" href="http://www.qld.gov.au/">
+            <!--[if gte IE 7]><!--><img src="/gsq-labs/theme/qg-coa.png" width="287" height="50" alt="Queensland Government"><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]-->
+            <img src="/gsq-labs/cue/images/qg-coa-print.png" class="print-version" alt="">
+        </a>
+        
+		<ul id="tools">
+			<li><a accesskey="4" href="https://www.resources.qld.gov.au/contact-us#geological-survey-of-queensland">Contact us</a></li>
+			<li><a href="/gsq-labs/pages/help/">Help</a></li>
+			<li><a href="https://github.com/geological-survey-of-queensland">GitHub</a></li>
+			<li class="last-child">
+			</li>
+		</ul>
+        
+       <!-- <h2 id="site-name"><a href="/" accesskey="2">-->
+            <!--[if gte IE 7]><!--><!--<img src="/gsq-labs/theme/site-name.png" height="28" alt="GSQ Labs">--><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
+          <!--  <img src="/gsq-labs/theme/site-name-print.png" height="28" class="print-version" alt="">-->
+       <!-- </a></h2> -->
+    
+	</div>
+</div>
+</div>
+<div id="breadcrumbs">
+    <h2>You are here:</h2>
+    <ol>
+        <li><a href="/gsq-labs/">GSQ labs home</a></li>
+
+    </ol>
+</div>
+  <div class="container mt-5" id="heading-text">
+ <div class="row">
+
+
+    <div class="col center-block">
+        <h1>CKAN API Request Builder</h1>
+    </div>
+</div>
+    <div class="row" id="description">
+
+        <p>This is a tool to help construct a request to the CKAN API that returns package details in GSQ's <a href="https://geoscience.data.qld.gov.au" target="_blank">Geoscience Open Data Portal</a>. It provides a structured view of the reponse and generates a GET request string which can be copied and used in your code. The filter field values use <a href="https://solr.apache.org/guide/8_8/the-standard-query-parser.html#the-standard-query-parser" targe="_blank">SOLR query syntax</a>. </p>
+        <p>There is a 6Mb limit on content pulled back through this tool per request, larger queries can be carried out with a direct call to the API. Select the checkbox for the field you want to display, the checkbox with label 'D' means descending order. Fields are only sortable if they are not arrays or multi-select options. The date range fields can do relative or absolute, the checkbox labelled 'R' toggles this. Faceted summary results provide an overview of the groups within the resulting data.     
+        </p>
+    </div>
+      
+    
+
+   <div class="row mb-3">
+
+
+      <div id="field-list" class="col">
+
+
+        </div>
+        <div class="col">
+                    <h3>Latitude and Longitude</h3>
+                    <table class="table table-bordered" id="bbox-table">
+                        <tr>
+                            <td id="top-left">(none selected)</td>
+                            <td id="top-right">(none selected)</td>
+                        </tr>
+                        <tr>
+                            <td id="bottom-left">(none selected)</td>
+                            <td id="bottom-right">(none selected)</td>
+                        </tr>
+                    </table>
+                    <div class="col">
+                        <label>Include spatial bounds:</label>
+
+                        <input type="checkbox" id="spatial-toggle" name="summaryResults" value=true checked>
+                      </div>
+
+                    <div id="map" class="map-filter" style="height: 350px; width: 350px;"></div>
+                </div>
+            <input type="hidden" id="top-left-x">
+            <input type="hidden" id="top-left-y">
+            <input type="hidden" id="top-right-x">
+            <input type="hidden" id="top-right-y">
+            <input type="hidden" id="bottom-left-x">
+            <input type="hidden" id="bottom-left-y">
+            <input type="hidden" id="bottom-right-x">
+            <input type="hidden" id="bottom-right-y">
+        </div>
+
+
+    <div class="row mb-3 options-list">
+        <div class="col">
+            <div class="form-inline">
+                <label for="rows-per-page">Rows per Page:</label>
+                <input type="number" id="rows-per-page" style="width: 6em;" name="rowsPerPage" value="30" class="form-control ml-2">
+
+            </div>
+        </div>
+        <div class="col">
+            <label for="newlineDelimit">Newline delimit arrays?</label>
+            <input type="checkbox" id="newlineDelimit" value="false">
+        </div>
+      <div class="col">
+        <label>Get summary (faceted data):</label>
+        <input type="checkbox" id="summary-toggle" name="summaryResults" value=false>
+      </div>
+      <div class="col">
+        <div class="form-inline">
+            <label for="rows-per-page">Facet list limit:</label>
+            <input type="number" id="facet-list-limit" style="width: 6em;" name="rowsPerPage" value="100" class="form-control ml-2">
+        </div>
+    </div>      
+
+
+    </div>
+    <div class="row mb-3">
+        <div class="col center-block">
+
+            <button class="btn btn-primary w-50" id="runButton">Search</button>
+        </div>
+        
+      </div>
+    <div class="row">
+        <div class="col center-block">
+            <button type="button" id="summaryButton" class="btn btn-info w-50" style="display: none;">Toggle Summary Results</button>
+            <div id="summaryDiv" style="display: none;">
+                <pre id="summaryResults">No data</pre>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+            <div>
+                <h3 id="resultsHeading">Search results</h3>
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+      <div class="col">
+        <br>
+        <table class="table table-bordered" id="mainTableResults">
+          <thead>
+            <tr id="mainHeaderRow">
+            <!-- Table column heading will be dynamically populated here -->
+            </tr>
+          </thead>
+          <tbody id="mainResultsBody">
+            <!-- Table rows will be dynamically populated here -->
+          </tbody>
+        </table>
+        <div id="totalCount"></div>
+        <div class="col center-block">        
+            <button class="btn btn-secondary" id="loadMoreButton">Load More</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+
+		
+    <div class="max-width"><div class="box-sizing">
+        <h2>Site footer</h2>
+        <ul>
+            <li class="legal"><a href="http://www.qld.gov.au/legal/copyright/">Copyright</a></li>
+            <li class="legal"><a href="http://www.qld.gov.au/legal/disclaimer/">Disclaimer</a></li>
+            <li class="legal"><a href="http://www.qld.gov.au/legal/privacy/">Privacy</a></li>
+            <li class="legal"><a href="http://www.qld.gov.au/right-to-information/">Right to information</a></li>
+            <li><a href="http://www.qld.gov.au/help/access/">Accessibility</a></li>
+            <li><a href="http://www.smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+            <li id="languages"><a href="http://www.qld.gov.au/languages/">Other languages</a></li>
+        </ul>
+        <p class="legal">&copy; The State of Queensland (Department of Resources) 2010&ndash;2023</p>
+        <p><a href="http://www.qld.gov.au/" accesskey="1">Queensland Government</a></p>
+        <div id="qg-branding"><p><img class="tagline" src="/gsq-labs/theme/qg-tagline-footer.png" alt="Great state. Great opportunity."></p></div>
+    </div></div>
+</div>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    //global field and search object
+    let mainTableData = {};
+    let searchStartValue = 0;
+    let currentQuery = '';
+    let globalSearchConfig = {
+        "name":{
+            "type":"text", 
+            "flParam":"name", 
+            "label":"Name (ID)", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":1, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "title":
+            { 
+                "type":"text", 
+                "flParam":"title", 
+                "label":"Title", 
+                "filterValue":"",
+                "sortable":false, 
+                "sortOrder":null, 
+                "sortDesc":null, 
+                "display":true
+            },
+        "dataset_type":
+            { 
+                "type":"text", 
+                "flParam":"dataset_type", 
+                "label":"Dataset Type", 
+                "filterValue":"", 
+                "sortable":true,
+                "sortOrder":2, 
+                "sortDesc":false,
+                "display":true
+            },
+        "extraidentifier":{
+            "type":"text", 
+            "flParam":"extras_extraidentifier", 
+            "label":"PID (extra identifier)", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":3, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "geojson_extent":{
+            "type":"text", 
+            "flParam":"extras_GeoJSONextent", 
+            "label":"GeoJSON Extent", 
+            "filterValue":"", 
+            "sortable":false,
+            "sortOrder":null, 
+            "sortDesc":false, 
+            "display":true
+        }, 
+        "spatial":{
+            "type":"text", 
+            "flParam":"extras_spatial", 
+            "label":"Spatial", 
+            "filterValue":"", 
+            "sortable":false,
+            "sortOrder":null, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "borehole_class":{
+            "type":"text", 
+            "flParam":"extras_borehole_class", 
+            "label":"Borehole Class", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":4, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "borehole_purpose":{
+            "type":"text", 
+            "flParam":"extras_borehole_purpose", 
+            "label":"Borehole Purpose", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":5, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "status":{
+            "type":"text",
+            "flParam":"extras_status", 
+            "label":"Status", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":6, 
+            "sortDesc":false, 
+            "display":true
+        },         
+        "operator":{
+            "type":"text", 
+            "flParam":"extras_operator", 
+            "label":"Operator", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":7, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "owner":{
+            "type":"text", 
+            "flParam":"extras_owner", 
+            "label":"Owner", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":8, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "resource_authority_permit":{
+            "type":"text", 
+            "flParam":"extras_resource_authority_permit", 
+            "label":"Resource Authority Permit", 
+            "filterValue":"", 
+            "sortable":false,
+            "sortOrder":null, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "tags":{
+            "type":"text", 
+            "flParam":"tags", 
+            "label":"Tags", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null, 
+            "sortDesc":null, 
+            "display":true
+        },
+        "res_name":{
+            "type":"text", 
+            "flParam":"res_name", 
+            "label":"Resource Name", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null, 
+            "sortDesc":null, 
+            "display":true
+        },
+        "res_format":{
+            "type":"text", 
+            "flParam":"res_format", 
+            "label":"Resource Format", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null, 
+            "sortDesc":null, 
+            "display":true
+        },
+        "res_url":{
+            "type":"text", 
+            "flParam":"res_url", 
+            "label":"Resource URL", 
+            "filterValue":"", 
+            "sortOrder":null,
+            "sortable":false, 
+            "sortDesc":null, 
+            "display":true
+        },
+        "vocab_commodity":{
+            "type":"text", 
+            "flParam":"vocab_commodity", 
+            "label":"Vocab Commodity", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null,
+            "sortDesc":null, 
+            "display":true
+        },
+        "vocab_resource_authority_permit":{
+            "type":"text", 
+            "flParam":"vocab_resource_authority_permit", 
+            "label":"Vocab Resource Authority Permit", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null,
+            "sortDesc":null, 
+            "display":true
+        },
+        "vocab_map_series":{
+            "type":"text", 
+            "flParam":"vocab_map_series", 
+            "label":"Vocab Map Series", 
+            "filterValue":"",
+            "sortable":false, 
+            "sortOrder":null,
+            "sortDesc":null, 
+            "display":true
+        },
+        "dataset_start_date":{
+            "type":"date", 
+            "flParam":"dataset_start_date", 
+            "label":"Dataset Start Date", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":9, 
+            "sortDesc":true,
+            "display":true
+        },
+        "dataset_completion_date":{
+            "type":"date", 
+            "flParam":"dataset_completion_date", 
+            "label":"Dataset Completion Date", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":10, 
+            "sortDesc":true,
+            "display":true
+        },
+        "metadata_created":{
+            "type":"date", 
+            "flParam":"metadata_created", 
+            "label":"Metadata Created", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":11, 
+            "sortDesc":true,
+            "display":true
+        },
+        "metadata_modified":{
+            "type":"date", 
+            "flParam":"metadata_modified", 
+            "label":"Metadata Modified", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":12, 
+            "sortDesc":true,
+            "display":true
+        },
+        "open_file_date":{
+            "type":"date", 
+            "flParam":"open_file_date", 
+            "label":"Open File Date", 
+            "filterValue":"",
+            "sortable":true, 
+            "sortOrder":13, 
+            "sortDesc":true,
+            "display":true
+        },        
+        "rig_release_date":{
+            "type":"date", 
+            "flParam":"extras_rig_release_date", 
+            "label":"Rig Release Date", 
+            "filterValue":"", 
+            "sortable":true,
+            "sortOrder":14, 
+            "sortDesc":false, 
+            "display":true
+        },
+        "extras_bundle":{
+            "type":"text", 
+            "flParam":"extras_*", 
+            "label":"Extras (bundle of fields)", 
+            "filterValue":"", 
+            "sortable":false,
+            "sortOrder":null, 
+            "sortDesc":false, 
+            "display":true
+        }, 
+        "all_the_columns":{
+            "type":"text", 
+            "flParam":"*", 
+            "label":"All the columns", 
+            "filterValue":"", 
+            "sortable":false,
+            "sortOrder":null, 
+            "sortDesc":false, 
+            "display":true
+        }
+    }
+</script>
+  <script>
+    $(document).ready(function() {
+      $('#runButton').click(function() {
+        // Get state of checkboxes and filter input fields
+        var updateState = getState();
+        // Execute search query when 'Run' button is clicked
+        if (updateState) {
+            executeSearch();
+        }
+        else
+        {
+            console.log('Error getting state');
+        }
+        
+      });
+
+      $('#loadMoreButton').click(function() {
+        // Load more results when 'Load More' button is clicked
+        loadMoreResults();
+      });
+    });
+
+    function getState() {
+    // Get state of checkboxes and filter input fields
+    $('input[type="checkbox"]').each(function() {
+        var field = $(this).attr('name');
+        if (globalSearchConfig[field]) {
+            globalSearchConfig[field].display = $(this).prop('checked');
+        }
+    });
+    $('input[type="text"]').each(function() {
+        var field = $(this).attr('id').replace('filter-', '');
+        if (globalSearchConfig[field]) {
+            globalSearchConfig[field].filterValue = $(this).val();
+        }
+    });
+    $('input[type="number"].sort-order').each(function() {
+        var field = $(this).attr('name').replace('-sort', '');
+        if (globalSearchConfig[field]) {
+            globalSearchConfig[field].sortOrder = parseInt($(this).val());
+        }
+    });
+    $('input[type="checkbox"][id$="-sort-descending"]').each(function() {
+        var field = $(this).attr('id').replace('-sort-descending', '');
+        if (globalSearchConfig[field]) {
+            globalSearchConfig[field].sortDesc = $(this).prop('checked');
+        }
+    });
+    console.log('getState', globalSearchConfig);
+    return true;
+}
+
+function executeSearch(startValue) {
+    console.log('start value: ', startValue );
+    console.log('search started: ', globalSearchConfig)
+    //sample faceted search request https://geoscience.data.qld.gov.au/api/3/action/package_search?facet=true&fl=name&rows=5&start=0&facet.field=%5B%22georesource_report_type%22%2C%22borehole_purpose%22%2C%22vocab_commodity%22%5D&facet.mincount=1&facet.limit=100
+
+    var facetedSearchConfig = [
+        "georesource_report_type",
+        "borehole_purpose",
+        "vocab_commodity",
+        "vocab_resource_authority_permit",
+        "owner",
+        "dataset_type",
+        "entity_type",
+        "res_format"
+    ]
+    
+    var baseUrl = 'https://geoscience.data.qld.gov.au/api/3/action/package_search';
+    var q = [];
+    var fl = [];
+    var sort = [];
+    var rows = $('#rows-per-page').val() || 30; // Default to 30 if no value is set
+
+    var bboxValid = false;
+    var spatialToggle = $('#spatial-toggle').is(':checked');
+    // Retrieve bounding box coordinates from input fields
+    var bottomLeftLat = $('#bottom-left-x').val();
+    var bottomLeftLong = $('#bottom-left-y').val();
+    var topRightLat = $('#top-right-x').val();
+    var topRightLong = $('#top-right-y').val();
+
+    // Check if bounding box coordinates contain numbers
+    if (bottomLeftLat && bottomLeftLong && topRightLat && topRightLong && !isNaN(bottomLeftLat) && !isNaN(bottomLeftLong) && !isNaN(topRightLat) && !isNaN(topRightLong)){
+        bboxValid = true;
+    }   
+
+
+    // URL encode bounding box coordinates
+    var ext_bbox = bottomLeftLat + ',' + bottomLeftLong + ',' + topRightLat + ',' + topRightLong;
+
+    for (var field in globalSearchConfig) {
+        var fieldConfig = globalSearchConfig[field];
+        console.log('filter config: ', fieldConfig);
+        // Add to q parameter if filterValue is set and type is not date
+        //https://solr.apache.org/guide/8_8/the-standard-query-parser.html#the-standard-query-parser
+        if (fieldConfig.filterValue && fieldConfig.type !== 'date') {
+            q.push(field + ':' + fieldConfig.filterValue);
+        }
+
+        // Add to fl parameter if display is true and does not already in the list
+        if (fieldConfig.display && !fl.includes(fieldConfig["flParam"])) {
+            fl.push(fieldConfig["flParam"]);
+        }
+
+        // Add to sort parameter if sortOrder is set, sortable is true, and checkbox is ticked
+        if (fieldConfig.sortOrder && fieldConfig.sortable && $('input[name="' + field + '"]').is(':checked')) {
+            var order = fieldConfig.sortDesc ? ' desc' : ' asc';
+            sort[fieldConfig.sortOrder - 1] = field + order;
+        }
+    }
+    console.log('filter fields: ', fl); 
+    // Remove undefined values from sort array and join with ','
+    sort = sort.filter(function(value) { return value !== undefined; }).join(',');
+
+// Handle date range filters
+for (var field in globalSearchConfig) {
+    var fieldConfig = globalSearchConfig[field];
+    if (fieldConfig.type === 'date') {
+        if ($('#relative-' + field).is(':checked')) {
+            // Handle relative date range
+            var timeUnitsMapping = {"H":"HOURS","D":"DAYS","M":"MONTHS","Y":"YEARS"};
+            var fromRelativeInt = $('#from-relative-int-' + field).val();
+            var fromRelativeUnit = timeUnitsMapping[$('#from-relative-units-' + field).val()] || '';
+            var toRelativeInt = $('#to-relative-int-' + field).val();
+            var toRelativeUnit = timeUnitsMapping[$('#to-relative-units-' + field).val()] || '';
+            var fromDate = fromRelativeInt && fromRelativeUnit ? 'NOW' + fromRelativeInt + fromRelativeUnit : '';
+            var toDate = toRelativeInt && toRelativeUnit ? 'NOW' + toRelativeInt + toRelativeUnit : 'NOW';
+            if (fromDate) {
+                q.push(field + ':[' + fromDate + ' TO ' + toDate + ']');
+            }
+        } else {
+            // Handle absolute date range
+            var fromDate = $('#filter-from-' + field).val();
+            var toDate = $('#filter-to-' + field).val();
+            if (fromDate) {
+                fromDate = new Date(fromDate).toISOString();
+            }
+            if (toDate) {
+                toDate = new Date(toDate).toISOString();
+            }
+            if (fromDate && toDate) {
+                q.push(field + ':[' + fromDate + ' TO ' + toDate + ']');
+            } else if (fromDate) {
+                q.push(field + ':[' + fromDate + ' TO *]');
+            } else if (toDate) {
+                q.push(field + ':[* TO ' + toDate + ']');
+            }
+        }
+    }
+}
+
+
+    // Join q and fl arrays with '+'
+    q = q.join('+');
+    fl = fl.join(',');
+
+    //bbox component
+    if (bboxValid && spatialToggle) {
+        var bboxComponent = '&ext_bbox=' + encodeURIComponent(ext_bbox);
+    } else {
+        bboxComponent = '';
+    }
+
+    var queryUrl = baseUrl + '?q=' + encodeURIComponent(q) + '&fl=' + encodeURIComponent(fl) + '&sort=' + encodeURIComponent(sort) + '&start=' + encodeURIComponent('0')  + '&rows=' + encodeURIComponent(rows) + bboxComponent;
+
+
+    //check if summary results checkbox is true then generate faceted search parameters
+    if ($('#summary-toggle').is(':checked')) {
+        var facetField = facetedSearchConfig.join('%2C');
+        var facetUrl = '&facet=true&facet.field=' + encodeURIComponent('["');
+        for (var i = 0; i < facetedSearchConfig.length; i++) {
+            facetUrl += facetedSearchConfig[i] +  encodeURIComponent('","');
+        }
+        //get facet.limit
+        var facetLimit = $('#facet-list-limit').val();
+        facetUrl = facetUrl + encodeURIComponent('"]') +'&facet.mincount=1&facet.limit=' + facetLimit;
+        queryUrl += facetUrl;
+    } 
+
+    
+    
+    
+
+
+    // proxy url
+    var proxyUrl = 'https://v2czxmrwnk.execute-api.ap-southeast-2.amazonaws.com/request?request-url=';
+    //request url
+    var requestUrl = proxyUrl + encodeURIComponent(queryUrl);
+    // track the current query in memory
+    if (startValue) {
+        console.log('new start value: ', startValue);
+        
+        requestUrl = currentQuery.replace('start' + encodeURIComponent('=') + searchStartValue, 'start' + encodeURIComponent('=') + encodeURIComponent(startValue));
+        var appendSearchResults = true;
+        searchStartValue = startValue;
+        console.log('appending: ', requestUrl);
+    }
+    else
+    {
+        appendSearchResults = false;
+        searchStartValue = 0;
+        console.log('not appending: ', requestUrl);
+    }
+
+    currentQuery = requestUrl;    
+    console.log('query url: ',queryUrl);
+    console.log('proxy request: ',requestUrl);
+    $.ajax({
+    url: requestUrl,
+    type: 'GET',
+    headers: {
+
+    },
+    success: function(response) {
+    if (response.success) {
+        var resultsJson = response.result.results;
+        console.log(resultsJson);
+        //update searchResults element with count of results
+        $('#resultsHeading').text('Search results (package count: ' + response.result.count + ')');
+
+
+        // Remove previous query elements if they exist
+        $('#toggleQuery').parent().remove();
+        $('#query-text').remove();
+        $('#copy-query-button').remove();
+
+        // Add show/hide query link, query text and copy button, and hide them initially
+        var toggleQuery = $('<h3><a href="#" id="toggleQuery">show/hide query</a></h3>').insertAfter('#resultsHeading');
+        var queryText = $('<pre id="query-text">').text(queryUrl).insertAfter(toggleQuery).hide();
+        var copyButton = $('<button id="copy-query-button" class="btn btn-primary">').text('Copy to clipboard').insertAfter(queryText).hide();
+
+        // Add click event to toggle query text and copy button
+        toggleQuery.click(function(e) {
+            e.preventDefault();
+            queryText.toggle();
+            copyButton.toggle();
+        });
+
+        // Add click event to copy query text to clipboard
+        copyButton.click(function() {
+            navigator.clipboard.writeText(queryText.text()).then(function() {
+                // On success, change button text to 'Copied'
+                copyButton.text('Copied');
+            }, function() {
+                // On error, log the error
+                console.error('Failed to copy text to clipboard');
+            });
+        });
+
+        var summaryResultsJson = response.result.facets;
+        console.log(summaryResultsJson);
+        if (appendSearchResults)
+        {
+            updateTable(resultsJson, 'append');
+        }
+        else
+        {
+            updateTable(resultsJson, 'reset');
+        }
+        
+        updateSummaryResults(summaryResultsJson);
+    } else {
+        alert('Error in query: ',requestUrl);
+        return;
+    }
+},
+    error: function(jqXHR, textStatus, errorThrown) {
+            if(jqXHR.status === 500) {
+                // Handle 500 error here
+                searchStartValue = 0;
+                currentQuery = '';
+                alert('Error in query (try refreshing or reducing the number of rows returned)');
+                console.error('500 Internal Server Error occurred');
+            }
+        }
+});
+}
+
+function updateTable(resultsJson, action) {
+    console.log('updateTable', resultsJson, action);
+    // Preprocessing: add 'package_show' link to 'name' field if present
+    resultsJson.forEach(function(rowData) {
+        if (rowData.hasOwnProperty('name')) {
+            rowData['name'] = '<a href="https://geoscience.data.qld.gov.au/api/3/action/package_show?id=' + rowData['name'] + '" target="_blank">'+rowData['name']+'</a>';
+        }
+    });
+    // If action is 'reset' and the table is initialized, clear the existing data
+    if (action === 'reset' && $.fn.dataTable.isDataTable('#mainTableResults')) {
+        $('#mainTableResults').DataTable().clear().destroy();
+    }
+    // Process the resultsJson data
+    var newTableData = resultsJson.map(function(rowData) {
+        var entries = Object.entries(rowData);
+        entries.forEach(function([key, value]) {
+            if (Array.isArray(value)) {
+                // Check the state of the checkbox
+                var newlineDelimit = document.getElementById('newlineDelimit').checked;
+                if (newlineDelimit) {
+                    // If checked, join with '<br>'
+                    rowData[key] = value.join('<br>');
+                } else {
+                    // If not checked, join with comma and wrap each item in double quotes
+                    rowData[key] = '[' + value.map(item => `"${item}"`).join(', ') + ']';
+                }
+            }
+        });
+        return rowData;
+    });
+
+    console.log('new table data', newTableData);
+
+    // If action is 'append', append new data to existing table data
+    if (action === 'append' && $.fn.dataTable.isDataTable('#mainTableResults')) {
+        var existingTableData = $('#mainTableResults').DataTable().data().toArray();
+        // Check if the columns have changed
+        if (JSON.stringify(Object.keys(existingTableData[0])) !== JSON.stringify(Object.keys(newTableData[0]))) {
+            searchStartValue = 0;
+            currentQuery = '';
+            alert("The query columns have changed so paginated results can't be appended, try refreshing.");
+            return;
+        }
+        // Append new data
+        mainTableData = existingTableData.concat(newTableData);
+    } else {
+        mainTableData = newTableData;
+    }
+
+    console.log('main table data', mainTableData);
+
+    // If mainTableData is not empty, create the table headers and rows
+    if (mainTableData.length > 0) {
+        // Generate columns from keys
+        var columns = [];
+        // Search through resultsJson to find the object with the most keys and get the index of that object
+        var maxKeys = 0;
+        var maxIndex = 0;
+        for (var i = 0; i < resultsJson.length; i++) {
+            var keys = Object.keys(resultsJson[i]);
+            if (keys.length > maxKeys) {
+                maxKeys = keys.length;
+                maxIndex = i;
+            }
+        }
+        // Get the keys of the object with the most keys
+        var columnsList = Object.keys(resultsJson[maxIndex]);
+
+        for (var i = 0; i < columnsList.length; i++) {
+            columns[i] = {"data": columnsList[i],"defaultContent":""};
+        }
+        // Add table column headers
+        $('#mainHeaderRow').empty();
+        for (var i = 0; i < columnsList.length; i++) {
+            $('#mainHeaderRow').append('<th>' + columnsList[i] + '</th>');
+        }
+
+        console.log('columns', columns);
+        // Add rows
+        var rows = $('#rows-per-page').val() || 30;
+        if (action === 'append')
+        {
+            rows = searchStartValue + parseInt(rows);
+            console.log('updated rows to : ', rows)
+        }
+
+        // Initialize DataTable with buttons
+        $('#mainTableResults').DataTable({
+            data: mainTableData,
+            bSort: false,
+            columns: columns,
+            dom: 'Bfrtip',
+            paging: false,
+            pageLength: rows,
+            buttons: ['csv','excel'],
+            destroy: true
+        });
+    }
+}
+
+function updateSummaryResults(summaryResultsJson) {
+    // Update summary results
+    // add stringified json with pretty indent to summaryResults div
+    $('#summaryResults').text(JSON.stringify(summaryResultsJson, null, 2));
+    return null;
+}
+
+
+
+
+
+function loadMoreResults() {
+    console.log('more results started');
+    // get the current number of rows
+    var currentRows = $('#rows-per-page').val();
+    // add the current number of rows to the start value
+    var newStartValue = searchStartValue + parseInt(currentRows);
+    // execute search with the new start value
+    executeSearch(newStartValue);
+}
+
+     $( function() {
+        var map = L.map('map').setView([-20.9176, 142.7028], 6); // Queensland coordinates
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            map.on('moveend', function() {
+        var bounds = map.getBounds();
+        var topLeft = bounds.getNorthWest().wrap();
+        var topRight = bounds.getNorthEast().wrap();
+        var bottomLeft = bounds.getSouthWest().wrap();
+        var bottomRight = bounds.getSouthEast().wrap();
+
+        // Update hidden input fields
+        $('#top-left-x').val(topLeft.lng.toFixed(4));
+        $('#top-left-y').val(topLeft.lat.toFixed(4));
+        $('#top-right-x').val(topRight.lng.toFixed(4));
+        $('#top-right-y').val(topRight.lat.toFixed(4));
+        $('#bottom-left-x').val(bottomLeft.lng.toFixed(4));
+        $('#bottom-left-y').val(bottomLeft.lat.toFixed(4));
+        $('#bottom-right-x').val(bottomRight.lng.toFixed(4));
+        $('#bottom-right-y').val(bottomRight.lat.toFixed(4));
+
+
+        // Update table cells
+        $('#top-left').text(topLeft.toString());
+        $('#top-right').text(topRight.toString());
+        $('#bottom-left').text(bottomLeft.toString());
+        $('#bottom-right').text(bottomRight.toString());                
+
+    });
+});
+
+$(document).ready(function() {
+    $(document).on('input', '.monitor-input', function() {
+        var inputValue = $(this).val();
+        console.log('field input');
+        if (inputValue.length > 0) {
+            $(this).addClass('highlight-border');
+        } else {
+            $(this).removeClass('highlight-border');
+        }
+    });
+});
+
+
+$(document).ready(function() {
+    $( function() {
+        $('.sort-order').change(function() {
+            var field = $(this).attr('name').replace('-sort', '');
+            var newOrder = parseInt($(this).val());
+            console.log('sorting');
+
+            // Get sortable fields
+            var sortableFields = Object.keys(globalSearchConfig).filter(function(field) {
+                return globalSearchConfig[field].sortable;
+            });
+
+            // Check if new order is valid
+            if (newOrder > 0 && newOrder <= sortableFields.length) {
+                // Update globalSearchConfig
+                var oldOrder = globalSearchConfig[field].sortOrder;
+                globalSearchConfig[field].sortOrder = newOrder;
+
+                // Adjust other sort orders
+                for (var i = 0; i < sortableFields.length; i++) {
+                    var otherField = sortableFields[i];
+                    if (otherField != field) {
+                        if (globalSearchConfig[otherField].sortOrder >= newOrder && globalSearchConfig[otherField].sortOrder < oldOrder) {
+                            globalSearchConfig[otherField].sortOrder++;
+                        } else if (globalSearchConfig[otherField].sortOrder <= newOrder && globalSearchConfig[otherField].sortOrder > oldOrder) {
+                            globalSearchConfig[otherField].sortOrder--;
+                        }
+
+                        // Update other input fields
+                        $('input[name="' + otherField + '-sort"]').val(globalSearchConfig[otherField].sortOrder);
+                    }
+                }
+            } else {
+                // Reset to old order if new order is not valid
+                $(this).val(globalSearchConfig[field].sortOrder);
+            }
+        });
+    });
+});
+
+$(function() {
+    var container = $('#field-list');
+    container.empty();
+    container.append('<h3>Search Fields</h3>');
+    for (var field in globalSearchConfig) {
+        var fieldConfig = globalSearchConfig[field];
+        var formGroup = $('<div class="form-group form-inline"></div>');
+        var checkbox = $('<input type="checkbox" style="margin-left: 5px;">')
+            .attr('name', field)
+            .prop('checked', fieldConfig.visible);
+        formGroup.append(checkbox);
+
+        var label = $('<label class="text-left" style="margin-left: 5px; font-size: 10pt; width: 110px; justify-content: left;"></label>').text(fieldConfig.label);
+        formGroup.append(label);
+
+        if (fieldConfig.type === 'date') {
+            var relativeCheckbox = $('<input type="checkbox" id="relative-' + field + '">');
+            var relativeLabel = $('<label for="relative-' + field + '">R</label>');
+            formGroup.append(relativeCheckbox);
+            formGroup.append(relativeLabel);
+
+            var fromDateInput = $('<input class="form-control ml-2 monitor-input" style="margin-right: 5px; width: 125px; font-size: 10pt;">') // width adjusted to 100px
+                .attr('id', 'filter-from-' + field)
+                .attr('type', fieldConfig.type);
+            formGroup.append(fromDateInput);
+
+            
+            var toDateInput = $('<input class="form-control ml-2 monitor-input" style="margin-right: 10px; width: 125px; font-size: 10pt;">') // width adjusted to 100px
+                .attr('id', 'filter-to-' + field)
+                .attr('type', fieldConfig.type);
+            formGroup.append(toDateInput);
+
+            var relativeInputs = $('<div id="relative-inputs-' + field + '" style="display: none;"></div>');
+            var fromRelativeIntInput = $('<input type="number" class="form-control ml-2 monitor-input" style="padding: 1px; width: 60px; font-size: 10pt; ">')
+                .attr('id', 'from-relative-int-' + field);
+            var fromRelativeUnitsSelect = $('<select class="form-control ml-2 monitor-input" style="padding: 1px; margin-right:5px; width: 40px; font-size: 10pt;"><option></option><option>H</option><option>D</option><option>M</option><option>Y</option></select>')
+                .attr('id', 'from-relative-units-' + field);
+            var toRelativeIntInput = $('<input type="number" class="form-control ml-2 monitor-input" style="padding: 1px; width: 60px; font-size: 10pt;">')
+                .attr('id', 'to-relative-int-' + field);
+            var toRelativeUnitsSelect = $('<select class="form-control ml-2 monitor-input" style="padding: 1px; margin-right:5px; width: 40px; font-size: 10pt;"><option></option><option>H</option><option>D</option><option>M</option><option>Y</option></select>')
+                .attr('id', 'to-relative-units-' + field);
+            relativeInputs.append(fromRelativeIntInput, fromRelativeUnitsSelect, 'to', toRelativeIntInput, toRelativeUnitsSelect);
+            formGroup.append(relativeInputs);
+
+
+        } else {
+            if (fieldConfig.flParam.indexOf('*') === -1 )
+            {
+                var filterInput = $('<input class="form-control ml-2 monitor-input" style="margin-right: 15px; font-size: 10pt; width: 200px;">')
+                .attr('id', 'filter-' + field)
+                .attr('type', fieldConfig.type)
+                .attr('placeholder', 'Filter ' + fieldConfig.label);
+            formGroup.append(filterInput);
+            }
+        }
+
+        if (fieldConfig.sortable) {
+            var sortDescendingCheckbox = $('<input type="checkbox" id="' + field + '-sort-descending">');
+            formGroup.append(sortDescendingCheckbox);
+
+            var sortDescendingLabel = $('<label for="' + field + '-sort-descending">D</label>');
+            formGroup.append(sortDescendingLabel);
+
+            var numberInput = $('<input type="number" class="sort-order form-control ml-2" style="width: 50px; font-size: 10pt; padding: 3px;">')
+                .attr('name', field + '-sort')
+                .attr('min', '1')
+                .attr('max', Object.keys(globalSearchConfig).length)
+                .val(fieldConfig.sortOrder);
+            formGroup.append(numberInput);
+        }
+
+        container.append(formGroup);
+    }
+});
+$(document).ready(function() {
+    $('#summary-toggle').change(function() {
+        if ($(this).is(':checked')) {
+            $('#summaryButton').show();
+        } else {
+            $('#summaryButton').hide();
+            $('#summaryDiv').hide();
+        }
+    });
+
+    $('#summaryButton').click(function() {
+        $('#summaryDiv').toggle();
+    });
+});
+
+$(document).on('change', 'input[id^="relative-"]', function() {
+    var field = this.id.replace('relative-', '');
+    if (this.checked) {
+        // If 'R' checkbox is checked, hide absolute date range inputs and show relative date range inputs
+        $('#filter-from-' + field).hide();
+        $('#filter-to-' + field).hide();
+        $('#relative-inputs-' + field).show();
+    } else {
+        // If 'R' checkbox is unchecked, show absolute date range inputs and hide relative date range inputs
+        $('#filter-from-' + field).show();
+        $('#filter-to-' + field).show();
+        $('#relative-inputs-' + field).hide();
+    }
+});
+
+  </script>
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- jQuery UI JS -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<!-- Include DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<!-- Include DataTables Bootstrap 4 plugin -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Include DataTables Buttons JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+</body>
+</html>
