@@ -1083,6 +1083,11 @@ function updateTable(resultsJson, action) {
         }
 
         console.log('columns', columns);
+	if (columns.length === 0)
+	        {
+	            console.log('no columns exist')
+	            return null;
+	        }
         // Add rows
         var rows = $('#rows-per-page').val() || 30;
         if (action === 'append')
