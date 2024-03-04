@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
   <!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
   <link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
-  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
   <link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
   <link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
   <link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
@@ -21,10 +21,11 @@
 
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- jQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
@@ -57,6 +58,7 @@ pre {
 #field-list {
     height: 70vh; /* Adjust this value as needed */
     overflow-y: auto;
+    background-color: #f7f4f4;
 }
 
 form-group form-inline {
@@ -82,19 +84,22 @@ form-group form-inline {
 
 }
 
-
+.summary-charts {
+    width: 100%;
+}
 /*change color of buttons to dark grey in hex*/
 .btn {
 
 background-color: #4d4d4d;
-border-color: #4d4d4d;
+border-color: white;
 color: white;
 }
 .btn-secondary {
 
 background-color: #4d4d4d;
-border-color: #4d4d4d;
+border-color: white;
 color: white;
+border-width: 2px;
 }
 .btn-primary {
 
@@ -143,13 +148,15 @@ color: black;
     width: 100%; /* Ensure the map takes up the full width of its container */
     height: 100%; /* Ensure the map takes up the full height of its container */
     margin: 0 auto; /* Center the map horizontally */
-    border: 2px solid lightgray; 
+    border: 7px dashed #f8f9fa; 
 }
 
 .options-list {
     align-items: center;
 
 }
+
+
 </style>
 </head>
 <body>
@@ -208,7 +215,7 @@ color: black;
 </div>
     <div class="row" id="description">
 
-        <p>This is a tool to help construct a request to the CKAN API that returns package details in GSQ's <a href="https://geoscience.data.qld.gov.au" target="_blank">Geoscience Open Data Portal</a>. It provides a structured view of the reponse and generates a GET request string which can be copied and used in your code. The filter field values use <a href="https://solr.apache.org/guide/8_8/the-standard-query-parser.html#the-standard-query-parser" targe="_blank">SOLR query syntax</a>. Further API details can be found in <a href="https://github.com/geological-survey-of-queensland/open-data-api" target="_blank">GSQ's CKAN API docs</a>.</p>
+        <p>This is a tool to help construct a request to the CKAN API that returns package details in GSQ's <a href="https://geoscience.data.qld.gov.au" target="_blank">Geoscience Open Data Portal</a>. It provides a structured view of the reponse and generates a GET request string which can be copied and used in your code. The filter field values use <a href="https://solr.apache.org/guide/8_8/the-standard-query-parser.html#the-standard-query-parser" targe="_blank">SOLR query syntax</a>. </p>
         <p>There is a 6Mb limit on content pulled back through this tool per request, larger queries can be carried out with a direct call to the API. Select the checkbox for the field you want to display, the checkbox with label 'D' means descending order. Fields are only sortable if they are not arrays or multi-select options. The date range fields can do relative or absolute, the checkbox labelled 'R' toggles this. Faceted summary results provide an overview of the groups within the resulting data.     
         </p>
     </div>
@@ -235,7 +242,7 @@ color: black;
                         </tr>
                     </table>
                     <div class="col">
-                        <label>Include spatial bounds:</label>
+                        <label>Include spatial bounds (the perimeter of map window):</label>
 
                         <input type="checkbox" id="spatial-toggle" name="summaryResults" value=true checked>
                       </div>
@@ -266,8 +273,12 @@ color: black;
             <input type="checkbox" id="newlineDelimit" value="false">
         </div>
       <div class="col">
-        <label>Get summary (faceted data):</label>
+        <label>Summarise data(facets):</label>
         <input type="checkbox" id="summary-toggle" name="summaryResults" value=false>
+      </div>
+      <div class="col" id="use-summary-chart-option" style="display: none;">
+        <label>Use charts:</label>
+        <input type="checkbox" id="chart-summary-toggle" name="summaryResults" value=false>
       </div>
       <div class="col">
         <div class="form-inline">
@@ -281,15 +292,23 @@ color: black;
     <div class="row mb-3">
         <div class="col center-block">
 
-            <button class="btn btn-primary w-50" id="runButton">Search</button>
+            <button class="btn btn-primary w-100" id="runButton">Search</button>
         </div>
         
       </div>
     <div class="row">
-        <div class="col center-block">
-            <button type="button" id="summaryButton" class="btn btn-info w-50" style="display: none;">Toggle Summary Results</button>
-            <div id="summaryDiv" style="display: none;">
+        <div class="col summary-charts">
+            <button type="button" id="summaryButton" class="btn btn-info w-100" style="display: none;">Toggle Summary Results</button>
+            <div classs="summary-charts" id="summaryDiv" style="display: none;">
                 <pre id="summaryResults">No data</pre>
+
+                <div class="summary-charts" id="plot_georesource_report_type"></div>
+                <div class="summary-charts" id="plot_borehole_purpose"></div>
+                <div class="summary-charts" id="plot_vocab_commodity"></div>
+                <div class="summary-charts" id="plot_vocab_resource_authority_permit"></div>
+                <div class="summary-charts" id="plot_owner"></div>
+                <div class="summary-charts" id="plot_dataset_type"></div>
+                <div class="summary-charts" id="plot_res_format"></div>
             </div>
         </div>
     </div>
@@ -724,7 +743,7 @@ color: black;
             "sortDesc":false, 
             "display":true
         }
-    };
+    }
 </script>
   <script>
     $(document).ready(function() {
@@ -880,6 +899,7 @@ for (var field in globalSearchConfig) {
 
 
     // Join q and fl arrays with '+'
+    
     q = q.map(element => encodeURIComponent(element)).join('+');
     fl = fl.join(',');
 
@@ -1083,11 +1103,11 @@ function updateTable(resultsJson, action) {
         }
 
         console.log('columns', columns);
-	if (columns.length === 0)
-	        {
-	            console.log('no columns exist')
-	            return null;
-	        }
+        if (columns.length === 0)
+        {
+            console.log('no columns exist')
+            return null;
+        }
         // Add rows
         var rows = $('#rows-per-page').val() || 30;
         if (action === 'append')
@@ -1113,7 +1133,64 @@ function updateTable(resultsJson, action) {
 function updateSummaryResults(summaryResultsJson) {
     // Update summary results
     // add stringified json with pretty indent to summaryResults div
-    $('#summaryResults').text(JSON.stringify(summaryResultsJson, null, 2));
+    if ($('#chart-summary-toggle').prop('checked'))
+    {
+        $('#summaryResults').text('To see raw data, re-run the search with the chart checkbox unchecked.');
+        var json_data = summaryResultsJson;
+              // Now you can use json_data as needed
+
+              // Process each object in json_data for plotting
+              Object.keys(json_data).forEach(function(key, index) {
+                  var x_data = [];
+                  var y_data = [];
+                  var obj = json_data[key];
+                console.log('current key: ');
+                  // Extract keys for x_data and values for y_data
+                  Object.keys(obj).forEach(function(innerKey) {
+                      x_data.push(innerKey.replace(/.*\//, ''));
+                      y_data.push(obj[innerKey]);
+                  });
+            
+                  var data = [{
+                      type: 'bar',  // change the type for different graphs like 'line', 'scatter', etc.
+                      x: x_data,
+                      y: y_data,
+                      yaxis: {
+                        automargin: true
+                        },
+                      xaxis: {
+                        automargin: true
+                        },
+                        marker: {
+                        color: '#17a2b8'
+                        }
+                  }];
+            
+                  var layout = {
+                      // enlarge plot to fit in div fully
+                      title: key.replace(/_/g, ' ').toUpperCase(),
+                        autosize: true, // Auto-resizes the plot
+                        margin: {
+                            l: 50,        // Left margin
+                            r: 50,        // Right margin
+                            b: 200,       // Bottom margin - if your labels are really big you might need to increase this to a higher value
+                            t: 100,       // Top margin
+                            pad: 4
+                        }
+                  };
+				  var key_id_on_page = 'plot_' + key;
+                  if (document.getElementById(key_id_on_page))
+                  {
+                    Plotly.newPlot(key_id_on_page, data, layout);                   
+                  }
+
+              });
+    }
+    else 
+        {
+            $('#summaryResults').text(JSON.stringify(summaryResultsJson, null, 2));
+        }
+
     return null;
 }
 
@@ -1296,15 +1373,26 @@ $(document).ready(function() {
     $('#summary-toggle').change(function() {
         if ($(this).is(':checked')) {
             $('#summaryButton').show();
+            $('#use-summary-chart-option').show();
         } else {
             $('#summaryButton').hide();
             $('#summaryDiv').hide();
+            $('#use-summary-chart-option').hide();
         }
     });
 
     $('#summaryButton').click(function() {
         $('#summaryDiv').toggle();
-    });
+        var plots = document.getElementsByClassName('js-plotly-plot');
+        for (var i = 0; i < plots.length; i++) {
+        // This uses the DOM id of each plot as the id needed by Plotly.plot.
+        Plotly.relayout(plots[i].id, {
+            'width': document.querySelector('.summary-charts').offsetWidth
+        });
+        }
+
+        });
+
 });
 
 $(document).on('change', 'input[id^="relative-"]', function() {
@@ -1327,13 +1415,13 @@ $(document).on('change', 'input[id^="relative-"]', function() {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Include Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 
 <!-- jQuery UI JS -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Include DataTables JS -->
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -1345,8 +1433,8 @@ $(document).on('change', 'input[id^="relative-"]', function() {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
