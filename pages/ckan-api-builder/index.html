@@ -1188,7 +1188,13 @@ function updateSummaryResults(summaryResultsJson) {
     }
     else 
         {
-            $('#summaryResults').text(JSON.stringify(summaryResultsJson, null, 2));
+		// clear any existing plots
+		var plots = document.getElementsByClassName('js-plotly-plot');
+		for (var i = 0; i < plots.length; i++) {
+		    // This uses the DOM id of each plot as the id needed by Plotly.plot.
+		    Plotly.purge(plots[i].id);
+		}
+                $('#summaryResults').text(JSON.stringify(summaryResultsJson, null, 2));
         }
 
     return null;
