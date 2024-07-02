@@ -1,0 +1,722 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-AU">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>LP Validation Configs Explorer : GSQ Labs</title>
+
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
+	<!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
+    
+	<link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+    
+	<link rel="shortcut icon" href="/gsq-labs/cue/images/favicon.ico">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+
+
+
+  <style>
+    .custom-container {
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    #report-templates-table {
+        width: 100%;
+        font-size:10px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        word-break: break-word; /* This will prevent long words from causing horizontal scroll */
+    }
+
+    .templates-table {
+        width: 100%;
+        font-size:10px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        word-break: break-word; /* This will prevent long words from causing horizontal scroll */
+    }
+    h3 {
+        font-size: 15px;
+        color: grey;
+    }
+    .table-responsive td, .table-responsive th {
+    border: 1px solid #cccccc; /* Replace #cccccc with the hex code of the grey shade you want */
+}
+
+/*center the contents of the footer div*/
+	#footer {
+	  text-align: center;
+	}
+
+/*change color of buttons to dark grey in hex*/
+	.btn {
+
+				  background-color: #4d4d4d;
+				  border-color: #4d4d4d;
+				  color: white;
+				}
+	.btn-secondary {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	.btn-primary {
+
+				background-color: #0b0b0b;
+				border-color: #080808;
+				color: white;
+				}
+				.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary:focus:active,
+.btn-primary.focus:active,
+.btn:first-child:active {
+				background-color: #0b0b0b;
+				border-color: #0b0b0b;
+				color: white;
+				}
+	  .btn-secondary:active, .btn-secondary:focus {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	/*change hover color of buttons to slightly lighter grey in hex*/
+	.btn:hover {
+				  background-color: #666666;
+				  border-color: #666666;
+				  color: white;
+				}
+
+
+	/*change color of accordian to very light grey in hex*/
+	.accordion-button {
+				  background-color: #f8f9fa;
+				  color: black;
+				}
+	/*change color of div class  header to #f2f2f2 hex*/
+
+	/*#header {
+				  background-color: #f2f2f2;
+				}*/
+	#breadcrumbs {
+				  background-color: none;
+				}
+	
+				.tree-container {
+            padding-bottom: 200px;
+        }
+
+
+        .expander {
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(17, 17, 18);
+        }
+
+        .concept-details {
+            list-style-type: none;
+            padding-left: 20px;
+            display: none;
+        }
+        li {
+            list-style-type: none;
+        }
+        p {
+            line-height: 1.0;
+        }
+        #dropdownMenuButton {
+            width: 100%; /* Full width */
+            padding: 12px; /* Larger padding for better touch target on mobile devices */
+            font-size: 1.25rem; /* Larger font size for better readability on mobile devices */
+        }
+        .dropdown-menu {
+    width: 100%; /* Full width */
+	z-index: 9999;
+	overflow: auto;
+	height: 400px;
+   }
+
+
+            .dropdown-item {
+                font-size: 1.2rem; /* 20% larger */
+            }
+            button {
+                margin: 2px; /* 2 pixels gap */
+            }
+
+    @media (max-width: 767px) {
+      #map {
+        width: 100%;
+        padding-bottom: 100%;
+
+      }
+    }
+
+	pre {
+    white-space: pre-wrap;
+}
+
+
+
+
+  </style>
+</head>
+
+<body class="application" id="qld-gov-au">
+	
+	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
+	<div id="access">
+		<h2>Skip links and keyboard navigation</h2>
+		<ul>
+			<li><a href="#content">Skip to content</a></li>
+			
+			<li><a href="#footer">Skip to footer</a></li>
+			<li><a href="http://www.qld.gov.au/help/accessibility/keyboard.html#section-aria-keyboard-navigation">Use tab and cursor keys to move around the page (more information)</a></li>
+		</ul>
+	</div>
+
+	<div id="header"><div class="box-sizing"><div class="max-width">
+		
+		
+        <a id="qg-coa" href="http://www.qld.gov.au/">
+            <!--[if gte IE 7]><!--><img src="/gsq-labs/theme/qg-coa.png" width="287" height="50" alt="Queensland Government"><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]-->
+            <img src="/gsq-labs/cue/images/qg-coa-print.png" class="print-version" alt="">
+        </a>
+        
+		<ul id="tools">
+			<li><a accesskey="4" href="https://www.resources.qld.gov.au/contact-us#geological-survey-of-queensland">Contact us</a></li>
+			<li><a href="/gsq-labs/pages/help/">Help</a></li>
+			<li><a href="https://github.com/geological-survey-of-queensland">GitHub</a></li>
+			<li class="last-child">
+			</li>
+		</ul>
+        
+       <!-- <h2 id="site-name"><a href="/" accesskey="2">-->
+            <!--[if gte IE 7]><!--><!--<img src="/gsq-labs/theme/site-name.png" height="28" alt="GSQ Labs">--><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
+          <!--  <img src="/gsq-labs/theme/site-name-print.png" height="28" class="print-version" alt="">-->
+       <!-- </a></h2> -->
+    
+	</div></div></div>
+	<div id="page-container1"><div class="max-width">
+	<div id="content-container1">	
+            <div id="breadcrumbs">
+                <ol>
+                    <li><a href="/gsq-labs/">GSQ labs home</a></li>
+
+                </ol>
+            </div>
+            <div id="content">
+            
+<div class="custom-container">
+    <div class="box-sizing">
+					
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br><br></bf><h1 id="data-sources">Lodgement Portal Validation Config Explorer</h1>
+            <p>This page provides a summary of the GSQ lodgement portal validation rules as described on <a href="https://github.com/geological-survey-of-queensland/gsq-lodgement-portal/tree/master/scripts" target="_blank">GSQ GitHub</a>. Please note that configurations on the GitHub site may be slightly behind what is presented in the Lodgement Portal.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="data-sources">Contents</h2>
+            <p>Show / hide page contents</p>
+            <button id="contents" class="btn btn-primary mb-3">Show Contents</button>
+            <div id="contents-list" style="display: none;">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 id="report-templates">Report Template</h1>
+            <p>A breakdown of the report template json content</p>
+            <!-- create a drop down menu div-->
+            <div id="reports-dropdown"></div><br>
+            <button id="all-reports" class="btn btn-primary mb-3">Show all</button>
+            <div class="table-responsive" id="report-templates-json" style="display: none;">
+                </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 id="statistical-reports">Statistical Reports</h1>
+            <p>Statistical reports also contain the mapping.json and template.json config files.</p>
+            <h2 id="cqs-heading">Coal Quarterly Statistics</h2>
+            <h3 id="cqs-template-heading">template.json</h3>
+            <button id="sh-cqs-template-json" class="btn btn-primary mb-3">Show/Hide Table</button>
+            <div class="table-responsive" id="cqs-template-json" style="display: none;">
+            </div>
+            <h3 id="cqs-mapping-heading">mapping.json (tba)</h3>
+            <div id="cqs-mapping-json" style="display: none;">
+            </div>
+            <h2 id="mas-heading">Minerals Annual Statistics</h2>
+            <h3 id="mas-template-heading">template.json</h3>
+            <button id="sh-mas-template-json" class="btn btn-primary mb-3">Show/Hide Table</button>
+            <div class="table-responsive" id="mas-template-json" style="display: none;">
+            </div>
+            <h3 id="mas-mapping-heading">mapping.json (tba)</h3>
+            <div id="mas-mapping-json" style="display: none;">
+            </div>
+            <h2 id="eas-heading">Extractives Annual Statistics (inactive)</h2>
+            <h3 id="eas-template-heading">template.json</h3>
+            <button id="sh-eas-template-json" class="btn btn-primary mb-3">Show/Hide Table</button>
+            <div id="eas-template-json" style="display: none;">
+            </div>
+            <h3 id="eas-mapping-heading">mapping.json (tba)</h3>
+            <div id="eas-mapping-json" style="display: none;">
+            </div>
+            <h2 id="ppi-heading">Petroleum Production Information</h2>
+            <h3 id="ppi-template-heading">template.json</h3>
+            <button id="sh-ppi-template-json" class="btn btn-primary mb-3">Show/Hide Table</button>
+            <div id="ppi-template-json" style="display: none;">
+            </div>
+            <h3 id="ppi-mapping-heading">mapping.json (tba)</h3>
+            <div id="ppi-mapping-json" style="display: none;">
+            </div>
+            <h2 id="rri-heading">Petroleum Reserves and Resources Information</h2>
+            <h3 id="rri-template-heading">template.json</h3>
+            <button id="sh-rri-template-json" class="btn btn-primary mb-3">Show/Hide Table</button>
+            <div id="rri-template-json" style="display: none;">
+            </div>
+            <h3 id="rri-mapping-heading">mapping.json (tba)</h3>
+            <div id="rri-mapping-json" style="display: none;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js from CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+
+    var templateReferences = [{"name":"Report Template",
+                                "page_id":"report-templates-json",
+                                "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/reportTemplates.json",
+                                "json":{}
+                                },
+                                {
+                                    "name":"Coal Quarterly Statistics Template",
+                                    "page_id":"cqs-template-json",
+                                    "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/coal-quarterly-statistics/template.json",
+                                    "json":{}
+                                },
+                                {
+                                    "name":"Minerals Annual Statistics Template",
+                                    "page_id":"mas-template-json",
+                                    "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/minerals-annual-statistics/template.json",
+                                    "json":{}
+                                },
+                                {
+                                    "name":"Extractives Annual Statistics Template",
+                                    "page_id":"eas-template-json",
+                                    "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/extractives-annual-statistics/template.json",
+                                    "json":{}
+                                },
+                                {
+                                    "name":"Petroleum Production Information Template",
+                                    "page_id":"ppi-template-json",
+                                    "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/petroleum-report-production-information/template.json",
+                                    "json":{}
+                                },
+                                {
+                                    "name":"Petroleum Reserves and Resources Information Template",
+                                    "page_id":"rri-template-json",
+                                    "url":"https://raw.githubusercontent.com/geological-survey-of-queensland/gsq-lodgement-portal/master/scripts/petroleum-report-resource-and-reserves-information/template.json",
+                                    "json":{}
+                                }
+                            ];
+    window.onload = function() {
+        var toc = "";
+        var level = 0;
+    
+        document.getElementById("contents").onclick = function() {
+            if(document.getElementById("contents-list").style.display == "none") {
+                document.getElementById("contents-list").style.display = "block";
+            } else {
+                document.getElementById("contents-list").style.display = "none";
+            }
+        };
+    
+        document.getElementById("sh-cqs-template-json").onclick = function() {
+            if(document.getElementById("cqs-template-json").style.display == "none") {
+                document.getElementById("cqs-template-json").style.display = "block";
+            } else {
+                document.getElementById("cqs-template-json").style.display = "none";
+            }
+        };
+    
+        document.getElementById("sh-mas-template-json").onclick = function() {
+            if(document.getElementById("mas-template-json").style.display == "none") {
+                document.getElementById("mas-template-json").style.display = "block";
+            } else {
+                document.getElementById("mas-template-json").style.display = "none";
+            }
+        };
+    
+        document.getElementById("sh-eas-template-json").onclick = function() {
+            if(document.getElementById("eas-template-json").style.display == "none") {
+                document.getElementById("eas-template-json").style.display = "block";
+            } else {
+                document.getElementById("eas-template-json").style.display = "none";
+            }
+        };
+    
+        document.getElementById("sh-ppi-template-json").onclick = function() {
+            if(document.getElementById("ppi-template-json").style.display == "none") {
+                document.getElementById("ppi-template-json").style.display = "block";
+            } else {
+                document.getElementById("ppi-template-json").style.display = "none";
+            }
+        };
+    
+        document.getElementById("sh-rri-template-json").onclick = function() {
+            if(document.getElementById("rri-template-json").style.display == "none") {
+                document.getElementById("rri-template-json").style.display = "block";
+            } else {
+                document.getElementById("rri-template-json").style.display = "none";
+            }
+        };
+    
+        document.getElementById("all-reports").onclick = function() {
+            templateReferences.forEach(function(templateReference) {
+            if (templateReference.page_id == "report-templates-json") {
+                generateReportTemplateTable(templateReference.json, false);
+               
+            }
+        });
+        };
+        document.getElementById("contents").innerHTML = "Contents";
+        document.getElementById("contents-list").style.display = "none";
+    
+        document.querySelectorAll('h1, h2, h3').forEach(function(node){
+            var tagName = node.tagName.toLowerCase();
+            var id = node.id;
+            if(id) {
+                if(tagName == "h1") {
+                    level = 0;
+                } else if(tagName == "h2") {
+                    level = 1;
+                } else if(tagName == "h3") {
+                    level = 2;
+                }
+                toc += "<a href='#" + id + "' style='display: block; padding-left: " + (level * 20) + "px'>" + node.innerHTML + "</a>";
+            }
+        });
+    
+        document.getElementById("contents-list").innerHTML = toc;
+        fetchObjects();
+    
+    
+    };
+    
+    
+    //on page load, for each template reference, fetch the json using the fetchJson function (i.e. pass the url as param) and store it in the json key of the reference element
+    function fetchObjects() {
+        templateReferences.forEach(function(templateReference) {
+            fetchJson(templateReference.url).then(function(json) {
+                templateReference.json = json;
+                if (templateReference.page_id == "report-templates-json") {
+                    generateReportTemplateTable(templateReference.json, true);
+                    //generate dropdown menu
+                    //get the object keys from templateReference.json.templates and populate a the report-dropdown div with a dropdown containing the keys as a list
+                    let keys = Object.keys(templateReference.json.templates);
+                    let dropdown = `<select class="form-control" onchange="handleSelectChange(event)">`;
+                    keys.forEach(function(key) {
+                        dropdown += `<option value="${key}">${key}</option>`;
+                    });
+                    dropdown += `</select>`;
+                    document.getElementById('reports-dropdown').innerHTML = dropdown;
+                }
+                else if (templateReference.page_id == "cqs-template-json") {
+                    generateTemplateJsonTable(templateReference.json, templateReference.page_id, true);
+                }
+                else if (templateReference.page_id == "mas-template-json") {
+                    generateTemplateJsonTable(templateReference.json, templateReference.page_id, true);
+                }
+                else if (templateReference.page_id == "eas-template-json") {
+                    generateTemplateJsonTable(templateReference.json, templateReference.page_id, true);
+                }
+                else if (templateReference.page_id == "ppi-template-json") {
+                    generateTemplateJsonTable(templateReference.json, templateReference.page_id, true);
+                }
+                else if (templateReference.page_id == "rri-template-json") {
+                    generateTemplateJsonTable(templateReference.json, templateReference.page_id, true);
+                }
+            });
+        });
+    };
+    
+    function handleSelectChange(event) {
+        // Handle the change event here
+        console.log(event.target.value);
+        // get templateReferences json, iterate through the array and find the matching url key value pair then extract the json key value into a new variable called templateReportTemp
+        let templateReportTemp = {};
+        templateReferences.forEach(function(templateReference) {
+            if (templateReference.page_id == "report-templates-json") {
+                // Create a deep copy of the object
+                templateReportTemp = JSON.parse(JSON.stringify(templateReference.json));
+            }
+        });
+        // now get rid of all the other keys in the templateReportTemp object that do not match the event.target.value
+        let templateReport = {};
+        //delete all keys that do not match the event.target.value
+        Object.keys(templateReportTemp.templates).forEach(function(key) {
+            if (key == event.target.value) {
+                console.log('found key');
+            }
+            else {
+                delete templateReportTemp.templates[key];
+            }
+        });
+        //generate the table with the new templateReportTemp object
+        generateReportTemplateTable(templateReportTemp, false);
+    }
+    
+    
+    async function fetchJson(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const json = await response.json();
+        return json;
+    }
+    
+    
+    
+    function generateReportTemplateTable(reportJson, silence) {
+        console.log('started generating report template table');
+        let table = `<table id="report-templates-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Report URI</th>
+                                <th>Step</th>
+                                <th>Step Title</th>
+                                <th>Step Sub Title</th>
+                                <th>Field ID</th>
+                                <th>Field Label</th>
+                                <th style="width: 20%;">subLabelAtTop (helper text)</th>
+                                <th>isRequired</th>
+                                <th>Validation Structure</th>
+                                <th>Validation Type</th>
+                                <th>Validation Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+    
+        let previousReportURI = '';
+        let useWhite = true;
+    
+    
+        Object.keys(reportJson.templates).forEach(reportURI => {
+            const steps = reportJson.templates[reportURI].steps;
+    
+            steps.forEach(step => {
+                const stepName = step.name || 'n/a';
+                const stepTitle = step.title || 'n/a';
+                const stepSubTitle = step.subTitle || 'n/a';
+    
+                step.inputs.forEach(input => {
+                    const fieldID = input.name || 'n/a';
+                    const fieldLabel = input.label || 'n/a';
+                    const subLabelAtTop = input.subLabelAtTop || 'n/a';
+                    const placeholder = input.placeholder || 'n/a';
+                    const format = input.format || 'n/a';
+                    const isRequired = input.isRequired !== undefined ? input.isRequired : 'n/a';
+                    const validations = input.validations || { type: 'n/a', rules: [{ name: 'n/a', params: ['n/a'] }] };
+    
+                    validations.rules.forEach(validationRule => {
+                        const validationStructure = validations.type || 'n/a';
+                        const validationType = validationRule.name || 'n/a';
+                        const validationParams = validationRule.params ? JSON.stringify(validationRule.params) : 'n/a';
+    
+                        if (reportURI !== previousReportURI) {
+                            useWhite = !useWhite;
+                            previousReportURI = reportURI;
+                        }
+    
+                        const backgroundColor = useWhite ? '#F0F0F0' : 'white';
+    
+                        table += `<tr style="background-color: ${backgroundColor}">
+                                    <td>${reportURI}</td>
+                                    <td>${stepName}</td>
+                                    <td>${stepTitle}</td>
+                                    <td>${stepSubTitle}</td>
+                                    <td>${fieldID}</td>
+                                    <td>${fieldLabel}</td>
+                                    <td style="width: 20%;">${subLabelAtTop}</td>
+                                    <td>${isRequired}</td>
+                                    <td>${validationStructure}</td>
+                                    <td>${validationType}</td>
+                                    <td>${validationParams}</td>
+                                  </tr>`;
+                    });
+                });
+            });
+        });
+    
+        table += `</tbody></table>`;
+        document.getElementById("report-templates-json").innerHTML = table;
+        //change element from display none to block, make the table auto format to fit the screen
+        if (silence !== true) {
+            document.getElementById("report-templates-json").style.display = "block";
+        }
+        else {
+            document.getElementById("report-templates-json").style.display = "none";
+        }
+    
+    
+    
+    }
+    
+    function generateTemplateJsonTable(templateJson, page_id, silence) {
+        let table = `<table class="templates-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Sheet Name</th>
+                                <th>Required For Upload</th>
+                                <th>Min Rows</th>
+                                <th>Max Rows</th>
+                                <th>Field ID</th>
+                                <th>Field Label</th>
+                                <th>Column Name</th>
+                                <th>isRequired</th>
+                                <th>Field Type</th>
+                                <th>Validation Structure</th>
+                                <th>Validation Type</th>
+                                <th style="width: 25%;">Validation Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+        let previousFieldId = '';
+        let useWhite = true;
+    
+        templateJson.components.forEach(component => {
+            const sheetName = component.name || 'n/a';
+            const requiredForUpload = component.requiredForFileUpload !== undefined ? component.requiredForFileUpload : 'n/a';
+            const minRows = component.minRows !== undefined ? component.minRows : 'n/a';
+            const maxRows = component.maxRows !== undefined ? component.maxRows : 'n/a';
+    
+            component.inputs.forEach(input => {
+                const fieldID = input.name || 'n/a';
+                const fieldLabel = input.label || 'n/a';
+                const columnName = input.columnHeader || 'n/a';
+                const isRequired = input.isRequired !== undefined ? input.isRequired : 'n/a';
+                const fieldType = input.type || 'n/a';
+                const validations = input.validations || { type: 'n/a', rules: [{ name: 'n/a', params: ['n/a'] }] };
+    
+                validations.rules.forEach(validationRule => {
+                    const validationStructure = validations.type || 'n/a';
+                    const validationType = validationRule.name || 'n/a';
+                    const validationParams = validationRule.params ? JSON.stringify(validationRule.params) : 'n/a';
+    
+    
+                    if (fieldID !== previousFieldId) {
+                            useWhite = !useWhite;
+                            previousFieldId = fieldID;
+                        }
+                    const backgroundColor = useWhite ? '#F0F0F0' : 'white';
+    
+    
+                    table += `<tr style="background-color: ${backgroundColor}">
+                                <td>${sheetName}</td>
+                                <td>${requiredForUpload}</td>
+                                <td>${minRows}</td>
+                                <td>${maxRows}</td>
+                                <td>${fieldID}</td>
+                                <td>${fieldLabel}</td>
+                                <td>${columnName}</td>
+                                <td>${isRequired}</td>
+                                <td>${fieldType}</td>
+                                <td>${validationStructure}</td>
+                                <td>${validationType}</td>
+                                <td style="width: 25%;">${validationParams}</td>
+                              </tr>`;
+                });
+            });
+        });
+    
+        table += `</tbody></table>`;
+        //write result to page_id
+        document.getElementById(page_id).innerHTML = table;
+        if (silence !== true) {
+            document.getElementById(page_id).style.display = "block";
+        }
+        else {
+            document.getElementById(page_id).style.display = "none";
+        }
+        
+    }
+    
+    
+    </script>
+				</div>
+				
+			</div>
+			
+
+			
+		</div>
+	</div></div>
+
+	
+	<div id="footer">
+
+		
+		<div class="max-width"><div class="box-sizing">
+			<h2>Site footer</h2>
+			<ul>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/copyright/">Copyright</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/disclaimer/">Disclaimer</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/privacy/">Privacy</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/right-to-information/">Right to information</a></li>
+				<li><a href="http://www.qld.gov.au/help/access/">Accessibility</a></li>
+				<li><a href="http://www.smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+				<li id="languages"><a href="http://www.qld.gov.au/languages/">Other languages</a></li>
+			</ul>
+			<p class="legal">&copy; The State of Queensland (Department of Resources) 2010&ndash;2023</p>
+			<p><a href="http://www.qld.gov.au/" accesskey="1">Queensland Government</a></p>
+			<div id="qg-branding"><p><img class="tagline" src="/gsq-labs/theme/qg-tagline-footer.png" alt="Great state. Great opportunity."></p></div>
+		</div></div>
+	</div>
+    
+    
+	
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript"><!--
+			// OPTIONAL: manually specify the current page title (to determine which menus are open onload)  
+			//var currentPageTitle = '_INSERT_PAGE_TITLE_HERE_';  
+			--></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+
+    <!--<![endif]-->
+	<script type="text/javascript" src="/gsq-labs/cue/js/qg.js"></script>
+
+</body>
+</html>
