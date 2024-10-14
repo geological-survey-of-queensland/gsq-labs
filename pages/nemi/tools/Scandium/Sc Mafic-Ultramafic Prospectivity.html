@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://gowminerals.byethost33.com/index_Sc_MaficUltramafic.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Sc Mafic-Ultramafic Prospectivity</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./Sc Mafic-Ultramafic Prospectivity_files/leaflet.css">
+    <link rel="stylesheet" href="./Sc Mafic-Ultramafic Prospectivity_files/css">
+    <link rel="stylesheet" href="./Sc Mafic-Ultramafic Prospectivity_files/css(1)">
+    <style>
+      html,
+      body {
+        font-family: "Lato", sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lato", sans-serif;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: small;
+        font-family: "Lato", sans-serif;
+      }
+
+      span {
+        font-size: 14px;
+        font-family: "Lato", sans-serif;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      #map {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        min-height: 100%;
+        left: 290px;
+      }
+
+      .button {
+        background: white;
+        border-radius: 6px;
+        border: 2px solid #7e2e9d;
+        box-shadow: 0 1px 3px 0 rgb(49 185 141 / 30%);
+        cursor: pointer;
+        height: 80px;
+
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        width: 120px;
+        font-size: 20px;
+        margin-right: 5px;
+        margin-top: 15px;
+      }
+
+      .button:hover {
+        background-color: #7e2e9d;
+        color: white;
+      }
+
+      .button:active {
+        background-color: #7e2e9d;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+
+      .slidecontainer * {
+        display: inline-block;
+        width: 15%;
+      }
+
+      .vertical > * {
+        display: block;
+        width: 100%;
+      }
+
+      .vertical2 > * {
+        display: block;
+        width: 100%;
+      }
+
+      .vertical2 {
+        margin: 5px;
+      }
+
+      .vertical3 > * {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-left: 5%;
+        font-weight: bold;
+      }
+
+      .vertical3 {
+        margin-left: 8px;
+      }
+
+      #leftmenu {
+        overflow: auto;
+        background: white;
+        bottom: 0;
+        box-shadow: 1px 0 3px 0 rgb(0 0 0 / 30%);
+        color: #13293d;
+        font-family: "Open Sans";
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 250px;
+        z-index: 1000;
+        min-height: 100%;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      #categoryselection {
+        padding-top: 18px;
+      }
+
+      select {
+        background-position: center right;
+        background-repeat: no-repeat;
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        color: #555;
+        font-size: inherit;
+        margin: 0;
+        overflow: hidden;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .helper:hover + .hide {
+        display: block;
+        position: absolute;
+        color: red;
+        z-index: 999999;
+        background-color: white;
+      }
+
+      #dropdownsection {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+      }
+
+      #buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .helper {
+        font-size: 16px;
+      }
+    </style>
+  <style></style></head>
+
+  <body>
+    <script type="text/javascript">
+      function ShowHideDiv() {
+        var categories = document.getElementById("categories");
+        var source = document.getElementById("source");
+        source.style.display = categories.value == "Source" ? "block" : "none";
+        driver.style.display = categories.value == "Driver" ? "block" : "none";
+        path.style.display = categories.value == "Path" ? "block" : "none";
+        trap.style.display = categories.value == "Trap" ? "block" : "none";
+      }
+    </script>
+
+    <div id="wrapper">
+      <div id="leftmenu">
+        <h2>New Economy Minerals Compilation</h2>
+        <h2>Sc Mafic-Ultramafic Prospectivity</h2>
+
+        <div id="coefficients">
+          <div class="coefficients_container">
+            <div class="vertical">
+              <div class="slidecontainer">
+                <h3 class="helper">Coeff:</h3>
+                <div class="hide">Coefficient</div>
+                <div class="vertical2">
+                  <p class="helper">Src : <span id="source_display"></span></p>
+                  <div class="hide">Source</div>
+                  <input type="range" min="0" max="1" value="1" class="slider" id="source_slide" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Drv : <span id="driver_display"></span></p>
+                  <div class="hide">Driver</div>
+                  <input type="range" min="0" max="1" value="1" class="slider" id="driver_slide" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Pth : <span id="path_display"></span></p>
+                  <div class="hide">Path</div>
+                  <input type="range" min="0" max="1" value="1" class="slider" id="path_slide" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Trp : <span id="trap_display"></span></p>
+                  <div class="hide">Trap</div>
+                  <input type="range" min="0" max="1" value="1" class="slider" id="trap_slide" step="0.1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dropdownsection">
+          <p id="categoryselection"></p>
+          <span>Category Selection</span>
+          <select id="categories" onchange="ShowHideDiv()">
+            <option value="Source">Source</option>
+            <option value="Driver">Driver</option>
+            <option value="Path">Path</option>
+            <option value="Trap">Trap</option>
+          </select>
+        </div>
+        <hr>
+        <div id="source">
+          <div class="source_container">
+            <div class="vertical">
+<!-- Start S1a -->
+              <div class="slidecontainer">
+                <h3 class="helper">S1a:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/S1ab.png" alt="S1a Example" style="width: 200px; height: 300px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="S1a_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="S1a_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="S1a_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="S1a_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="S1a_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="S1a_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="S1a_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- End S1a -->
+<!-- Start S1b -->
+              <div class="slidecontainer">
+                <h3 class="helper">S1b:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/S1ab.png" alt="S1b Example" style="width: 200px; height: 300px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="S1b_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="S1b_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="S1b_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="S1b_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="S1b_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="S1b_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="S1b_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- End S1b -->
+<!-- Start S2  -->
+              <div class="slidecontainer">
+                <h3 class="helper">S2:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/S2.png" alt="S2 Example" style="width: 200px; height: 330px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="S2_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="S2_imp" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">App: <span id="S2_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="S2_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="S2_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="S2_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="S2_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- START S3
+              <div class="slidecontainer">
+                <h3 class="helper">S3:</h3>
+                <img
+                  class="hide"
+                  src="http://gowminerals.byethost33.com/images/Sc_Mafic_Ultramafic/S3.png"
+                  alt="S3 Example"
+                  style="width: 200px; height: 330px"
+                />
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="S3_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.7"
+                    class="slider"
+                    id="S3_imp"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical2">
+                  <p class="helper">App: <span id="S3_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.7"
+                    class="slider"
+                    id="S3_App"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="S3_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.6"
+                    class="slider"
+                    id="S3_Con"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="S3_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ END S3 -->
+<!-- START S4
+              <div class="slidecontainer">
+                <h3 class="helper">S4:</h3>
+                <img
+                  class="hide"
+                  src="http://gowminerals.byethost33.com/images/Sc_Mafic_Ultramafic/S4.png"
+                  alt="S4 Example"
+                  style="width: 200px; height: 330px"
+                />
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="S4_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.6"
+                    class="slider"
+                    id="S4_imp"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="S4_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.6"
+                    class="slider"
+                    id="S4_App"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="S4_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.5"
+                    class="slider"
+                    id="S4_Con"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="S4_final_display"></span>
+                  </p>
+                </div>
+              </div>
+END S3 -->
+            </div>
+          </div>
+        </div>
+<!-- START D1 -->
+        <div id="driver" style="display: none">
+          <div class="driver_container">
+            <div class="vertical">
+              <div class="slidecontainer">
+                <h3 class="helper">D1:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/D1.png" alt="D1a Example" style="width: 200px; height: 310px">
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="D1_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="D1_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="D1_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="D1_App" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="D1_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="D1_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="D1_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- END D1 -->
+<!-- START D2 -->			  
+              <div class="slidecontainer">
+                <h3 class="helper">D2:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/D2.png" alt="D2 Example" style="width: 200px; height: 320px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="D2_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="D2_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="D2_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="D2_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="D2_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="D2_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="D2_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- END D2 -->
+<!-- START P1 -->
+            </div>
+          </div>
+        </div>
+        <div id="path" style="display: none">
+          <div class="path_container">
+            <div class="vertical">
+              <div class="slidecontainer">
+                <h3 class="helper">P1:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/P1.png" alt="P1 Example" style="width: 200px; height: 310px">
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="P1_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="P1_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="P1_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="P1_App" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="P1_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="P1_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="P1_final_display"></span>
+                  </p>
+                </div>
+              </div>
+    <!--INSERT P2a HERE -->
+              <div class="slidecontainer">
+                <h3 class="helper">P2a:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/P2a.png" alt="P2a Example" style="width: 200px; height: 300px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="P2a_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="P2a_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="P2a_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="P2a_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="P2a_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="P2a_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="P2a_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ <!-- END P2a -->			  
+ <!--INSERT P2b HERE -->
+              <div class="slidecontainer">
+                <h3 class="helper">P2b:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/P2b.png" alt="P2b Example" style="width: 200px; height: 300px">
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="P2b_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="P2b_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="P2b_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.4" class="slider" id="P2b_App" step="0.1">
+                </div>
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="P2b_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="P2b_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="P2b_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ <!-- END P2b -->			  
+ <!-- START T1a -->			  
+           </div>
+          </div>
+        </div>
+
+        <div id="trap" style="display: none">
+          <div class="trap_container">
+            <div class="vertical">
+              <div class="slidecontainer">
+                <h3 class="helper">T1a:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/T1a.png" alt="T1a Example" style="width: 200px; height: 310px">
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T1a_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1a_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T1a_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="T1a_App" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T1a_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1a_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T1a_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ <!-- END T1a -->			  
+ <!-- START T1b -->			  
+              <div class="slidecontainer">
+                <h3 class="helper">T1b:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/T1b.png" alt="T1b Example" style="width: 200px; height: 330px">
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T1b_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1b_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T1b_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1b_App" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T1b_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1b_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T1b_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ <!-- END T1b -->			  
+<!-- INSERT T1c HERE -->
+              <div class="slidecontainer">
+                <h3 class="helper">T1c:</h3>
+                <img class="hide" src="./Sc Mafic-Ultramafic Prospectivity_files/T1c.png" alt="T1c Example" style="width: 200px; height: 330px">
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T1c_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input type="range" min="0" max="1" value="0.8" class="slider" id="T1c_imp" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T1c_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="T1c_App" step="0.1">
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T1c_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input type="range" min="0" max="1" value="0.6" class="slider" id="T1c_Con" step="0.1">
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T1c_final_display"></span>
+                  </p>
+                </div>
+              </div>
+<!-- END T1c -->
+<!-- INSERT T3a HERE 
+              <div class="slidecontainer">
+                <h3 class="helper">T3a:</h3>
+                <img
+                  class="hide"
+                  src="http://gowminerals.byethost33.com/images/Sc_Mafic_Ultramafic/T3a.png"
+                  alt="T3a Example"
+                  style="width: 200px; height: 310px"
+                />
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T3a_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.7"
+                    class="slider"
+                    id="T3a_imp"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T3a_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.4"
+                    class="slider"
+                    id="T3a_App"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T3a_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.4"
+                    class="slider"
+                    id="T3a_Con"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T3a_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ END T3a -->
+<!-- INSERT T3b HERE 
+              <div class="slidecontainer">
+                <h3 class="helper">T3b:</h3>
+                <img
+                  class="hide"
+                  src="http://gowminerals.byethost33.com/images/Sc_Mafic_Ultramafic/T3b.png"
+                  alt="T3b Example"
+                  style="width: 200px; height: 320px"
+                />
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T3b_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.9"
+                    class="slider"
+                    id="T3b_imp"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T3b_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.8"
+                    class="slider"
+                    id="T3b_App"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T3b_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="0.8"
+                    class="slider"
+                    id="T3b_Con"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T3b_final_display"></span>
+                  </p>
+                </div>
+              </div>
+ END T3b -->
+<!-- INSERT T4 HERE --
+              <div class="slidecontainer">
+                <h3 class="helper">T4:</h3>
+                <img
+                  class="hide"
+                  src="http://gowminerals.byethost33.com/images/Sc_Mafic_Ultramafic/T4.png"
+                  alt="T4 Example"
+                  style="width: 200px; height: 310px"
+                />
+
+                <div class="vertical2">
+                  <p class="helper">Imp: <span id="T4_imp_display"></span></p>
+                  <div class="hide">Importance Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="1"
+                    class="slider"
+                    id="T4_imp"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">App: <span id="T4_App_display"></span></p>
+                  <div class="hide">Applicability Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="1"
+                    class="slider"
+                    id="T4_App"
+                    step="0.1"
+                  />
+                </div>
+
+                <div class="vertical2">
+                  <p class="helper">Con: <span id="T4_Con_display"></span></p>
+                  <div class="hide">Confidence Value</div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    value="1"
+                    class="slider"
+                    id="T4_Con"
+                    step="0.1"
+                  />
+                </div>
+                <div class="vertical3">
+                  <p>Overall:</p>
+                  <p>
+                    <span id="T4_final_display"></span>
+                  </p>
+                </div>
+              </div>
+-- END T4 -->			  
+            </div>
+          </div>
+        </div>
+
+        <div id="buttons">
+          <button class="button" onclick="buildMap()">Show Low Res Tiff</button>
+          <button class="button" onclick="buildHighResMap()">
+            Show High Res Tiff
+          </button>
+          <button class="button" id="homebutton">Back to Homepage</button>
+        </div>
+        <div id="acknowledgementsection">
+          <img class="uqlogo" src="./Sc Mafic-Ultramafic Prospectivity_files/UQ_logo.png" alt="UQ logo" style="width: 100%; margin-top: 40px">
+          <img class="gsqlogo" src="./Sc Mafic-Ultramafic Prospectivity_files/GSQ_Logo_placeholder2.png" alt="GSQ logo" style="width: 100%; margin-top: 40px">
+          <p style="font-weight: bold">Acknowledgements:</p>
+
+          <p>
+            Financial Support
+            <br>Queensland Dept of Resources
+            <br>
+            <br>
+            Open source code Based on "Georaster" of Daniel J Dufour
+            <br>
+            <br>
+            Programming Michael JD Valenta
+            <br>
+            <br>
+          </p>
+        </div>
+      </div>
+
+      <div id="prospectivityMap"></div>
+    </div>
+
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/leaflet.js.download"></script>
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/georaster"></script>
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/chroma-js"></script>
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/georaster-layer-for-leaflet"></script>
+
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/spin.js.download"></script>
+    <script src="./Sc Mafic-Ultramafic Prospectivity_files/leaflet.spin.min.js.download"></script>
+
+    <script type="text/javascript">
+      document.getElementById("homebutton").onclick = function () {
+        location.href = "https://smi.uq.edu.au/project/queensland-new-economy-minerals-compilation";
+      };
+    </script>
+
+    <script>
+      function buildMap() {
+        // coefficients slider code starts
+
+        var source_slider = document.getElementById("source_slide");
+        var source_output = document.getElementById("source_display");
+        var driver_slider = document.getElementById("driver_slide");
+        var driver_output = document.getElementById("driver_display");
+        var path_slider = document.getElementById("path_slide");
+        var path_output = document.getElementById("path_display");
+        var trap_slider = document.getElementById("trap_slide");
+        var trap_output = document.getElementById("trap_display");
+
+        source_output.innerHTML = source_slider.value; // Display the default slider value
+        driver_output.innerHTML = driver_slider.value;
+        path_output.innerHTML = path_slider.value;
+        trap_output.innerHTML = trap_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        source_slider.oninput = function () {
+          source_output.innerHTML = this.value;
+        };
+        driver_slider.oninput = function () {
+          driver_output.innerHTML = this.value;
+        };
+        path_slider.oninput = function () {
+          path_output.innerHTML = this.value;
+        };
+        trap_slider.oninput = function () {
+          trap_output.innerHTML = this.value;
+        };
+
+        var SCoeff = source_slider.value;
+        var DCoeff = driver_slider.value;
+        var PCoeff = path_slider.value;
+        var TCoeff = trap_slider.value;
+
+        //coefficients slider code ends
+
+        // S1a slider code starts
+
+        var S1a_imp_slider = document.getElementById("S1a_imp");
+        var S1a_imp_output = document.getElementById("S1a_imp_display");
+        var S1a_App_slider = document.getElementById("S1a_App");
+        var S1a_App_output = document.getElementById("S1a_App_display");
+        var S1a_Con_slider = document.getElementById("S1a_Con");
+        var S1a_Con_output = document.getElementById("S1a_Con_display");
+
+        S1a_imp_output.innerHTML = S1a_imp_slider.value; // Display the default slider value
+        S1a_App_output.innerHTML = S1a_App_slider.value;
+        S1a_Con_output.innerHTML = S1a_Con_slider.value;
+
+        var S1a =
+          S1a_imp_slider.value * S1a_App_slider.value * S1a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S1a_imp_slider.oninput = function () {
+          S1a_imp_output.innerHTML = this.value;
+        };
+        S1a_App_slider.oninput = function () {
+          S1a_App_output.innerHTML = this.value;
+        };
+        S1a_Con_slider.oninput = function () {
+          S1a_Con_output.innerHTML = this.value;
+        };
+
+        var S1a_final_output = document.getElementById("S1a_final_display");
+        S1a_final_output.innerHTML = +S1a.toFixed(2);
+        // console.log("S1a output is: " + S1a);
+
+        //S1a slider code ends
+
+        //S1b slider code starts
+
+        var S1b_imp_slider = document.getElementById("S1b_imp");
+        var S1b_imp_output = document.getElementById("S1b_imp_display");
+        var S1b_App_slider = document.getElementById("S1b_App");
+        var S1b_App_output = document.getElementById("S1b_App_display");
+        var S1b_Con_slider = document.getElementById("S1b_Con");
+        var S1b_Con_output = document.getElementById("S1b_Con_display");
+
+        S1b_imp_output.innerHTML = S1b_imp_slider.value; // Display the default slider value
+        S1b_App_output.innerHTML = S1b_App_slider.value;
+        S1b_Con_output.innerHTML = S1b_Con_slider.value;
+
+        var S1b =
+          S1b_imp_slider.value * S1b_App_slider.value * S1b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S1b_imp_slider.oninput = function () {
+          S1b_imp_output.innerHTML = this.value;
+        };
+        S1b_App_slider.oninput = function () {
+          S1b_App_output.innerHTML = this.value;
+        };
+        S1b_Con_slider.oninput = function () {
+          S1b_Con_output.innerHTML = this.value;
+        };
+
+        var S1b_final_output = document.getElementById("S1b_final_display");
+        S1b_final_output.innerHTML = +S1b.toFixed(2);
+        // console.log("S1b output is: " + S1b);
+
+        //S1b slider code ends
+		
+        //S2 slider code starts
+
+        var S2_imp_slider = document.getElementById("S2_imp");
+        var S2_imp_output = document.getElementById("S2_imp_display");
+        var S2_App_slider = document.getElementById("S2_App");
+        var S2_App_output = document.getElementById("S2_App_display");
+        var S2_Con_slider = document.getElementById("S2_Con");
+        var S2_Con_output = document.getElementById("S2_Con_display");
+
+        S2_imp_output.innerHTML = S2_imp_slider.value; // Display the default slider value
+        S2_App_output.innerHTML = S2_App_slider.value;
+        S2_Con_output.innerHTML = S2_Con_slider.value;
+
+        var S2 =
+          S2_imp_slider.value * S2_App_slider.value * S2_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S2_imp_slider.oninput = function () {
+          S2_imp_output.innerHTML = this.value;
+        };
+        S2_App_slider.oninput = function () {
+          S2_App_output.innerHTML = this.value;
+        };
+        S2_Con_slider.oninput = function () {
+          S2_Con_output.innerHTML = this.value;
+        };
+
+        var S2_final_output = document.getElementById("S2_final_display");
+        S2_final_output.innerHTML = +S2.toFixed(2);
+
+        // console.log("S2 output is: " + S2);
+
+        //S2 slider code ends
+
+/*        //S3 slider code starts
+
+        var S3_imp_slider = document.getElementById("S3_imp");
+        var S3_imp_output = document.getElementById("S3_imp_display");
+        var S3_App_slider = document.getElementById("S3_App");
+        var S3_App_output = document.getElementById("S3_App_display");
+        var S3_Con_slider = document.getElementById("S3_Con");
+        var S3_Con_output = document.getElementById("S3_Con_display");
+
+        S3_imp_output.innerHTML = S3_imp_slider.value; // Display the default slider value
+        S3_App_output.innerHTML = S3_App_slider.value;
+        S3_Con_output.innerHTML = S3_Con_slider.value;
+
+        var S3 =
+          S3_imp_slider.value * S3_App_slider.value * S3_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S3_imp_slider.oninput = function () {
+          S3_imp_output.innerHTML = this.value;
+        };
+        S3_App_slider.oninput = function () {
+          S3_App_output.innerHTML = this.value;
+        };
+        S3_Con_slider.oninput = function () {
+          S3_Con_output.innerHTML = this.value;
+        };
+
+        var S3_final_output = document.getElementById("S3_final_display");
+        S3_final_output.innerHTML = +S3.toFixed(2);
+
+        // console.log("S3 output is: " + S3);
+
+        //S3 slider code ends
+*/
+/*        //S4 slider code starts
+
+        var S4_imp_slider = document.getElementById("S4_imp");
+        var S4_imp_output = document.getElementById("S4_imp_display");
+        var S4_App_slider = document.getElementById("S4_App");
+        var S4_App_output = document.getElementById("S4_App_display");
+        var S4_Con_slider = document.getElementById("S4_Con");
+        var S4_Con_output = document.getElementById("S4_Con_display");
+
+        S4_imp_output.innerHTML = S4_imp_slider.value; // Display the default slider value
+        S4_App_output.innerHTML = S4_App_slider.value;
+        S4_Con_output.innerHTML = S4_Con_slider.value;
+
+        var S4 =
+          S4_imp_slider.value * S4_App_slider.value * S4_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S4_imp_slider.oninput = function () {
+          S4_imp_output.innerHTML = this.value;
+        };
+        S4_App_slider.oninput = function () {
+          S4_App_output.innerHTML = this.value;
+        };
+        S4_Con_slider.oninput = function () {
+          S4_Con_output.innerHTML = this.value;
+        };
+
+        var S4_final_output = document.getElementById("S4_final_display");
+        S4_final_output.innerHTML = +S4.toFixed(2);
+
+        // console.log("S4 output is: " + S4);
+
+*/        //S4 slider code ends
+
+        //D1a slider code starts
+
+        var D1_imp_slider = document.getElementById("D1_imp");
+        var D1_imp_output = document.getElementById("D1_imp_display");
+        var D1_App_slider = document.getElementById("D1_App");
+        var D1_App_output = document.getElementById("D1_App_display");
+        var D1_Con_slider = document.getElementById("D1_Con");
+        var D1_Con_output = document.getElementById("D1_Con_display");
+
+        D1_imp_output.innerHTML = D1_imp_slider.value; // Display the default slider value
+        D1_App_output.innerHTML = D1_App_slider.value;
+        D1_Con_output.innerHTML = D1_Con_slider.value;
+
+        var D1 =
+          D1_imp_slider.value * D1_App_slider.value * D1_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        D1_imp_slider.oninput = function () {
+          D1_imp_output.innerHTML = this.value;
+        };
+        D1_App_slider.oninput = function () {
+          D1_App_output.innerHTML = this.value;
+        };
+        D1_Con_slider.oninput = function () {
+          D1_Con_output.innerHTML = this.value;
+        };
+
+        var D1_final_output = document.getElementById("D1_final_display");
+        D1_final_output.innerHTML = +D1.toFixed(2);
+        // console.log("D1 output is: " + D1);
+
+        //D1 slider code ends
+		
+        // D2 slider code starts
+
+        var D2_imp_slider = document.getElementById("D2_imp");
+        var D2_imp_output = document.getElementById("D2_imp_display");
+        var D2_App_slider = document.getElementById("D2_App");
+        var D2_App_output = document.getElementById("D2_App_display");
+        var D2_Con_slider = document.getElementById("D2_Con");
+        var D2_Con_output = document.getElementById("D2_Con_display");
+
+        D2_imp_output.innerHTML = D2_imp_slider.value; // Display the default slider value
+        D2_App_output.innerHTML = D2_App_slider.value;
+        D2_Con_output.innerHTML = D2_Con_slider.value;
+
+        var D2 =
+          D2_imp_slider.value * D2_App_slider.value * D2_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        D2_imp_slider.oninput = function () {
+          D2_imp_output.innerHTML = this.value;
+        };
+        D2_App_slider.oninput = function () {
+          D2_App_output.innerHTML = this.value;
+        };
+        D2_Con_slider.oninput = function () {
+          D2_Con_output.innerHTML = this.value;
+        };
+
+        var D2_final_output = document.getElementById("D2_final_display");
+        D2_final_output.innerHTML = +D2.toFixed(2);
+        // console.log("D2 output is: " + D2);
+
+        //D2 slider code ends
+
+        // P1 slider code starts
+
+        var P1_imp_slider = document.getElementById("P1_imp");
+        var P1_imp_output = document.getElementById("P1_imp_display");
+        var P1_App_slider = document.getElementById("P1_App");
+        var P1_App_output = document.getElementById("P1_App_display");
+        var P1_Con_slider = document.getElementById("P1_Con");
+        var P1_Con_output = document.getElementById("P1_Con_display");
+
+        P1_imp_output.innerHTML = P1_imp_slider.value; // Display the default slider value
+        P1_App_output.innerHTML = P1_App_slider.value;
+        P1_Con_output.innerHTML = P1_Con_slider.value;
+
+        var P1 =
+          P1_imp_slider.value * P1_App_slider.value * P1_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P1_imp_slider.oninput = function () {
+          P1_imp_output.innerHTML = this.value;
+        };
+        P1_App_slider.oninput = function () {
+          P1_App_output.innerHTML = this.value;
+        };
+        P1_Con_slider.oninput = function () {
+          P1_Con_output.innerHTML = this.value;
+        };
+        var P1_final_output = document.getElementById("P1_final_display");
+        P1_final_output.innerHTML = +P1.toFixed(2);
+        // console.log("P1 output is: " + P1);
+
+        //P1 slider code ends
+
+        // P2a slider code starts
+
+        var P2a_imp_slider = document.getElementById("P2a_imp");
+        var P2a_imp_output = document.getElementById("P2a_imp_display");
+        var P2a_App_slider = document.getElementById("P2a_App");
+        var P2a_App_output = document.getElementById("P2a_App_display");
+        var P2a_Con_slider = document.getElementById("P2a_Con");
+        var P2a_Con_output = document.getElementById("P2a_Con_display");
+
+        P2a_imp_output.innerHTML = P2a_imp_slider.value; // Display the default slider value
+        P2a_App_output.innerHTML = P2a_App_slider.value;
+        P2a_Con_output.innerHTML = P2a_Con_slider.value;
+
+        var P2a =
+          P2a_imp_slider.value * P2a_App_slider.value * P2a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P2a_imp_slider.oninput = function () {
+          P2a_imp_output.innerHTML = this.value;
+        };
+        P2a_App_slider.oninput = function () {
+          P2a_App_output.innerHTML = this.value;
+        };
+        P2a_Con_slider.oninput = function () {
+          P2a_Con_output.innerHTML = this.value;
+        };
+        var P2a_final_output = document.getElementById("P2a_final_display");
+        P2a_final_output.innerHTML = +P2a.toFixed(2);
+        // console.log("P2a output is: " + P2a);
+
+        //P2a slider code ends
+		
+        // P2b slider code starts
+
+        var P2b_imp_slider = document.getElementById("P2b_imp");
+        var P2b_imp_output = document.getElementById("P2b_imp_display");
+        var P2b_App_slider = document.getElementById("P2b_App");
+        var P2b_App_output = document.getElementById("P2b_App_display");
+        var P2b_Con_slider = document.getElementById("P2b_Con");
+        var P2b_Con_output = document.getElementById("P2b_Con_display");
+
+        P2b_imp_output.innerHTML = P2b_imp_slider.value; // Display the default slider value
+        P2b_App_output.innerHTML = P2b_App_slider.value;
+        P2b_Con_output.innerHTML = P2b_Con_slider.value;
+
+        var P2b =
+          P2b_imp_slider.value * P2b_App_slider.value * P2b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P2b_imp_slider.oninput = function () {
+          P2b_imp_output.innerHTML = this.value;
+        };
+        P2b_App_slider.oninput = function () {
+          P2b_App_output.innerHTML = this.value;
+        };
+        P2b_Con_slider.oninput = function () {
+          P2b_Con_output.innerHTML = this.value;
+        };
+        var P2b_final_output = document.getElementById("P2b_final_display");
+        P2b_final_output.innerHTML = +P2b.toFixed(2);
+        // console.log("P2b output is: " + P2b);
+
+        //P2b slider code ends
+
+        // T1a slider code starts
+
+        var T1a_imp_slider = document.getElementById("T1a_imp");
+        var T1a_imp_output = document.getElementById("T1a_imp_display");
+        var T1a_App_slider = document.getElementById("T1a_App");
+        var T1a_App_output = document.getElementById("T1a_App_display");
+        var T1a_Con_slider = document.getElementById("T1a_Con");
+        var T1a_Con_output = document.getElementById("T1a_Con_display");
+
+        T1a_imp_output.innerHTML = T1a_imp_slider.value; // Display the default slider value
+        T1a_App_output.innerHTML = T1a_App_slider.value;
+        T1a_Con_output.innerHTML = T1a_Con_slider.value;
+
+        var T1a =
+          T1a_imp_slider.value * T1a_App_slider.value * T1a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1a_imp_slider.oninput = function () {
+          T1a_imp_output.innerHTML = this.value;
+        };
+        T1a_App_slider.oninput = function () {
+          T1a_App_output.innerHTML = this.value;
+        };
+        T1a_Con_slider.oninput = function () {
+          T1a_Con_output.innerHTML = this.value;
+        };
+
+        var T1a_final_output = document.getElementById("T1a_final_display");
+        T1a_final_output.innerHTML = +T1a.toFixed(2);
+        // console.log("T1a output is: " + T1a);
+
+        //T1a slider code ends
+
+        // T1b slider code starts
+
+        var T1b_imp_slider = document.getElementById("T1b_imp");
+        var T1b_imp_output = document.getElementById("T1b_imp_display");
+        var T1b_App_slider = document.getElementById("T1b_App");
+        var T1b_App_output = document.getElementById("T1b_App_display");
+        var T1b_Con_slider = document.getElementById("T1b_Con");
+        var T1b_Con_output = document.getElementById("T1b_Con_display");
+
+        T1b_imp_output.innerHTML = T1b_imp_slider.value; // Display the default slider value
+        T1b_App_output.innerHTML = T1b_App_slider.value;
+        T1b_Con_output.innerHTML = T1b_Con_slider.value;
+
+        var T1b =
+          T1b_imp_slider.value * T1b_App_slider.value * T1b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1b_imp_slider.oninput = function () {
+          T1b_imp_output.innerHTML = this.value;
+        };
+        T1b_App_slider.oninput = function () {
+          T1b_App_output.innerHTML = this.value;
+        };
+        T1b_Con_slider.oninput = function () {
+          T1b_Con_output.innerHTML = this.value;
+        };
+
+        var T1b_final_output = document.getElementById("T1b_final_display");
+        T1b_final_output.innerHTML = +T1b.toFixed(2);
+        // console.log("T1b output is: " + T1b);
+
+        //T1b slider code ends
+
+        // T1c slider code starts
+
+        var T1c_imp_slider = document.getElementById("T1c_imp");
+        var T1c_imp_output = document.getElementById("T1c_imp_display");
+        var T1c_App_slider = document.getElementById("T1c_App");
+        var T1c_App_output = document.getElementById("T1c_App_display");
+        var T1c_Con_slider = document.getElementById("T1c_Con");
+        var T1c_Con_output = document.getElementById("T1c_Con_display");
+
+        T1c_imp_output.innerHTML = T1c_imp_slider.value; // Display the default slider value
+        T1c_App_output.innerHTML = T1c_App_slider.value;
+        T1c_Con_output.innerHTML = T1c_Con_slider.value;
+
+        var T1c =
+          T1c_imp_slider.value * T1c_App_slider.value * T1c_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1c_imp_slider.oninput = function () {
+          T1c_imp_output.innerHTML = this.value;
+        };
+        T1c_App_slider.oninput = function () {
+          T1c_App_output.innerHTML = this.value;
+        };
+        T1c_Con_slider.oninput = function () {
+          T1c_Con_output.innerHTML = this.value;
+        };
+
+        var T1c_final_output = document.getElementById("T1c_final_display");
+        T1c_final_output.innerHTML = +T1c.toFixed(2);
+        // console.log("T1c output is: " + T1c);
+
+       //T1c slider code ends
+/*       // T3a slider code starts
+
+        var T3a_imp_slider = document.getElementById("T3a_imp");
+        var T3a_imp_output = document.getElementById("T3a_imp_display");
+        var T3a_App_slider = document.getElementById("T3a_App");
+        var T3a_App_output = document.getElementById("T3a_App_display");
+        var T3a_Con_slider = document.getElementById("T3a_Con");
+        var T3a_Con_output = document.getElementById("T3a_Con_display");
+
+        T3a_imp_output.innerHTML = T3a_imp_slider.value; // Display the default slider value
+        T3a_App_output.innerHTML = T3a_App_slider.value;
+        T3a_Con_output.innerHTML = T3a_Con_slider.value;
+
+        var T3a =
+          T3a_imp_slider.value * T3a_App_slider.value * T3a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T3a_imp_slider.oninput = function () {
+          T3a_imp_output.innerHTML = this.value;
+        };
+        T3a_App_slider.oninput = function () {
+          T3a_App_output.innerHTML = this.value;
+        };
+        T3a_Con_slider.oninput = function () {
+          T3a_Con_output.innerHTML = this.value;
+        };
+
+        var T3a_final_output = document.getElementById("T3a_final_display");
+        T3a_final_output.innerHTML = +T3a.toFixed(2);
+        // console.log("T3a output is: " + T3a);
+
+       //T3a slider code ends
+*/
+/*       // T3b slider code starts
+
+        var T3b_imp_slider = document.getElementById("T3b_imp");
+        var T3b_imp_output = document.getElementById("T3b_imp_display");
+        var T3b_App_slider = document.getElementById("T3b_App");
+        var T3b_App_output = document.getElementById("T3b_App_display");
+        var T3b_Con_slider = document.getElementById("T3b_Con");
+        var T3b_Con_output = document.getElementById("T3b_Con_display");
+
+        T3b_imp_output.innerHTML = T3b_imp_slider.value; // Display the default slider value
+        T3b_App_output.innerHTML = T3b_App_slider.value;
+        T3b_Con_output.innerHTML = T3b_Con_slider.value;
+
+        var T3b =
+          T3b_imp_slider.value * T3b_App_slider.value * T3b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T3b_imp_slider.oninput = function () {
+          T3b_imp_output.innerHTML = this.value;
+        };
+        T3b_App_slider.oninput = function () {
+          T3b_App_output.innerHTML = this.value;
+        };
+        T3b_Con_slider.oninput = function () {
+          T3b_Con_output.innerHTML = this.value;
+        };
+
+        var T3b_final_output = document.getElementById("T3b_final_display");
+        T3b_final_output.innerHTML = +T3b.toFixed(2);
+        // console.log("T3b output is: " + T3b);
+
+       //T3b slider code ends
+*/
+/*
+        // T4 slider code starts
+
+        var T4_imp_slider = document.getElementById("T4_imp");
+        var T4_imp_output = document.getElementById("T4_imp_display");
+        var T4_App_slider = document.getElementById("T4_App");
+        var T4_App_output = document.getElementById("T4_App_display");
+        var T4_Con_slider = document.getElementById("T4_Con");
+        var T4_Con_output = document.getElementById("T4_Con_display");
+
+        T4_imp_output.innerHTML = T4_imp_slider.value; // Display the default slider value
+        T4_App_output.innerHTML = T4_App_slider.value;
+        T4_Con_output.innerHTML = T4_Con_slider.value;
+
+        var T4 =
+          T4_imp_slider.value * T4_App_slider.value * T4_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T4_imp_slider.oninput = function () {
+          T4_imp_output.innerHTML = this.value;
+        };
+        T4_App_slider.oninput = function () {
+          T4_App_output.innerHTML = this.value;
+        };
+        T4_Con_slider.oninput = function () {
+          T4_Con_output.innerHTML = this.value;
+        };
+
+        var T4_final_output = document.getElementById("T4_final_display");
+        T4_final_output.innerHTML = +T4.toFixed(2);
+        // console.log("T4 output is: " + T4);
+
+        //T4 slider code ends
+*/
+
+        document.getElementById("prospectivityMap").innerHTML =
+          "<div id='map'></div>";
+
+        var osmUrl = "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+          osmAttribution =
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+          osmLayer = new L.TileLayer(osmUrl, {
+            maxZoom: 18,
+            attribution: osmAttribution,
+          });
+        var map = new L.Map("map");
+        map.setView(new L.LatLng(-20.5, 146), 6);
+        map.addLayer(osmLayer);
+
+        L.Control.Watermark = L.Control.extend({
+          onAdd: function (map) {
+            var img = L.DomUtil.create("img");
+            img.src = "https://nemicomp.s3.ap-southeast-2.amazonaws.com/images/scale_bar.png";
+            img.style.width = "50px";
+            img.style.padding = "15px";
+            return img;
+          },
+          onRemove: function (map) {},
+        });
+
+        L.control.watermark = function (opts) {
+          return new L.Control.Watermark(opts);
+        };
+
+        L.control.watermark({ position: "bottomleft" }).addTo(map);
+
+        map.spin(true);
+
+        // below is a multiband
+        var url_to_geotiff_file =
+		  "http://gowminerals.byethost33.com/grids/Sc_MaficUltramafic_All_Components_LowRes.tif";
+
+        //code for storing pixel value in global variable
+
+        fetch(url_to_geotiff_file)
+          .then((response) => response.arrayBuffer())
+          .then((arrayBuffer) => {
+            parseGeoraster(arrayBuffer).then((georaster) => {
+              // set the starting value for the maximum for the different bands
+              var Smax = 0;
+              var Dmax = 0;
+              var Pmax = 0;
+              var Tmax = 0;
+              var Amax = 0;
+              var scale = chroma.scale("Viridis");
+
+              var layer = new GeoRasterLayer({
+                georaster: georaster,
+                opacity: 0.7,
+
+                pixelValuesToColorFn: function (pixelValues) {
+                  var SpixelValue =
+                    (pixelValues[0] * S1a + pixelValues[1] * S1b + pixelValues[2] * S2) / 3; //add the S bands with coefficients
+
+                  // this if statement finds the S maximum - not sure why it works...
+                  var Smax1 = Math.max(SpixelValue);
+                  if (Smax1 > Smax) {
+                    Smax = Smax1;
+                  }
+                  var DpixelValue = (pixelValues[3] * D1 + pixelValues[4] * D2) / 2; // add the D bands with coefficients
+                  // this if statement finds the D maximum - not sure why it works...
+                  var Dmax1 = Math.max(DpixelValue);
+                  if (Dmax1 > Dmax) {
+                    Dmax = Dmax1;
+                  }
+                  var PpixelValue = (pixelValues[5] * P1 + (pixelValues[6] * P2a + pixelValues[7] * P2b)/2) / 2; // add the P bands with coefficients
+
+                  // this if statement finds the P maximum - not sure why it works...
+                  var Pmax1 = Math.max(PpixelValue);
+                  if (Pmax1 > Pmax) {
+                    Pmax = Pmax1;
+                  }
+                  var TpixelValue = (pixelValues[8] * T1a + pixelValues[9] * T1b +
+				  pixelValues[10] * T1c)/3 ; // add the T bands with coefficients
+
+                  // this if statement finds the T maximum - not sure why it works...
+                  var Tmax1 = Math.max(TpixelValue);
+                  if (Tmax1 > Tmax) {
+                    Tmax = Tmax1;
+                  }
+
+                  const Dmin = 0;
+
+                  // scale all the components to 0 - 1 used by chroma
+                  var scaledSPixelValue = (SpixelValue - Dmin) / (Smax - Dmin);
+                  var scaledDPixelValue = (DpixelValue - Dmin) / (Dmax - Dmin);
+                  var scaledPPixelValue = (PpixelValue - Dmin) / (Pmax - Dmin);
+                  var scaledTPixelValue = (TpixelValue - Dmin) / (Tmax - Dmin);
+
+                  var scaledPixelValue =
+                    //((SpixelValue / Smax) * SCoeff + (DpixelValue / Dmax) * DCoeff) / (SCoeff * 0.65 + DCoeff * 0.65);
+                    ((SpixelValue / (Smax + 0.0000001)) * SCoeff +
+                      (DpixelValue / (Dmax + 0.0000001)) * DCoeff +
+                      (PpixelValue / (Pmax + 0.0000001)) * PCoeff +
+                      (TpixelValue / (Tmax + 0.0000001)) * TCoeff) /
+                    (SCoeff * 0.65 +
+                      DCoeff * 0.65 +
+                      PCoeff * 0.65 +
+                      TCoeff * 0.65);
+
+                  var color = scale(scaledPixelValue).hex();
+
+                  return color;
+                },
+
+                resolution: 256,
+              });
+
+              console.log("layer:", layer);
+
+              layer.addTo(map);
+
+              map.fitBounds(layer.getBounds());
+
+              map.spin(false);
+
+              //stringifycode starts
+
+              function cleanStringify(object) {
+                if (object && typeof object === "object") {
+                  object = copyWithoutCircularReferences([object], object);
+                }
+                return JSON.stringify(object);
+
+                function copyWithoutCircularReferences(references, object) {
+                  var cleanObject = {};
+                  Object.keys(object).forEach(function (key) {
+                    var value = object[key];
+                    if (value && typeof value === "object") {
+                      if (references.indexOf(value) < 0) {
+                        references.push(value);
+                        cleanObject[key] = copyWithoutCircularReferences(
+                          references,
+                          value
+                        );
+                        references.pop();
+                      } else {
+                        cleanObject[key] = "###_Circular_###";
+                      }
+                    } else if (typeof value !== "function") {
+                      cleanObject[key] = value;
+                    }
+                  });
+                  return cleanObject;
+                }
+              }
+
+              //stringifycode ends
+
+              //convert layer to json
+              var jsonData = cleanStringify(layer);
+
+              //download function
+              function download(content, fileName, contentType) {
+                var a = document.createElement("a");
+                var file = new Blob([content], { type: contentType });
+                a.href = URL.createObjectURL(file);
+                a.download = fileName;
+                a.click();
+              }
+
+              var element = document.getElementById("savebutton");
+              element.onclick = function () {
+                download(jsonData, "json.txt", "text/plain");
+              };
+            });
+          });
+      }
+
+      function buildHighResMap() {
+        // coefficients slider code starts
+
+        var source_slider = document.getElementById("source_slide");
+        var source_output = document.getElementById("source_display");
+        var driver_slider = document.getElementById("driver_slide");
+        var driver_output = document.getElementById("driver_display");
+        var path_slider = document.getElementById("path_slide");
+        var path_output = document.getElementById("path_display");
+        var trap_slider = document.getElementById("trap_slide");
+        var trap_output = document.getElementById("trap_display");
+
+        source_output.innerHTML = source_slider.value; // Display the default slider value
+        driver_output.innerHTML = driver_slider.value;
+        path_output.innerHTML = path_slider.value;
+        trap_output.innerHTML = trap_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        source_slider.oninput = function () {
+          source_output.innerHTML = this.value;
+        };
+        driver_slider.oninput = function () {
+          driver_output.innerHTML = this.value;
+        };
+        path_slider.oninput = function () {
+          path_output.innerHTML = this.value;
+        };
+        trap_slider.oninput = function () {
+          trap_output.innerHTML = this.value;
+        };
+
+        var SCoeff = source_slider.value;
+        var DCoeff = driver_slider.value;
+        var PCoeff = path_slider.value;
+        var TCoeff = trap_slider.value;
+
+        //coefficients slider code ends
+
+        // S1a slider code starts
+
+        var S1a_imp_slider = document.getElementById("S1a_imp");
+        var S1a_imp_output = document.getElementById("S1a_imp_display");
+        var S1a_App_slider = document.getElementById("S1a_App");
+        var S1a_App_output = document.getElementById("S1a_App_display");
+        var S1a_Con_slider = document.getElementById("S1a_Con");
+        var S1a_Con_output = document.getElementById("S1a_Con_display");
+
+        S1a_imp_output.innerHTML = S1a_imp_slider.value; // Display the default slider value
+        S1a_App_output.innerHTML = S1a_App_slider.value;
+        S1a_Con_output.innerHTML = S1a_Con_slider.value;
+
+        var S1a =
+          S1a_imp_slider.value * S1a_App_slider.value * S1a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S1a_imp_slider.oninput = function () {
+          S1a_imp_output.innerHTML = this.value;
+        };
+        S1a_App_slider.oninput = function () {
+          S1a_App_output.innerHTML = this.value;
+        };
+        S1a_Con_slider.oninput = function () {
+          S1a_Con_output.innerHTML = this.value;
+        };
+
+        var S1a_final_output = document.getElementById("S1a_final_display");
+        S1a_final_output.innerHTML = +S1a.toFixed(2);
+        // console.log("S1a output is: " + S1a);
+
+        //S1a slider code ends
+
+        //S1b slider code starts
+
+        var S1b_imp_slider = document.getElementById("S1b_imp");
+        var S1b_imp_output = document.getElementById("S1b_imp_display");
+        var S1b_App_slider = document.getElementById("S1b_App");
+        var S1b_App_output = document.getElementById("S1b_App_display");
+        var S1b_Con_slider = document.getElementById("S1b_Con");
+        var S1b_Con_output = document.getElementById("S1b_Con_display");
+
+        S1b_imp_output.innerHTML = S1b_imp_slider.value; // Display the default slider value
+        S1b_App_output.innerHTML = S1b_App_slider.value;
+        S1b_Con_output.innerHTML = S1b_Con_slider.value;
+
+        var S1b =
+          S1b_imp_slider.value * S1b_App_slider.value * S1b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S1b_imp_slider.oninput = function () {
+          S1b_imp_output.innerHTML = this.value;
+        };
+        S1b_App_slider.oninput = function () {
+          S1b_App_output.innerHTML = this.value;
+        };
+        S1b_Con_slider.oninput = function () {
+          S1b_Con_output.innerHTML = this.value;
+        };
+
+        var S1b_final_output = document.getElementById("S1b_final_display");
+        S1b_final_output.innerHTML = +S1b.toFixed(2);
+        // console.log("S1b output is: " + S1b);
+
+        //S1b slider code ends
+        //S2 slider code starts
+
+        var S2_imp_slider = document.getElementById("S2_imp");
+        var S2_imp_output = document.getElementById("S2_imp_display");
+        var S2_App_slider = document.getElementById("S2_App");
+        var S2_App_output = document.getElementById("S2_App_display");
+        var S2_Con_slider = document.getElementById("S2_Con");
+        var S2_Con_output = document.getElementById("S2_Con_display");
+
+        S2_imp_output.innerHTML = S2_imp_slider.value; // Display the default slider value
+        S2_App_output.innerHTML = S2_App_slider.value;
+        S2_Con_output.innerHTML = S2_Con_slider.value;
+
+        var S2 =
+          S2_imp_slider.value * S2_App_slider.value * S2_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S2_imp_slider.oninput = function () {
+          S2_imp_output.innerHTML = this.value;
+        };
+        S2_App_slider.oninput = function () {
+          S2_App_output.innerHTML = this.value;
+        };
+        S2_Con_slider.oninput = function () {
+          S2_Con_output.innerHTML = this.value;
+        };
+
+        var S2_final_output = document.getElementById("S2_final_display");
+        S2_final_output.innerHTML = +S2.toFixed(2);
+
+        // console.log("S2 output is: " + S2);
+
+        //S2 slider code ends
+/*
+        //S3 slider code starts
+
+        var S3_imp_slider = document.getElementById("S3_imp");
+        var S3_imp_output = document.getElementById("S3_imp_display");
+        var S3_App_slider = document.getElementById("S3_App");
+        var S3_App_output = document.getElementById("S3_App_display");
+        var S3_Con_slider = document.getElementById("S3_Con");
+        var S3_Con_output = document.getElementById("S3_Con_display");
+
+        S3_imp_output.innerHTML = S3_imp_slider.value; // Display the default slider value
+        S3_App_output.innerHTML = S3_App_slider.value;
+        S3_Con_output.innerHTML = S3_Con_slider.value;
+
+        var S3 =
+          S3_imp_slider.value * S3_App_slider.value * S3_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S3_imp_slider.oninput = function () {
+          S3_imp_output.innerHTML = this.value;
+        };
+        S3_App_slider.oninput = function () {
+          S3_App_output.innerHTML = this.value;
+        };
+        S3_Con_slider.oninput = function () {
+          S3_Con_output.innerHTML = this.value;
+        };
+
+        var S3_final_output = document.getElementById("S3_final_display");
+        S3_final_output.innerHTML = +S3.toFixed(2);
+
+        // console.log("S3 output is: " + S3);
+
+        //S3 slider code ends
+*/
+/*        //S4 slider code starts
+
+        var S4_imp_slider = document.getElementById("S4_imp");
+        var S4_imp_output = document.getElementById("S4_imp_display");
+        var S4_App_slider = document.getElementById("S4_App");
+        var S4_App_output = document.getElementById("S4_App_display");
+        var S4_Con_slider = document.getElementById("S4_Con");
+        var S4_Con_output = document.getElementById("S4_Con_display");
+
+        S4_imp_output.innerHTML = S4_imp_slider.value; // Display the default slider value
+        S4_App_output.innerHTML = S4_App_slider.value;
+        S4_Con_output.innerHTML = S4_Con_slider.value;
+
+        var S4 =
+          S4_imp_slider.value * S4_App_slider.value * S4_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        S4_imp_slider.oninput = function () {
+          S4_imp_output.innerHTML = this.value;
+        };
+        S4_App_slider.oninput = function () {
+          S4_App_output.innerHTML = this.value;
+        };
+        S4_Con_slider.oninput = function () {
+          S4_Con_output.innerHTML = this.value;
+        };
+
+        var S4_final_output = document.getElementById("S4_final_display");
+        S4_final_output.innerHTML = +S4.toFixed(2);
+
+        // console.log("S4 output is: " + S4);
+
+*/        //S4 slider code ends
+
+        //D1a slider code starts
+
+        var D1_imp_slider = document.getElementById("D1_imp");
+        var D1_imp_output = document.getElementById("D1_imp_display");
+        var D1_App_slider = document.getElementById("D1_App");
+        var D1_App_output = document.getElementById("D1_App_display");
+        var D1_Con_slider = document.getElementById("D1_Con");
+        var D1_Con_output = document.getElementById("D1_Con_display");
+
+        D1_imp_output.innerHTML = D1_imp_slider.value; // Display the default slider value
+        D1_App_output.innerHTML = D1_App_slider.value;
+        D1_Con_output.innerHTML = D1_Con_slider.value;
+
+        var D1 =
+          D1_imp_slider.value * D1_App_slider.value * D1_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        D1_imp_slider.oninput = function () {
+          D1_imp_output.innerHTML = this.value;
+        };
+        D1_App_slider.oninput = function () {
+          D1_App_output.innerHTML = this.value;
+        };
+        D1_Con_slider.oninput = function () {
+          D1_Con_output.innerHTML = this.value;
+        };
+
+        var D1_final_output = document.getElementById("D1_final_display");
+        D1_final_output.innerHTML = +D1.toFixed(2);
+        // console.log("D1 output is: " + D1);
+
+        //D1 slider code ends
+		
+        // D2 slider code starts
+
+        var D2_imp_slider = document.getElementById("D2_imp");
+        var D2_imp_output = document.getElementById("D2_imp_display");
+        var D2_App_slider = document.getElementById("D2_App");
+        var D2_App_output = document.getElementById("D2_App_display");
+        var D2_Con_slider = document.getElementById("D2_Con");
+        var D2_Con_output = document.getElementById("D2_Con_display");
+
+        D2_imp_output.innerHTML = D2_imp_slider.value; // Display the default slider value
+        D2_App_output.innerHTML = D2_App_slider.value;
+        D2_Con_output.innerHTML = D2_Con_slider.value;
+
+        var D2 =
+          D2_imp_slider.value * D2_App_slider.value * D2_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        D2_imp_slider.oninput = function () {
+          D2_imp_output.innerHTML = this.value;
+        };
+        D2_App_slider.oninput = function () {
+          D2_App_output.innerHTML = this.value;
+        };
+        D2_Con_slider.oninput = function () {
+          D2_Con_output.innerHTML = this.value;
+        };
+
+        var D2_final_output = document.getElementById("D2_final_display");
+        D2_final_output.innerHTML = +D2.toFixed(2);
+        // console.log("D2 output is: " + D2);
+
+        //D2 slider code ends
+
+        // P1 slider code starts
+
+        var P1_imp_slider = document.getElementById("P1_imp");
+        var P1_imp_output = document.getElementById("P1_imp_display");
+        var P1_App_slider = document.getElementById("P1_App");
+        var P1_App_output = document.getElementById("P1_App_display");
+        var P1_Con_slider = document.getElementById("P1_Con");
+        var P1_Con_output = document.getElementById("P1_Con_display");
+
+        P1_imp_output.innerHTML = P1_imp_slider.value; // Display the default slider value
+        P1_App_output.innerHTML = P1_App_slider.value;
+        P1_Con_output.innerHTML = P1_Con_slider.value;
+
+        var P1 =
+          P1_imp_slider.value * P1_App_slider.value * P1_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P1_imp_slider.oninput = function () {
+          P1_imp_output.innerHTML = this.value;
+        };
+        P1_App_slider.oninput = function () {
+          P1_App_output.innerHTML = this.value;
+        };
+        P1_Con_slider.oninput = function () {
+          P1_Con_output.innerHTML = this.value;
+        };
+        var P1_final_output = document.getElementById("P1_final_display");
+        P1_final_output.innerHTML = +P1.toFixed(2);
+        // console.log("P1 output is: " + P1);
+
+        //P1 slider code ends
+
+        // P2a slider code starts
+
+        var P2a_imp_slider = document.getElementById("P2a_imp");
+        var P2a_imp_output = document.getElementById("P2a_imp_display");
+        var P2a_App_slider = document.getElementById("P2a_App");
+        var P2a_App_output = document.getElementById("P2a_App_display");
+        var P2a_Con_slider = document.getElementById("P2a_Con");
+        var P2a_Con_output = document.getElementById("P2a_Con_display");
+
+        P2a_imp_output.innerHTML = P2a_imp_slider.value; // Display the default slider value
+        P2a_App_output.innerHTML = P2a_App_slider.value;
+        P2a_Con_output.innerHTML = P2a_Con_slider.value;
+
+        var P2a =
+          P2a_imp_slider.value * P2a_App_slider.value * P2a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P2a_imp_slider.oninput = function () {
+          P2a_imp_output.innerHTML = this.value;
+        };
+        P2a_App_slider.oninput = function () {
+          P2a_App_output.innerHTML = this.value;
+        };
+        P2a_Con_slider.oninput = function () {
+          P2a_Con_output.innerHTML = this.value;
+        };
+        var P2a_final_output = document.getElementById("P2a_final_display");
+        P2a_final_output.innerHTML = +P2a.toFixed(2);
+        // console.log("P2a output is: " + P2a);
+
+        //P2a slider code ends
+		
+        // P2b slider code starts
+
+        var P2b_imp_slider = document.getElementById("P2b_imp");
+        var P2b_imp_output = document.getElementById("P2b_imp_display");
+        var P2b_App_slider = document.getElementById("P2b_App");
+        var P2b_App_output = document.getElementById("P2b_App_display");
+        var P2b_Con_slider = document.getElementById("P2b_Con");
+        var P2b_Con_output = document.getElementById("P2b_Con_display");
+
+        P2b_imp_output.innerHTML = P2b_imp_slider.value; // Display the default slider value
+        P2b_App_output.innerHTML = P2b_App_slider.value;
+        P2b_Con_output.innerHTML = P2b_Con_slider.value;
+
+        var P2b =
+          P2b_imp_slider.value * P2b_App_slider.value * P2b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        P2b_imp_slider.oninput = function () {
+          P2b_imp_output.innerHTML = this.value;
+        };
+        P2b_App_slider.oninput = function () {
+          P2b_App_output.innerHTML = this.value;
+        };
+        P2b_Con_slider.oninput = function () {
+          P2b_Con_output.innerHTML = this.value;
+        };
+        var P2b_final_output = document.getElementById("P2b_final_display");
+        P2b_final_output.innerHTML = +P2b.toFixed(2);
+        // console.log("P2b output is: " + P2b);
+
+        //P2b slider code ends
+
+        // T1a slider code starts
+
+        var T1a_imp_slider = document.getElementById("T1a_imp");
+        var T1a_imp_output = document.getElementById("T1a_imp_display");
+        var T1a_App_slider = document.getElementById("T1a_App");
+        var T1a_App_output = document.getElementById("T1a_App_display");
+        var T1a_Con_slider = document.getElementById("T1a_Con");
+        var T1a_Con_output = document.getElementById("T1a_Con_display");
+
+        T1a_imp_output.innerHTML = T1a_imp_slider.value; // Display the default slider value
+        T1a_App_output.innerHTML = T1a_App_slider.value;
+        T1a_Con_output.innerHTML = T1a_Con_slider.value;
+
+        var T1a =
+          T1a_imp_slider.value * T1a_App_slider.value * T1a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1a_imp_slider.oninput = function () {
+          T1a_imp_output.innerHTML = this.value;
+        };
+        T1a_App_slider.oninput = function () {
+          T1a_App_output.innerHTML = this.value;
+        };
+        T1a_Con_slider.oninput = function () {
+          T1a_Con_output.innerHTML = this.value;
+        };
+
+        var T1a_final_output = document.getElementById("T1a_final_display");
+        T1a_final_output.innerHTML = +T1a.toFixed(2);
+        // console.log("T1a output is: " + T1a);
+
+        //T1a slider code ends
+
+        // T1b slider code starts
+
+        var T1b_imp_slider = document.getElementById("T1b_imp");
+        var T1b_imp_output = document.getElementById("T1b_imp_display");
+        var T1b_App_slider = document.getElementById("T1b_App");
+        var T1b_App_output = document.getElementById("T1b_App_display");
+        var T1b_Con_slider = document.getElementById("T1b_Con");
+        var T1b_Con_output = document.getElementById("T1b_Con_display");
+
+        T1b_imp_output.innerHTML = T1b_imp_slider.value; // Display the default slider value
+        T1b_App_output.innerHTML = T1b_App_slider.value;
+        T1b_Con_output.innerHTML = T1b_Con_slider.value;
+
+        var T1b =
+          T1b_imp_slider.value * T1b_App_slider.value * T1b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1b_imp_slider.oninput = function () {
+          T1b_imp_output.innerHTML = this.value;
+        };
+        T1b_App_slider.oninput = function () {
+          T1b_App_output.innerHTML = this.value;
+        };
+        T1b_Con_slider.oninput = function () {
+          T1b_Con_output.innerHTML = this.value;
+        };
+
+        var T1b_final_output = document.getElementById("T1b_final_display");
+        T1b_final_output.innerHTML = +T1b.toFixed(2);
+        // console.log("T1b output is: " + T1b);
+
+        //T1b slider code ends
+
+        // T1c slider code starts
+
+        var T1c_imp_slider = document.getElementById("T1c_imp");
+        var T1c_imp_output = document.getElementById("T1c_imp_display");
+        var T1c_App_slider = document.getElementById("T1c_App");
+        var T1c_App_output = document.getElementById("T1c_App_display");
+        var T1c_Con_slider = document.getElementById("T1c_Con");
+        var T1c_Con_output = document.getElementById("T1c_Con_display");
+
+        T1c_imp_output.innerHTML = T1c_imp_slider.value; // Display the default slider value
+        T1c_App_output.innerHTML = T1c_App_slider.value;
+        T1c_Con_output.innerHTML = T1c_Con_slider.value;
+
+        var T1c =
+          T1c_imp_slider.value * T1c_App_slider.value * T1c_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T1c_imp_slider.oninput = function () {
+          T1c_imp_output.innerHTML = this.value;
+        };
+        T1c_App_slider.oninput = function () {
+          T1c_App_output.innerHTML = this.value;
+        };
+        T1c_Con_slider.oninput = function () {
+          T1c_Con_output.innerHTML = this.value;
+        };
+
+        var T1c_final_output = document.getElementById("T1c_final_display");
+        T1c_final_output.innerHTML = +T1c.toFixed(2);
+        // console.log("T1c output is: " + T1c);
+
+       //T1c slider code ends
+/*       // T3a slider code starts
+
+        var T3a_imp_slider = document.getElementById("T3a_imp");
+        var T3a_imp_output = document.getElementById("T3a_imp_display");
+        var T3a_App_slider = document.getElementById("T3a_App");
+        var T3a_App_output = document.getElementById("T3a_App_display");
+        var T3a_Con_slider = document.getElementById("T3a_Con");
+        var T3a_Con_output = document.getElementById("T3a_Con_display");
+
+        T3a_imp_output.innerHTML = T3a_imp_slider.value; // Display the default slider value
+        T3a_App_output.innerHTML = T3a_App_slider.value;
+        T3a_Con_output.innerHTML = T3a_Con_slider.value;
+
+        var T3a =
+          T3a_imp_slider.value * T3a_App_slider.value * T3a_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T3a_imp_slider.oninput = function () {
+          T3a_imp_output.innerHTML = this.value;
+        };
+        T3a_App_slider.oninput = function () {
+          T3a_App_output.innerHTML = this.value;
+        };
+        T3a_Con_slider.oninput = function () {
+          T3a_Con_output.innerHTML = this.value;
+        };
+
+        var T3a_final_output = document.getElementById("T3a_final_display");
+        T3a_final_output.innerHTML = +T3a.toFixed(2);
+        // console.log("T3a output is: " + T3a);
+
+       //T3a slider code ends
+*/
+/*       // T3b slider code starts
+
+        var T3b_imp_slider = document.getElementById("T3b_imp");
+        var T3b_imp_output = document.getElementById("T3b_imp_display");
+        var T3b_App_slider = document.getElementById("T3b_App");
+        var T3b_App_output = document.getElementById("T3b_App_display");
+        var T3b_Con_slider = document.getElementById("T3b_Con");
+        var T3b_Con_output = document.getElementById("T3b_Con_display");
+
+        T3b_imp_output.innerHTML = T3b_imp_slider.value; // Display the default slider value
+        T3b_App_output.innerHTML = T3b_App_slider.value;
+        T3b_Con_output.innerHTML = T3b_Con_slider.value;
+
+        var T3b =
+          T3b_imp_slider.value * T3b_App_slider.value * T3b_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T3b_imp_slider.oninput = function () {
+          T3b_imp_output.innerHTML = this.value;
+        };
+        T3b_App_slider.oninput = function () {
+          T3b_App_output.innerHTML = this.value;
+        };
+        T3b_Con_slider.oninput = function () {
+          T3b_Con_output.innerHTML = this.value;
+        };
+
+        var T3b_final_output = document.getElementById("T3b_final_display");
+        T3b_final_output.innerHTML = +T3b.toFixed(2);
+        // console.log("T3b output is: " + T3b);
+
+       //T3b slider code ends
+*/
+/*
+        // T4 slider code starts
+
+        var T4_imp_slider = document.getElementById("T4_imp");
+        var T4_imp_output = document.getElementById("T4_imp_display");
+        var T4_App_slider = document.getElementById("T4_App");
+        var T4_App_output = document.getElementById("T4_App_display");
+        var T4_Con_slider = document.getElementById("T4_Con");
+        var T4_Con_output = document.getElementById("T4_Con_display");
+
+        T4_imp_output.innerHTML = T4_imp_slider.value; // Display the default slider value
+        T4_App_output.innerHTML = T4_App_slider.value;
+        T4_Con_output.innerHTML = T4_Con_slider.value;
+
+        var T4 =
+          T4_imp_slider.value * T4_App_slider.value * T4_Con_slider.value;
+
+        // Update the current slider value (each time you drag the slider handle)
+        T4_imp_slider.oninput = function () {
+          T4_imp_output.innerHTML = this.value;
+        };
+        T4_App_slider.oninput = function () {
+          T4_App_output.innerHTML = this.value;
+        };
+        T4_Con_slider.oninput = function () {
+          T4_Con_output.innerHTML = this.value;
+        };
+
+        var T4_final_output = document.getElementById("T4_final_display");
+        T4_final_output.innerHTML = +T4.toFixed(2);
+        // console.log("T4 output is: " + T4);
+
+        //T4 slider code ends
+*/
+
+        document.getElementById("prospectivityMap").innerHTML =
+          "<div id='map'></div>";
+
+        var osmUrl = "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+          osmAttribution =
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+          osmLayer = new L.TileLayer(osmUrl, {
+            maxZoom: 18,
+            attribution: osmAttribution,
+          });
+        var map = new L.Map("map");
+        map.setView(new L.LatLng(-20.5, 146), 6);
+        map.addLayer(osmLayer);
+
+        L.Control.Watermark = L.Control.extend({
+          onAdd: function (map) {
+            var img = L.DomUtil.create("img");
+            img.src = "https://nemicomp.s3.ap-southeast-2.amazonaws.com/images/scale_bar.png";
+            img.style.width = "50px";
+            img.style.padding = "15px";
+            return img;
+          },
+          onRemove: function (map) {},
+        });
+
+        L.control.watermark = function (opts) {
+          return new L.Control.Watermark(opts);
+        };
+
+        L.control.watermark({ position: "bottomleft" }).addTo(map);
+
+        map.spin(true);
+
+        // below is a multiband
+        var url_to_geotiff_file =
+		  "http://gowminerals.byethost33.com/grids/Sc_MaficUltramafic_All_Components_MedRes.tif";
+
+        //code for storing pixel value in global variable
+
+        fetch(url_to_geotiff_file)
+          .then((response) => response.arrayBuffer())
+          .then((arrayBuffer) => {
+            parseGeoraster(arrayBuffer).then((georaster) => {
+              // set the starting value for the maximum for the different bands
+              var Smax = 0;
+              var Dmax = 0;
+              var Pmax = 0;
+              var Tmax = 0;
+              var Amax = 0;
+              var scale = chroma.scale("Viridis");
+
+              var layer = new GeoRasterLayer({
+                georaster: georaster,
+                opacity: 0.7,
+
+                pixelValuesToColorFn: function (pixelValues) {
+                  var SpixelValue =
+                    (pixelValues[0] * S1a + pixelValues[1] * S1b + pixelValues[2] * S2) / 3; //add the S bands with coefficients
+
+                  // this if statement finds the S maximum - not sure why it works...
+                  var Smax1 = Math.max(SpixelValue);
+                  if (Smax1 > Smax) {
+                    Smax = Smax1;
+                  }
+                  var DpixelValue = (pixelValues[3] * D1 + pixelValues[4] * D2) / 2; // add the D bands with coefficients
+                  // this if statement finds the D maximum - not sure why it works...
+                  var Dmax1 = Math.max(DpixelValue);
+                  if (Dmax1 > Dmax) {
+                    Dmax = Dmax1;
+                  }
+                  var PpixelValue = (pixelValues[5] * P1 + (pixelValues[6] * P2a + pixelValues[7] * P2b)/2) / 2; // add the P bands with coefficients
+
+                  // this if statement finds the P maximum - not sure why it works...
+                  var Pmax1 = Math.max(PpixelValue);
+                  if (Pmax1 > Pmax) {
+                    Pmax = Pmax1;
+                  }
+                  var TpixelValue = (pixelValues[8] * T1a + pixelValues[9] * T1b +
+				  pixelValues[10] * T1c)/3 ; // add the T bands with coefficients
+
+                  // this if statement finds the T maximum - not sure why it works...
+                  var Tmax1 = Math.max(TpixelValue);
+                  if (Tmax1 > Tmax) {
+                    Tmax = Tmax1;
+                  }
+
+                  const Dmin = 0;
+
+                  // scale all the components to 0 - 1 used by chroma
+                  var scaledSPixelValue = (SpixelValue - Dmin) / (Smax - Dmin);
+                  var scaledDPixelValue = (DpixelValue - Dmin) / (Dmax - Dmin);
+                  var scaledPPixelValue = (PpixelValue - Dmin) / (Pmax - Dmin);
+                  var scaledTPixelValue = (TpixelValue - Dmin) / (Tmax - Dmin);
+
+                  var scaledPixelValue =
+                    //((SpixelValue / Smax) * SCoeff + (DpixelValue / Dmax) * DCoeff) / (SCoeff * 0.65 + DCoeff * 0.65);
+                    ((SpixelValue / (Smax + 0.0000001)) * SCoeff +
+                      (DpixelValue / (Dmax + 0.0000001)) * DCoeff +
+                      (PpixelValue / (Pmax + 0.0000001)) * PCoeff +
+                      (TpixelValue / (Tmax + 0.0000001)) * TCoeff) /
+                    (SCoeff * 0.65 +
+                      DCoeff * 0.65 +
+                      PCoeff * 0.65 +
+                      TCoeff * 0.65);
+
+                  var color = scale(scaledPixelValue).hex();
+
+                  return color;
+                },
+
+                resolution: 256,
+              });
+
+              console.log("layer:", layer);
+
+              layer.addTo(map);
+
+              map.fitBounds(layer.getBounds());
+
+              map.spin(false);
+
+              //stringifycode starts
+
+              function cleanStringify(object) {
+                if (object && typeof object === "object") {
+                  object = copyWithoutCircularReferences([object], object);
+                }
+                return JSON.stringify(object);
+
+                function copyWithoutCircularReferences(references, object) {
+                  var cleanObject = {};
+                  Object.keys(object).forEach(function (key) {
+                    var value = object[key];
+                    if (value && typeof value === "object") {
+                      if (references.indexOf(value) < 0) {
+                        references.push(value);
+                        cleanObject[key] = copyWithoutCircularReferences(
+                          references,
+                          value
+                        );
+                        references.pop();
+                      } else {
+                        cleanObject[key] = "###_Circular_###";
+                      }
+                    } else if (typeof value !== "function") {
+                      cleanObject[key] = value;
+                    }
+                  });
+                  return cleanObject;
+                }
+              }
+
+              //stringifycode ends
+
+              //convert layer to json
+              var jsonData = cleanStringify(layer);
+
+              //download function
+              function download(content, fileName, contentType) {
+                var a = document.createElement("a");
+                var file = new Blob([content], { type: contentType });
+                a.href = URL.createObjectURL(file);
+                a.download = fileName;
+                a.click();
+              }
+
+              var element = document.getElementById("savebutton");
+              element.onclick = function () {
+                download(jsonData, "json.txt", "text/plain");
+              };
+            });
+          });
+      }
+    </script>
+  
+
+</body></html>
