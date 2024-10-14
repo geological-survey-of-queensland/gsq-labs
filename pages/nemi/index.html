@@ -1,0 +1,390 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-AU">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>NEMI Online Tool : GSQ Labs</title>
+
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/cue/css/qg.css" media="all">
+	<!--[if lt IE 8]><link rel="stylesheet" href="/gsq-labs/cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/gsq-labs/theme/agency.css" media="all">
+    
+	<link href="/gsq-labs/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/gsq-labs/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+    
+	<link rel="shortcut icon" href="/gsq-labs/cue/images/favicon.ico">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+
+  <style>
+    .custom-container {
+    width: 70%;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    #report-templates-table {
+        width: 100%;
+        font-size:10px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        word-break: break-word; /* This will prevent long words from causing horizontal scroll */
+    }
+
+    .templates-table {
+        width: 100%;
+        font-size:10px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        word-break: break-word; /* This will prevent long words from causing horizontal scroll */
+    }
+    h3 {
+        font-size: 15px;
+        color: grey;
+    }
+    .table-responsive td, .table-responsive th {
+    border: 1px solid #cccccc; /* Replace #cccccc with the hex code of the grey shade you want */
+}
+
+/*center the contents of the footer div*/
+	#footer {
+	  text-align: center;
+	}
+
+/*change color of buttons to dark grey in hex*/
+	.btn {
+
+				  background-color: #4d4d4d;
+				  border-color: #4d4d4d;
+				  color: white;
+				}
+	.btn-secondary {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	.btn-primary {
+
+				background-color: #0b0b0b;
+				border-color: #080808;
+				color: white;
+				}
+				.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary:focus:active,
+.btn-primary.focus:active,
+.btn:first-child:active {
+				background-color: #0b0b0b;
+				border-color: #0b0b0b;
+				color: white;
+				}
+	  .btn-secondary:active, .btn-secondary:focus {
+
+				background-color: #4d4d4d;
+				border-color: #4d4d4d;
+				color: white;
+				}
+	/*change hover color of buttons to slightly lighter grey in hex*/
+	.btn:hover {
+				  background-color: #666666;
+				  border-color: #666666;
+				  color: white;
+				}
+
+
+	/*change color of accordian to very light grey in hex*/
+	.accordion-button {
+				  background-color: #f8f9fa;
+				  color: black;
+				}
+	/*change color of div class  header to #f2f2f2 hex*/
+
+	/*#header {
+				  background-color: #f2f2f2;
+				}*/
+	#breadcrumbs {
+				  background-color: none;
+				}
+	
+				.tree-container {
+            padding-bottom: 200px;
+        }
+
+
+        .expander {
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(17, 17, 18);
+        }
+
+        .concept-details {
+            list-style-type: none;
+            padding-left: 20px;
+            display: none;
+        }
+        li {
+            list-style-type: none;
+        }
+        p {
+            line-height: 1.0;
+        }
+        #dropdownMenuButton {
+            width: 100%; /* Full width */
+            padding: 12px; /* Larger padding for better touch target on mobile devices */
+            font-size: 1.25rem; /* Larger font size for better readability on mobile devices */
+        }
+        .dropdown-menu {
+    width: 100%; /* Full width */
+	z-index: 9999;
+	overflow: auto;
+	height: 400px;
+   }
+
+
+            .dropdown-item {
+                font-size: 1.2rem; /* 20% larger */
+            }
+            button {
+                margin: 2px; /* 2 pixels gap */
+            }
+
+    @media (max-width: 767px) {
+      #map {
+        width: 100%;
+        padding-bottom: 100%;
+
+      }
+    }
+
+	pre {
+    white-space: pre-wrap;
+}
+
+
+
+
+  </style>
+</head>
+
+<body class="application" id="qld-gov-au">
+	
+	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
+	<div id="access">
+		<h2>Skip links and keyboard navigation</h2>
+		<ul>
+			<li><a href="#content">Skip to content</a></li>
+			
+			<li><a href="#footer">Skip to footer</a></li>
+			<li><a href="http://www.qld.gov.au/help/accessibility/keyboard.html#section-aria-keyboard-navigation">Use tab and cursor keys to move around the page (more information)</a></li>
+		</ul>
+	</div>
+
+	<div id="header"><div class="box-sizing"><div class="max-width">
+		
+		
+        <a id="qg-coa" href="http://www.qld.gov.au/">
+            <!--[if gte IE 7]><!--><img src="/gsq-labs/theme/qg-coa.png" width="287" height="50" alt="Queensland Government"><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]-->
+            <img src="/gsq-labs/cue/images/qg-coa-print.png" class="print-version" alt="">
+        </a>
+        
+		<ul id="tools">
+			<li><a accesskey="4" href="https://www.resources.qld.gov.au/contact-us#geological-survey-of-queensland">Contact us</a></li>
+			<li><a href="/gsq-labs/pages/help/">Help</a></li>
+			<li><a href="https://github.com/geological-survey-of-queensland">GitHub</a></li>
+			<li class="last-child">
+			</li>
+		</ul>
+        
+       <!-- <h2 id="site-name"><a href="/" accesskey="2">-->
+            <!--[if gte IE 7]><!--><!--<img src="/gsq-labs/theme/site-name.png" height="28" alt="GSQ Labs">--><!--<![endif]-->
+            <!--[if lte IE 6]><img src="/gsq-labs/theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
+          <!--  <img src="/gsq-labs/theme/site-name-print.png" height="28" class="print-version" alt="">-->
+       <!-- </a></h2> -->
+    
+	</div></div></div>
+	<div id="page-container1"><div class="max-width">
+	<div id="content-container1">	
+            <div id="breadcrumbs">
+                <ol>
+                    <li><a href="/gsq-labs/">GSQ labs home</a></li>
+
+                </ol>
+            </div>
+            <div id="content">
+            
+<div class="custom-container">
+    <div class="box-sizing">
+					
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br><br></bf><h1 id="data-sources">New Economy Minerals Initiative - Online Prospectivity Tool</h1>
+            <p>A series of tools have been created for the minerals listed below.</p>
+        </div>
+    </div>
+
+    <div id="accordion" class="container mt-3">
+        <h3>Mineral Navigator</h3>
+    <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse1">
+        Cobalt
+        </a>
+        </div>
+        <div id="collapse1" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\Cobalt\Black shale-hosted Ni-Zn-Cu-Co Prospectivity.html">Black shale-hosted Ni-Zn-Cu-Co Prospectivity</a></li><li><a href="tools\Cobalt\Carbonate Cu-Co (Zn-Pb) Prospectivity.html">Carbonate Cu-Co (Zn-Pb) Prospectivity</a></li><li><a href="tools\Cobalt\Ni-Co Laterite Prospectivity.html">Ni-Co Laterite Prospectivity</a></li><li><a href="tools\Cobalt\Sediment-hosted Cu Co Prospectivity.html">Sediment-hosted Cu Co Prospectivity</a></li><li><a href="tools\Cobalt\Black shale-hosted Ni-Zn-Cu-Co Prospectivity.html">Black shale-hosted Ni-Zn-Cu-Co Prospectivity</a></li><li><a href="tools\Cobalt\Carbonate Cu-Co (Zn-Pb) Prospectivity.html">Carbonate Cu-Co (Zn-Pb) Prospectivity</a></li><li><a href="tools\Cobalt\Ni-Co Laterite Prospectivity.html">Ni-Co Laterite Prospectivity</a></li><li><a href="tools\Cobalt\Sediment-hosted Cu Co Prospectivity.html">Sediment-hosted Cu Co Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse2">
+        In-Ga-Ge
+        </a>
+        </div>
+        <div id="collapse2" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\In-Ga-Ge\In-Ga-Ge Epithermal Prospectivity.html">In-Ga-Ge Epithermal Prospectivity</a></li><li><a href="tools\In-Ga-Ge\In-Ga-Ge Granite-related Prospectivity.html">In-Ga-Ge Granite-related Prospectivity</a></li><li><a href="tools\In-Ga-Ge\In-Ga-Ge VHMS Prospectivity.html">In-Ga-Ge VHMS Prospectivity</a></li><li><a href="tools\In-Ga-Ge\In-Ga-Ge Epithermal Prospectivity.html">In-Ga-Ge Epithermal Prospectivity</a></li><li><a href="tools\In-Ga-Ge\In-Ga-Ge Granite-related Prospectivity.html">In-Ga-Ge Granite-related Prospectivity</a></li><li><a href="tools\In-Ga-Ge\In-Ga-Ge VHMS Prospectivity.html">In-Ga-Ge VHMS Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse3">
+        Mo-Re
+        </a>
+        </div>
+        <div id="collapse3" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\Mo-Re\Mo-V Oil Shale Prospectivity.html">Mo-V Oil Shale Prospectivity</a></li><li><a href="tools\Mo-Re\Porphyry Mo (Cu-Au) Prospectivity.html">Porphyry Mo (Cu-Au) Prospectivity</a></li><li><a href="tools\Mo-Re\Proterozoic Mo-Re Prospectivity.html">Proterozoic Mo-Re Prospectivity</a></li><li><a href="tools\Mo-Re\Mo-V Oil Shale Prospectivity.html">Mo-V Oil Shale Prospectivity</a></li><li><a href="tools\Mo-Re\Porphyry Mo (Cu-Au) Prospectivity.html">Porphyry Mo (Cu-Au) Prospectivity</a></li><li><a href="tools\Mo-Re\Proterozoic Mo-Re Prospectivity.html">Proterozoic Mo-Re Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse4">
+        REE
+        </a>
+        </div>
+        <div id="collapse4" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\REE\Alkaline REE Prospectivity.html">Alkaline REE Prospectivity</a></li><li><a href="tools\REE\Carbonatite REE Prospectivity.html">Carbonatite REE Prospectivity</a></li><li><a href="tools\REE\IOCG REE Prospectivity.html">IOCG REE Prospectivity</a></li><li><a href="tools\REE\Metasomatic U-REE Prospectivity.html">Metasomatic U-REE Prospectivity</a></li><li><a href="tools\REE\Phosphorite REE Prospectivity.html">Phosphorite REE Prospectivity</a></li><li><a href="tools\REE\Alkaline REE Prospectivity.html">Alkaline REE Prospectivity</a></li><li><a href="tools\REE\Carbonatite REE Prospectivity.html">Carbonatite REE Prospectivity</a></li><li><a href="tools\REE\IOCG REE Prospectivity.html">IOCG REE Prospectivity</a></li><li><a href="tools\REE\Metasomatic U-REE Prospectivity.html">Metasomatic U-REE Prospectivity</a></li><li><a href="tools\REE\Phosphorite REE Prospectivity.html">Phosphorite REE Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse5">
+        Scandium
+        </a>
+        </div>
+        <div id="collapse5" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\Scandium\Ni-Co-Sc Laterite Prospectivity.html">Ni-Co-Sc Laterite Prospectivity</a></li><li><a href="tools\Scandium\Sc Alkaline-Carbonatite-related Prospectivity.html">Sc Alkaline-Carbonatite-related Prospectivity</a></li><li><a href="tools\Scandium\Sc Mafic-Ultramafic Prospectivity.html">Sc Mafic-Ultramafic Prospectivity</a></li><li><a href="tools\Scandium\Ni-Co-Sc Laterite Prospectivity.html">Ni-Co-Sc Laterite Prospectivity</a></li><li><a href="tools\Scandium\Sc Alkaline-Carbonatite-related Prospectivity.html">Sc Alkaline-Carbonatite-related Prospectivity</a></li><li><a href="tools\Scandium\Sc Mafic-Ultramafic Prospectivity.html">Sc Mafic-Ultramafic Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse6">
+        Silica
+        </a>
+        </div>
+        <div id="collapse6" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\Silica\Silica Granite-related Prospectivity.html">Silica Granite-related Prospectivity</a></li><li><a href="tools\Silica\Silica Sands Prospectivity.html">Silica Sands Prospectivity</a></li><li><a href="tools\Silica\Silica Granite-related Prospectivity.html">Silica Granite-related Prospectivity</a></li><li><a href="tools\Silica\Silica Sands Prospectivity.html">Silica Sands Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapse7">
+        SnW
+        </a>
+        </div>
+        <div id="collapse7" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <ul><li><a href="tools\SnW\Sn-W Intrusion-Related Prospectivity.html">Sn-W Intrusion-Related Prospectivity</a></li><li><a href="tools\SnW\Sn-W Intrusion-Related Prospectivity.html">Sn-W Intrusion-Related Prospectivity</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+</div>
+
+</div>
+<!-- Bootstrap 4 JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+				</div>
+				
+			</div>
+			
+
+			
+		</div>
+	</div></div>
+
+	
+	<div id="footer">
+
+		
+		<div class="max-width"><div class="box-sizing">
+			<h2>Site footer</h2>
+			<ul>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/copyright/">Copyright</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/disclaimer/">Disclaimer</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/legal/privacy/">Privacy</a></li>
+				<li class="legal"><a href="http://www.qld.gov.au/right-to-information/">Right to information</a></li>
+				<li><a href="http://www.qld.gov.au/help/access/">Accessibility</a></li>
+				<li><a href="http://www.smartjobs.qld.gov.au/">Jobs in Queensland Government</a></li>
+				<li id="languages"><a href="http://www.qld.gov.au/languages/">Other languages</a></li>
+			</ul>
+			<p class="legal">&copy; The State of Queensland (Department of Resources) 2010&ndash;2023</p>
+			<p><a href="http://www.qld.gov.au/" accesskey="1">Queensland Government</a></p>
+			<div id="qg-branding"><p><img class="tagline" src="/gsq-labs/theme/qg-tagline-footer.png" alt="Great state. Great opportunity."></p></div>
+		</div></div>
+	</div>
+    
+    
+	
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript"><!--
+			// OPTIONAL: manually specify the current page title (to determine which menus are open onload)  
+			//var currentPageTitle = '_INSERT_PAGE_TITLE_HERE_';  
+			--></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+
+    <!--<![endif]-->
+	<script type="text/javascript" src="/gsq-labs/cue/js/qg.js"></script>
+
+</body>
+</html>
