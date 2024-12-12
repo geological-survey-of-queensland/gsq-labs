@@ -1,0 +1,998 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+@prefix geo: <http://example.org/geofeature/> .
+@prefix act: <http://example.org/actuator/> .
+@prefix res: <http://example.org/resourcefeature/> .
+@prefix admin: <http://example.org/adminfeature/> .
+@prefix prop: <http://example.org/propertytype/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Geofeature: Mary Kathleen Domain
+geo:MaryKathleenDomain rdf:type geo:Domain ;
+    rdfs:label "Mary Kathleen Domain" ;
+    geo:shape "elongate" ;
+    geo:oldest_age "~1790 Ma" ; # Insert lower age value
+    geo:youngest_age "~1690 Ma" ; # Insert upper age value
+    geo:aeromagnetic_response "strong except far north" ;
+    geo:gravity_anomaly "strong positive" ;
+    geo:faulting "brittle along north-east structures" ;
+    geo:metamorphism_event "1570Ma" ;
+    geo:east_of geo:KalkadoonLeichardtDomain ;
+    geo:records act:WongaExtension ;
+    geo:west_of geo:CanobieDomain, geo:MitakoodiDomain ;
+    geo:separated_by geo:QuambyFaultZone, geo:PilgrimFaultZone ;
+    geo:magnetically_identified_by "calc-silicates", geo:CorellaFormation ;
+    geo:east_west_compressive_phase_of act:IsanOrogeny ;
+    geo:mostly_excludes geo:MineralBeltOfLeichardtVolcanics, geo:KalkadoonGranodiorite ;
+    geo:corresponds_to geo:MaryKathleenBelt ;
+    geo:subdomained_by geo:RoseBeeFault ;
+    geo:contains geo:RosebudSyncline ;
+    geo:contains geo:IsaSuperBasin ;
+    geo:corresponds_to act:east_west_compressive_phase_of_IsanOrogeny .
+
+# Geofeature: Rose Bee Fault
+geo:RoseBeeFault rdf:type geo:Fault ;
+    rdfs:label "Rose Bee Fault" ;
+    geo:direction "north trending" ;
+    geo:continuation_of geo:PilgrimFaultZone ;
+    geo:dextral_movement_on geo:FountainRangeFault .
+
+# Geofeature: Basement on western part (sub domain)
+geo:BasementWesternSubDomain rdf:type geo:Basement ;
+    rdfs:label "Basement on western part (sub domain)" ;
+    geo:contains geo:LeichhardtVolcanics, geo:KalkadoonGranite, geo:ArgyllaFormation .
+
+# Geofeature: Eastern sub-domain
+geo:EasternSubDomain rdf:type geo:SubDomain ;
+    rdfs:label "Eastern sub-domain" ;
+    geo:contains geo:BoomarraMetamorphics .
+
+# Geofeature: Ballara Quartzite
+geo:BallaraQuartzite rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Ballara Quartzite" ;
+    geo:lithology "Tuff" ;
+    geo:oldest_age "1772Ma +-5Ma" ;
+    geo:other_age "<1767Ma +-4Ma" ;
+    geo:youngest_age "1755Ma +-3Ma" ;
+    geo:lithology "Rhyolitic ignimbrite" ;
+    geo:thickness "relatively thin" ;
+    geo:unconformably_overlies geo:ArgyllaFormation ;
+    geo:thicker_near admin:Dobbyn ;
+    geo:similar_to geo:BoomarraMetamorphics ;
+    geo:correlates_to geo:QuilalarFormation ;
+    geo:intruded_by geo:WongaSuite .
+
+# Geofeature: Corella Formation
+geo:CorellaFormation rdf:type geo:Formation ;
+    rdfs:label "Corella Formation" ;
+    geo:oldest_age "<1776Ma+-3Ma" ;
+    geo:lithology "mixed carbonate-siliciclastic" ;
+    geo:aeromagnetic_response "sometimes strong" ;
+    geo:overlies geo:BallaraQuartzite ;
+    geo:altered_to "calc-silicate rocks" ;
+    geo:altered_during act:IsanOrogeny ;
+    geo:overlies geo:BoomarraMetamorphics ;
+    geo:correlates_to geo:QuilalarFormation ;
+    geo:intruded_by geo:WongaSuite .
+
+# Geofeature: Wonga Suite
+geo:WongaSuite rdf:type geo:IgneousIntrusiveRockUnit ;
+    rdfs:label "Wonga Suite" ;
+    geo:oldest_age "1758+-8Ma" ;
+    geo:youngest_age "1729Ma +-13Ma" ;
+    geo:lithology "granite" ;
+    geo:intrusive_environment "active extensional detachment" ;
+    geo:structure "highly deformed" ;
+    geo:older_intrusions geo:ArgyllaFormation ;
+    geo:younger_intrusions geo:CorellaFormation .
+
+# Geofeature: Burstall Suite
+geo:BurstallSuite rdf:type geo:IgneousIntrusiveRockUnit ;
+    rdfs:label "Burstall Suite" ;
+    geo:youngest_age "1737Ma +-3Ma" ;
+    geo:oldest_age "1740Ma +-3Ma" ;
+    geo:intrusive_environment "upper plate" ;
+    geo:time_equivalent_to geo:WongaSuite .
+
+# Geofeature: Mount Albert Group
+geo:MountAlbertGroup rdf:type geo:Group ;
+    rdfs:label "Mount Albert Group" ;
+    geo:structure "linear belts" ;
+    geo:aeromagnetic_response "low flat" ;
+    geo:oldest_age "1751Ma +-4Ma" ;
+    geo:youngest_age "1715Ma+-11Ma" ;
+    geo:contains geo:DeightonQuartzite, geo:WhiteBlowFormation, geo:KnapdaleQuartzite ;
+    geo:unconformably_overlies geo:CorellaFormation ;
+    geo:related_to geo:LeichardtRiverValleyOutcrops .
+
+# Geofeature: Leichardt River valley outcrops
+geo:LeichardtRiverValleyOutcrops rdf:type geo:Outcrops .
+
+# Geofeature: Deighton Quartzite
+geo:DeightonQuartzite rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Deighton Quartzite" ;
+    geo:oldest_age "1751Ma +-4Ma" ;
+    geo:youngest_age "1715Ma+-11Ma" ;
+    geo:related_to geo:PrizeSupersequence ;
+    geo:related_to geo:GunSupersequenceMtIsaGroup .
+
+# Geofeature: Coocerina Formation
+geo:CoocerinaFormation rdf:type geo:Formation ;
+    rdfs:label "Coocerina Formation" ;
+    geo:overlies geo:KnapdaleQuartzite .
+
+# Geofeature: Lady Clayre Dolomite (<1691+-9Ma)
+geo:LadyClayreDolomite rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Lady Clayre Dolomite (<1691+-9Ma)" ;
+    geo:oldest_age "1691+-9Ma" ;
+    geo:overlies geo:KnapdaleQuartzite ;
+    geo:part_of geo:GunSupersequenceMtIsaGroup .
+
+# Geofeature: Mount Roseby Schist
+geo:MountRosebySchist rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Mount Roseby Schist" ;
+    geo:oldest_age "1686Ma +-7Ma" ;
+    geo:contains res:DugaldRiverDeposit ;
+    geo:time_equivalent_to geo:CoocerinaFormation, geo:LadyClayreDolomite ;
+    geo:part_of geo:GunSupersequenceMtIsaGroup .
+
+# Geofeature: Rosebud Syncline
+geo:RosebudSyncline rdf:type geo:Syncline ;     
+    rdfs:label "Rosebud Syncline" ;
+    geo:age_of_metamorphism "1581Ma +-5Ma" .
+
+# Geofeature: Landsborough Graben
+geo:LandsboroughGraben rdf:type geo:Graben ;
+    rdfs:label "Landsborough Graben" ;
+    geo:aeromagnetic_response "elongate low" ;
+    geo:part_of geo:MaryKathleenDomain .
+
+# resource feature DugaldRiverDeposit
+res:DugaldRiverDeposit rdf:type res:Deposit ;
+    rdfs:label "Dugald River Deposit" .
+
+    # Geofeature: MaryKathleenBelt
+geo:MaryKathleenBelt rdf:type geo:structure ;
+    rdfs:label "Mary Kathleen Belt" ;
+    geo:part_of geo:MaryKathleenDomain .
+
+# Actuator: Wonga Event
+act:WongaEvent rdf:type act:Complex ;
+    rdfs:label "Wonga Event" ;
+    act:oldest_age "1740Ma" ;
+    act:coeval_with geo:WongaSuite ;
+    act:correlates_with "metamorphic peak (?)" .
+
+# Actuator: Isan Orogeny
+act:IsanOrogeny rdf:type act:Orogeny ;
+    rdfs:label "Isan Orgeny" .
+
+# Geofeature: Mount Remarkable Fault
+geo:MountRemarkableFault rdf:type geo:Fault ;
+    rdfs:label "Mount Remarkable Fault" ;
+    geo:structure "north east" ;
+    geo:correlates_with act:IsanOrogeny .
+
+# Actuator: east-west compressive phase of the Isan Orogeny
+act:east_west_compressive_phase_of_IsanOrogeny rdf:type act:CompressivePhase ; 
+    rdfs:label "East West Compressive Phase of Isan Orogeny" .
+    
+# Actuator: Wonga Extension
+act:WongaExtension rdf:type act:NorthSouthExtensional ;
+    rdfs:label "Wonga Extension" ;
+    act:contains geo:DoubleCrossingMetamorphics, geo:GinCreekGranite .
+
+# Geofeature: Quamby Fault-Zone
+geo:QuambyFaultZone rdf:type geo:faultZone ;
+    rdfs:label "Quamby Fault-Zone" ;
+    geo:east_of geo:MaryKathleenDomain, geo:CanobieDomain, geo:MitakoodiDomain .
+
+# Geofeature: Pilgrim Fault-Zone
+geo:PilgrimFaultZone rdf:type geo:faultZone ;
+    rdfs:label "Pilgrim Fault-Zone" ;
+    geo:east_of geo:MaryKathleenDomain ;
+    geo:west_of geo:CanobieDomain, geo:MitakoodiDomain .
+
+# Geofeature: Mitakoodi Domain
+geo:MitakoodiDomain rdf:type geo:Domain ;
+    rdfs:label "Mitakoodi Domain" ;
+    geo:east_of geo:MaryKathleenDomain ;
+    geo:separated_by geo:QuambyFaultZone, geo:PilgrimFaultZone .
+
+# Geofeature: Canobie Domain
+geo:CanobieDomain rdf:type geo:Domain ;
+    rdfs:label "Canobie Domain" ;
+    geo:east_of geo:MaryKathleenDomain ;
+    geo:separated_by geo:QuambyFaultZone, geo:PilgrimFaultZone .
+
+# Geofeature: Gin Creek Granite
+geo:GinCreekGranite rdf:type geo:IgneousIntrusiveRockUnit ;
+    rdfs:label "Gin Creek Granite" .
+
+# Geofeature: Double Crossing Metamorphics
+geo:DoubleCrossingMetamorphics rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Double Crossing Metamorphics" .
+
+# Geofeature: Mineral Belt of Leichardt Volcanics
+geo:MineralBeltOfLeichardtVolcanics rdf:type res:MineralProvince ;
+    rdfs:label "Mineral Belt of Leichardt Volcanics" .
+
+# Geofeature: Knapdale Quartzite (<1728Ma +-5Ma)
+geo:KnapdaleQuartzite rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Knapdale Quartzite" .
+
+# Geofeature: White Blow Formation
+geo:WhiteBlowFormation rdf:type geo:Formation ;
+    rdfs:label "White Blow Formation" .
+
+# Geofeature: Isa Super Basin
+geo:IsaSuperBasin rdf:type geo:Basin ;
+    rdfs:label "Isa Super Basin" .
+
+# Geofeature: Gun Supersequence  Mt Isa Group
+geo:GunSupersequenceMtIsaGroup rdf:type geo:Sequence ;
+    rdfs:label "Gun Supersequence Mt Isa Group" .
+
+# Geofeature: Prize Supersequence
+geo:PrizeSupersequence rdf:type geo:Sequence ;
+    rdfs:label "Prize Supersequence" .
+
+# Geofeature: Argylla Formation
+geo:ArgyllaFormation rdf:type geo:Formation ;
+    rdfs:label "Argylla Formation" ;
+    geo:oldest_age "1777-1782Ma +-3Ma" ;
+    geo:intruded_by geo:WongaSuite .
+
+# Geofeature: Quilalar Formation
+geo:QuilalarFormation rdf:type geo:Formation ;
+    rdfs:label "Quilalar Formation" .
+
+# Geofeature: Boomarra Metamorphics
+geo:BoomarraMetamorphics rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Boomarra Metamorphics" ;
+    geo:lithology "felsic granofels" ;
+    geo:lithology "quartzite" ;
+    geo:age "1774-1775Ma +-4Ma" ;
+    geo:similar_age_to geo:ArgyllaFormation .
+
+# Admin Feature: Dobbyn (locality)
+admin:Dobbyn rdf:type admin:GhostTown ;
+    rdfs:label "Dobbyn" .
+
+
+
+# Geofeature: Kalkadoon Granite
+geo:KalkadoonGranite rdf:type geo:IgneousIntrusiveRockUnit ;
+    rdfs:label "Kalkadoon Granite" .
+
+# Geofeature: Kalkadoon Granodiorite
+geo:KalkadoonGranodiorite rdf:type geo:IgneousIntrusiveRockUnit ;
+    rdfs:label "Kalkadoon Granodriorite" .
+
+# Geofeature: Kalkadoon Leichardt Domain
+geo:KalkadoonLeichardtDomain rdf:type geo:Domain ;
+    rdfs:label "Kalkadoon Leichardt Domain" .
+
+# Geofeature: Leichardt Volcanics
+geo:LeichhardtVolcanics rdf:type geo:LithostratigraphicUnit ;
+    rdfs:label "Leichardt Volcanics" .
+
+# Geofeature: Fountain Range Fault
+geo:FountainRangeFault rdf:type geo:Fault ;
+    rdfs:label "Fountain Range Fault" .
+
+# Geofeature: east-NWQMP-epigenetic-Cu-Au-iron-oxide
+geo:east-NWQMP-epigenetic-Cu-Au-iron-oxide rdf:type geo:MineralSystem ;
+    rdfs:label "East NWQMP Epigenetic Cu Au iron oxide" ;
+    rdfs:comment "Structurally-controlled epigenetic Cu±Au±iron oxide deposits in the eastern part of the province" ;
+    geo:related_to geo:mineral-systems-gsq-nwqmp-question ;
+    geo:unknown_ingredient_of geo:PassiveBasinPreMineralisationEvents ;
+    geo:desirable_ingredient_of geo:PreToSynCuAuOrogenesisOnCratonMargin ;
+    geo:essential_ingredient_of geo:ThermalAnomalyAtCuAuTime ;
+    geo:highly_desirable_ingredient_of geo:ShallowATypeGranitoids ;
+    geo:highly_desirable_ingredient_of geo:CrustalFaultZones ;
+    geo:desirable_ingredient_of geo:DepositsAssociateWithGravityRidges ;
+    geo:highly_desirable_ingredient_of geo:BrecciationHighInCrust ;
+    geo:essential_ingredient_of geo:RegionalFlowOfHighTemperatureBrines ;
+    geo:essential_ingredient_of geo:ElevatedTemperatureFeRichSalineBrine ;
+    geo:highly_desirable_ingredient_of geo:DiverseFluidSources ;
+    geo:unknown_ingredient_of geo:EvaporiteBearingSequences ;
+    geo:highly_desirable_ingredient_of geo:RepeatedFaultMovementDuringOrogens ;
+    geo:highly_desirable_ingredient_of geo:Reductants ;
+    geo:desirable_ingredient_of geo:LateStageOxidationOfEarlierAlterations ;
+    geo:desirable_ingredient_of geo:FluidMixing ;
+    geo:desirable_ingredient_of geo:DilatantZones ;
+    geo:desirable_ingredient_of geo:Replacement ;
+    geo:desirable_ingredient_of geo:PresenceOfMaficRocks ;
+    geo:desirable_ingredient_of geo:DeepWeatheringAndSupergeneEnrichment .
+
+
+# MinSysIngredient: Passive basin pre-mineralisation events
+geo:PassiveBasinPreMineralisationEvents rdf:type geo:MinSysIngredient ;
+    rdfs:label "Passive basin pre-mineralisation events" ;
+    geo:type "event" ;
+    geo:description "Passive margin, distal back arc basin or intracontinental extension pre-mineralisation events" ;
+    geo:mineral-system-question "q1" ;
+    geo:scale "continental-terrane" ;
+    geo:related_geofeature geo:passiveMarginBasin, geo:distalBackArcBasin, geo:intracontinentalExtensionalBasins .
+
+# MinSysIngredient: Pre to syn-Cu-Au orogenisis on craton margin
+geo:PreToSynCuAuOrogenesisOnCratonMargin rdf:type geo:MinSysIngredient ;
+    rdfs:label "Pre to syn-Cu-Au orogenesis on craton margin" ;
+    geo:type "event" ;
+    geo:description "Pre- to syn-Cu-Au orogenesis on margin of craton; terrane accretion" ;
+    geo:mineral-system-question "q1" ;
+    geo:scale "continental-terrane" ;
+    geo:related_geofeature geo:metamorphicBelts, geo:crustalFault, geo:crustalShear .
+
+# MinSysIngredient: thermal anomaly at Cu-Au time
+geo:ThermalAnomalyAtCuAuTime rdf:type geo:MinSysIngredient ;
+    rdfs:label "Thermal anomaly at Cu-Au time" ;
+    geo:type "event" ;
+    geo:description "Major (mantle-driven?) thermal anomaly at Cu-Au time; low pressure-high temperature metamorphism" ;
+    geo:mineral-system-question "q1", "q4" ;
+    geo:scale "continental-district" ;
+    geo:related_geofeature geo:shallowATypeCrustalMelt, geo:alkalineMaficMagmatism, geo:ITypeCrustalMelts, geo:comagmaticVolcanics ;
+    geo:related_geoproperty geo:lowPressureHighTemperatureMetamorphismInSynCuAuOrigins .
+
+# MinSysIngredient: shallow A-type granitoids immediately pre to syn-Cu-Au
+geo:ShallowATypeGranitoids rdf:type geo:MinSysIngredient ;
+    rdfs:label "Shallow A-type granitoids immediately pre to syn-Cu-Au" ;
+    geo:type "composition" ;
+    geo:description "Presence of shallow A-type granitoids immediately pre to syn-Cu-Au" ;
+    geo:mineral-system-question "q1" ;
+    geo:scale "terrane-district" ;
+    geo:related_geofeature geo:IgneousIntrusiveRockUnit .
+
+# MinSysIngredient: crustal fault zones separating blocks or orogens
+geo:CrustalFaultZones rdf:type geo:MinSysIngredient ;
+    rdfs:label "Crustal fault zones separating blocks or orogens" ;
+    geo:type "structure" ;
+    geo:description "Crust-penetrating shear/fault zones separating crustal blocks or orogens; district-scale fault networks reactivated during Cu-Au mineralisation" ;
+    geo:mineral-system-question "q2", "q4" ;
+    geo:scale "terrane-district" ;
+    geo:related_geofeature geo:faultZone .
+
+# MinSysIngredient: deposits associate with gravity ridges
+geo:DepositsAssociateWithGravityRidges rdf:type geo:MinSysIngredient ;
+    rdfs:label "Deposits associate with gravity ridges" ;
+    geo:type "geophysical" ;
+    geo:description "Gradients represent crustal block boundaries (major fluid pathways)" ;
+    geo:mineral-system-question "q2" ;
+    geo:scale "terrane" ;
+    geo:related_geofeature geo:gravityRidge .
+
+# MinSysIngredient: brecciation high in crust
+geo:BrecciationHighInCrust rdf:type geo:MinSysIngredient ;
+    rdfs:label "Brecciation high in crust" ;
+    geo:type "structure" ;
+    geo:description "High permeability fluid pathways" ;
+    geo:mineral-system-question "q2" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:brecciationZone .
+
+# MinSysIngredient: regional flow of high-temperature brines
+geo:RegionalFlowOfHighTemperatureBrines rdf:type geo:MinSysIngredient ;
+    rdfs:label "Regional flow of high-temperature brines" ;
+    geo:type "hydrogeological" ;
+    geo:description "Large Cu-Au deposits require very large volumes of fluid" ;
+    geo:mineral-system-question "q2", "q4" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:fluidPathway .
+
+# MinSysIngredient: elevated temperature Fe-rich saline brine
+geo:ElevatedTemperatureFeRichSalineBrine rdf:type geo:MinSysIngredient ;
+    rdfs:label "Elevated temperature Fe-rich saline brine" ;
+    geo:type "composition" ;
+    geo:description "Carries Fe (±S, Cu) to form Fe2+-bearing oxides, silicates, carbonate and sulphides" ;
+    geo:mineral-system-question "q3", "q4" ;
+    geo:scale "district to deposit" ;
+    geo:related_geoproperty geo:fossilRich .
+
+# MinSysIngredient: diverse-fluid-sources
+geo:DiverseFluidSources rdf:type geo:MinSysIngredient ;
+    rdfs:label "Diverse-fluid-sources" ;
+    geo:type "hydrogeological" ;
+    geo:description "Including sedimentary formation waters in basins, magmatic, metamorphic (basinal and basement units), meteoric and possibly mantle-derived. Combinations of fluids in different proportions across gradients in salinity, temperature and pressure are important controls on ore deposition." ;
+    geo:mineral-system-question "q3", "q4" ;
+    geo:scale "district to deposit" ;
+    geo:related_geoproperty geo:fossilRich .
+
+# MinSysIngredient: evaporite-bearing-sequences
+geo:EvaporiteBearingSequences rdf:type geo:MinSysIngredient ;
+    rdfs:label "Evaporite-bearing-sequences" ;
+    geo:type "structure" ;
+    geo:description "Including sedimentary formation waters in basins, magmatic, metamorphic (basinal and basement units), meteoric and possibly mantle-derived. Combinations of fluids in different proportions across gradients in salinity, temperature and pressure are important controls on ore deposition." ;
+    geo:mineral-system-question "q3" ;
+    geo:scale "terrane to district" ;
+    geo:related_geoproperty geo:evaporiteRich .
+
+# MinSysIngredient: repeated-fault-movement-during-orogens
+geo:RepeatedFaultMovementDuringOrogens rdf:type geo:MinSysIngredient ;
+    rdfs:label "Repeated fault movement during orogens" ;
+    geo:type "structure" ;
+    geo:description "Reactivation of fault networks leads to the formation of dilatant zones, fluid pumping, remobilisation, and concentration of previously deposited mineralisation." ;
+    geo:mineral-system-question "q4" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:faultZone .
+
+# MinSysIngredient: reductants
+geo:Reductants rdf:type geo:MinSysIngredient ;
+    rdfs:label "Reductants" ;
+    geo:type "composition" ;
+    geo:description "Fe2+ bearing oxides, silicates, carbonate and sulphides may act as reductants for Cu-Au-bearing fluids" ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "district to deposit" ;
+    geo:related_geoproperty geo:carbonateRich, geo:ironOxideRich, geo:silicateRich, geo:sulphideRich, geo:alkaliFeldsparRich .
+
+# MinSysIngredient: late-stage-oxidation-of-earlier-alterations
+geo:LateStageOxidationOfEarlierAlterations rdf:type geo:MinSysIngredient ;
+    rdfs:label "Late-stage oxidation of earlier alterations" ;
+    geo:type "event" ;
+    geo:description "Indicates influx of oxidized fluids, possibly carrying Cu-Au; deposition by fluid-rock reaction" ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:hematiticAlterationZone, geo:hematiteAndMagnetiteZones ;
+    geo:related_geoproperty geo:CuMineralisation, geo:AuMineralisation .
+
+# MinSysIngredient: fluid-mixing
+geo:FluidMixing rdf:type geo:MinSysIngredient ;
+    rdfs:label "Fluid-mixing" ;
+    geo:type "hydrogeological" ;
+    geo:description "Cu-Au via mixing with reduced fluid; can produce high grades. Sulphides were deposited through combinations of fluid cooling, wall rock reactions, and phase separation." ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "deposit" ;
+    geo:related_geofeature geo:steepFluidPathways ;
+    geo:related_geoproperty geo:barite, geo:fluidInclusionEvidence .
+
+# MinSysIngredient: dilatant-zones
+geo:DilatantZones rdf:type geo:MinSysIngredient ;
+    rdfs:label "Dilatant-zones" ;
+    geo:type "hydrogeological" ;
+    geo:description "Dilatant zones allow metal deposition via fluid mixing, cooling, and de-pressuring" ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:dilatantZone, geo:brecciationZone, geo:faultBendOrJog, geo:faultIntersection, geo:competencyContrast .
+
+# MinSysIngredient: replacement
+geo:Replacement rdf:type geo:MinSysIngredient ;
+    rdfs:label "Replacement" ;
+    geo:type "event" ;
+    geo:description "Many significant deposits include replacement of suitable host rocks as a significant component of mineralization" ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "district to deposit" ;
+    geo:related_geoproperty geo:ironstoneRich, geo:chemicallyReplacable .
+
+# MinSysIngredient: presence-of-mafic-rocks
+geo:PresenceOfMaficRocks rdf:type geo:MinSysIngredient ;
+    rdfs:label "Presence of mafic rocks" ;
+    geo:type "composition" ;
+    geo:description "Many deposits are adjacent to or hosted in part by mafic rocks. Fluids from, or passing through, mafic rocks deposited metals by mixing or wall rock interaction in the vicinity of the mafic rocks." ;
+    geo:mineral-system-question "q5" ;
+    geo:scale "district to deposit" ;
+    geo:related_geofeature geo:maficZone .
+
+# MinSysIngredient: deep-weathering-and-supergene-enrichment
+geo:DeepWeatheringAndSupergeneEnrichment rdf:type geo:MinSysIngredient ;
+    rdfs:label "Deep weathering and supergene enrichment" ;
+    geo:type "event" ;
+    geo:description "Deep weathering in some areas has resulted in substantial, easily mined, supergene copper resources, despite the relatively low sulphide content of many deposits." ;
+    geo:mineral-system-question "q6" ;
+    geo:scale "deposit" ;
+    geo:related_geofeature geo:CuStainedGossan, geo:shearZone ;
+    geo:related_geoproperty geo:CuDispersal, geo:AuDispersal, geo:dispersionHalo .
+
+# Feature Types SKOS Vocabulary
+ex:FeatureType rdf:type skos:ConceptScheme ;
+    rdfs:label "Feature Types SKOS Vocabulary" .
+
+geo:Domain rdf:type skos:Concept ;
+    rdfs:label "Domain" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Formation rdf:type skos:Concept ;
+    rdfs:label "Formation" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Fault rdf:type skos:Concept ;
+    rdfs:label "Fault" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Basement rdf:type skos:Concept ;
+    rdfs:label "Basement" ;
+    skos:inScheme ex:FeatureType .
+
+geo:SubDomain rdf:type skos:Concept ;
+    rdfs:label "Sub-Domain" ;
+    skos:inScheme ex:FeatureType .
+
+geo:LithostratigraphicUnit rdf:type skos:Concept ;
+    rdfs:label "Lithostratigraphic Unit" ;
+    skos:inScheme ex:FeatureType .
+
+geo:IgneousIntrusiveRockUnit rdf:type skos:Concept ;
+    rdfs:label "Igneous Intrusive Rock Unit" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Group rdf:type skos:Concept ;
+    rdfs:label "Group" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Outcrops rdf:type skos:Concept ;
+    rdfs:label "Outcrops" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Basin rdf:type skos:Concept ;
+    rdfs:label "Basin" ;
+    skos:inScheme ex:FeatureType .
+
+res:Deposit rdf:type skos:Concept ;
+    rdfs:label "Deposit" ;
+    skos:inScheme ex:FeatureType .
+
+# Admin Feature: Ghost Town
+admin:GhostTown rdf:type skos:Concept ;
+    rdfs:label "Ghost Town" ;
+    skos:inScheme ex:FeatureType .
+
+res:MineralProvince rdf:type skos:Concept ;
+    rdfs:label "Mineral Province" ;
+    skos:inScheme ex:FeatureType .
+
+geo:Sequence rdf:type skos:Concept ;
+    rdfs:label "Sequence" ;
+    skos:inScheme ex:FeatureType .
+
+geo:MineralSystem rdf:type skos:Concept ;
+    rdfs:label "Mineral System" ;
+    skos:inScheme ex:FeatureType .
+
+geo:MinSysIngredient rdf:type skos:Concept ;
+    rdfs:label "Mineral System Ingredient" ;
+    skos:inScheme ex:FeatureType .
+
+# from Mineral Ingredients Geo Features
+geo:passiveMarginBasin rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Passive Margin Basin" .
+
+geo:distalBackArcBasin rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Distal Back Arc Basin" .
+
+geo:intracontinentalExtensionalBasins rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Intracontinental Extensional Basins" .
+
+geo:metamorphicBelts rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Metamorphic Belts" .
+
+geo:crustalFault rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Crustal Fault" .
+
+geo:crustalShear rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Crustal Shear" .
+
+geo:shallowATypeCrustalMelt rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Shallow A-type Crustal Melt" .
+
+geo:alkalineMaficMagmatism rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Alkaline Mafic Magmatism" .
+
+geo:ITypeCrustalMelts rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "I-type Crustal Melts" .
+
+geo:comagmaticVolcanics rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Comagmatic Volcanics" .
+
+geo:gravityRidge rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Gravity Ridge" .
+
+geo:brecciationZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Brecciation Zone" .
+
+geo:fluidPathway rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Fluid Pathway" .
+
+geo:hematiticAlterationZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Hematitic Alteration Zone" .
+
+geo:hematiteAndMagnetiteZones rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Hematite and Magnetite Zones" .
+
+geo:steepFluidPathways rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Steep Fluid Pathways" .
+
+geo:faultZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Fault Zone" .
+
+geo:dilatantZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Dilatant Zone" .
+
+geo:faultBendOrJog rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Fault Bend or Jog" .
+
+geo:faultIntersection rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Fault Intersection" .
+
+geo:competencyContrast rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Competency Contrast" .
+
+geo:maficZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Mafic Zone" .
+
+geo:CuStainedGossan rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Cu-Stained Gossan" .
+
+geo:shearZone rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Shear Zone" .
+
+geo:Syncline rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Syncline" .
+
+geo:structure rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "structure" .
+
+geo:Graben rdf:type skos:Concept ;
+    skos:inScheme ex:FeatureType ;
+    skos:prefLabel "Graben" .
+
+# Property Types SKOS Vocabulary
+ex:PropertyType rdf:type skos:ConceptScheme ;
+    rdfs:label "Property Types SKOS Vocabulary" .
+
+geo:shape rdf:type skos:Concept ;
+    rdfs:label "Shape" ;
+    skos:inScheme ex:PropertyType .
+
+geo:lower_age rdf:type skos:Concept ;
+    rdfs:label "Lower Age" ;
+    skos:inScheme ex:PropertyType .
+
+geo:upper_age rdf:type skos:Concept ;
+    rdfs:label "Upper Age" ;
+    skos:inScheme ex:PropertyType .
+
+geo:aeromagnetic_response rdf:type skos:Concept ;
+    rdfs:label "Aeromagnetic Response" ;
+    skos:inScheme ex:PropertyType .
+
+geo:gravity_anomaly rdf:type skos:Concept ;
+    rdfs:label "Gravity Anomaly" ;
+    skos:inScheme ex:PropertyType .
+
+geo:faulting rdf:type skos:Concept ;
+    rdfs:label "Faulting" ;
+    skos:inScheme ex:PropertyType .
+
+geo:metamorphism_event rdf:type skos:Concept ;
+    rdfs:label "Metamorphism Event" ;
+    skos:inScheme ex:PropertyType .
+
+geo:direction rdf:type skos:Concept ;
+    rdfs:label "Direction" ;
+    skos:inScheme ex:PropertyType .
+
+geo:lithology rdf:type skos:Concept ;
+    rdfs:label "Lithology" ;
+    skos:inScheme ex:PropertyType .
+
+geo:thickness rdf:type skos:Concept ;
+    rdfs:label "Thickness" ;
+    skos:inScheme ex:PropertyType .
+
+geo:lithology rdf:type skos:Concept ;
+    rdfs:label "Lithology" ;
+    skos:inScheme ex:PropertyType .
+
+geo:oldest_age rdf:type skos:Concept ;
+    rdfs:label "Oldest Age" ;
+    skos:inScheme ex:PropertyType .
+
+geo:other_age rdf:type skos:Concept ;
+    rdfs:label "Other Age" ;
+    skos:inScheme ex:PropertyType .
+
+geo:youngest_age rdf:type skos:Concept ;
+    rdfs:label "Youngest Age" ;
+    skos:inScheme ex:PropertyType .
+
+act:oldest_age rdf:type skos:Concept ;
+    rdfs:label "Oldest Age" ;
+    skos:inScheme ex:PropertyType .
+
+# Geo Properties
+geo:fossilRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Fossil Rich" .
+
+geo:carbonateRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Carbonate Rich" .
+
+geo:ironOxideRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Iron Oxide Rich" .
+
+geo:silicateRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Silicate Rich" .
+
+geo:sulphideRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Sulphide Rich" .
+
+geo:alkaliFeldsparRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Alkali Feldspar Rich" .
+
+geo:evaporiteRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Evaporite Rich" .
+
+geo:hematiteRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Hematite Rich" .
+
+geo:magnetiteRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Magnetite Rich" .
+
+geo:bariteRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Barite Rich" .
+
+geo:bariteRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Barite Rich" .
+
+geo:barite rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Barite Present" .
+
+geo:fluidInclusionEvidence rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Fluid Inclusion Evidence" .
+
+geo:CuDispersal rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Cu Dispersal" .
+
+geo:AuDispersal rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Au Dispersal" .
+
+geo:dispersionHalo rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Dispersion Halo" .
+
+geo:CuMineralisation rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Cu Mineralisation" .
+
+geo:AuMineralisation rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Au Mineralisation" .
+
+geo:ironstoneRich rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Ironstone Rich" .
+
+geo:chemicallyReplacable rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Chemically Replacable" .
+
+geo:lowPressureHighTemperatureMetamorphismInSynCuAuOrigins rdf:type skos:Concept ;
+    skos:inScheme ex:PropertyType ;
+    skos:prefLabel "Low pressure high temperature metamorphism in syn Cu Au origins" .
+
+# MinSysIngredient Types SKOS Vocabulary
+geo:MinSysIngredientTypes rdf:type rdfs:Resource ;
+    rdfs:label "MinSysIngredient Types SKOS Vocabulary" .
+
+geo:Event rdf:type rdfs:Resource ;
+    rdfs:label "Event" ;
+    rdfs:subClassOf geo:MinSysIngredientTypes .
+
+geo:Composition rdf:type rdfs:Resource ;
+    rdfs:label "Composition" ;
+    rdfs:subClassOf geo:MinSysIngredientTypes .
+
+geo:Structure rdf:type rdfs:Resource ;
+    rdfs:label "Structure" ;
+    rdfs:subClassOf geo:MinSysIngredientTypes .
+
+geo:Geophysical rdf:type rdfs:Resource ;
+    rdfs:label "Geophysical" ;
+    rdfs:subClassOf geo:MinSysIngredientTypes .
+
+geo:Hydrogeological rdf:type rdfs:Resource ;
+    rdfs:label "Hydrogeological" ;
+    rdfs:subClassOf geo:MinSysIngredientTypes .
+
+
+
+
+# Relationship Types SKOS Vocabulary
+ex:RelationshipType rdf:type skos:ConceptScheme ;
+    rdfs:label "Relationship Types SKOS Vocabulary" .
+
+geo:east_of rdf:type skos:Concept ;
+    rdfs:label "East Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:records rdf:type skos:Concept ;
+    rdfs:label "Records" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:west_of rdf:type skos:Concept ;
+    rdfs:label "West Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:separated_by rdf:type skos:Concept ;
+    rdfs:label "Separated By" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:magnetically_identified_by rdf:type skos:Concept ;
+    rdfs:label "Magnetically Identified By" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:east_west_compressive_phase_of rdf:type skos:Concept ;
+    rdfs:label "East-West Compressive Phase Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:mostly_excludes rdf:type skos:Concept ;
+    rdfs:label "Mostly Excludes" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:corresponds_to rdf:type skos:Concept ;
+    rdfs:label "Corresponds To" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:subdomained_by rdf:type skos:Concept ;
+    rdfs:label "Subdomained By" ;
+    skos:inScheme ex:RelationshipType .
+
+act:continuation_of rdf:type skos:Concept ;
+    rdfs:label "Continuation Of" ;
+    skos:inScheme ex:RelationshipType .
+
+act:Complex rdf:type skos:Concept ;
+    rdfs:label "Complex" ;
+    skos:inScheme ex:PropertyType .
+
+act:Orogeny rdf:type skos:Concept ;
+    rdfs:label "Orogeny" ;
+    skos:inScheme ex:PropertyType .
+
+act:CompressivePhase rdf:type skos:Concept ;
+    rdfs:label "Compressive Phase" ;
+    skos:inScheme ex:PropertyType .
+
+act:NorthSouthExtensional rdf:type skos:Concept ;
+    rdfs:label "NorthSouthExtensional" ;
+    skos:inScheme ex:PropertyType .
+
+geo:dextral_movement_on rdf:type skos:Concept ;
+    rdfs:label "Dextral Movement On" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:contains rdf:type skos:Concept ;
+    rdfs:label "Contains" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:unconformably_overlies rdf:type skos:Concept ;
+    rdfs:label "Unconformably Overlies" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:related_to rdf:type skos:Concept ;
+    rdfs:label "Related To" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:time_equivalent_to rdf:type skos:Concept ;
+    rdfs:label "Time Equivalent To" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:similar_to rdf:type skos:Concept ;
+    rdfs:label "Similar To" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:intruded_by rdf:type skos:Concept ;
+    rdfs:label "Intruded By" ;
+    skos:inScheme ex:RelationshipType .
+
+act:coeval_with rdf:type skos:Concept ;
+    rdfs:label "Coeval With" ;
+    skos:inScheme ex:RelationshipType .
+
+act:correlates_with rdf:type skos:Concept ;
+    rdfs:label "Correlates With" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:unknown_ingredient_of rdf:type skos:Concept ;
+    rdfs:label "Unknown Ingredient Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:desirable_ingredient_of rdf:type skos:Concept ;
+    rdfs:label "Desirable Ingredient Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:essential_ingredient_of rdf:type skos:Concept ;
+    rdfs:label "Essential Ingredient Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:highly_desirable_ingredient_of rdf:type skos:Concept ;
+    rdfs:label "Highly Desirable Ingredient Of" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:related_geofeature rdf:type skos:Concept ;
+    rdfs:label "Related Geofeature" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:related_geoproperty rdf:type skos:Concept ;
+    rdfs:label "Related Geoproperty" ;
+    skos:inScheme ex:RelationshipType .
+
+geo:mineral-systems-gsq-nwqmp-question rdf:type skos:Concept ;
+    rdfs:label "Mineral Systems GSQ NWQMP Question" ;
+    skos:inScheme  ex:PropertyType .
+
+# Mineral System Question: q1
+geo:q1 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q1" ;
+    rdfs:comment "What is the geodynamic and P-T-t history of the system?" ;
+    geo:description "What is the geodynamic and P-T-t history of the system?" .
+
+# Mineral System Question: q2
+geo:q2 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q2" ;
+    rdfs:comment "What is the architecture of the system?" ;
+    geo:description "What is the architecture of the system?" .
+
+# Mineral System Question: q3
+geo:q3 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q3" ;
+    rdfs:comment "What are the fluid characteristics and the sources (reservoirs) of water, metals, ligands, and sulfur?" ;
+    geo:description "What are the fluid characteristics and the sources (reservoirs) of water, metals, ligands, and sulfur?" .
+
+# Mineral System Question: q4
+geo:q4 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q4" ;
+    rdfs:comment "What are the fluid flow drivers and pathways?" ;
+    geo:description "What are the fluid flow drivers and pathways?" .
+
+# Mineral System Question: q5
+geo:q5 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q5" ;
+    rdfs:comment "What are the transport and depositional processes for metals, ligands, and sulfur?" ;
+    geo:description "What are the transport and depositional processes for metals, ligands, and sulfur?" .
+
+# Mineral System Question: q6
+geo:q6 rdf:type geo:mineral-systems-gsq-nwqmp-question ;
+    rdfs:label "q6" ;
+    rdfs:comment "How and where do later geological processes allow preservation of deposits?" ;
+    geo:description "How and where do later geological processes allow preservation of deposits?" .

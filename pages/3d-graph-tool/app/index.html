@@ -1,0 +1,658 @@
+<html>
+<head>
+    <style> body { margin: 0; } </style>
+  
+    <script src="js/external/react.production.min.js"></script>
+    <script src="js/external/react-dom.production.min.js"></script>
+   
+    <script src="js/external/jquery-3.4.1.min.js"></script>
+    <script src="js/ttl-converter.js"></script>
+    <script src="js/external/ttl2jsonld.js"></script>
+    <script src="js/json-graph-query.js"></script>
+    <script src="js/external/three.min.js"></script>
+    <script src="js/external/three-spritetext"></script>
+    <script src="js/external/react-force-graph-3d"></script>
+    <script src="js/external/bootstrap.bundle.min.js"></script>
+    <!-- Define import mapping before loading any ES6 modules -->
+    <script type="importmap">
+      {
+          "imports": {
+              "three": "./js/external/three.module.js",
+              "CSS2DRenderer": "./js/external/CSS2DRenderer.js"
+          }
+      }
+      </script>
+    <script src="js/graph-compiled.js" type="module"></script>
+    <link rel="stylesheet" href="js/external/bootstrap.min.css">
+    
+
+  </head>
+  <style>
+/* CSS to make Bootstrap buttons square-edged */
+.square {
+    border-radius: 0;
+}
+
+
+  </style>  
+ 
+ <body onload = "onLoadScripts()">
+  <div>   <input type="file" accept=".json" id="jsonFileInput" style="display: none">
+  <input type="file" accept=".json" id="jsonLinkedDataFileInput" style="display: none">
+  <input type="file" accept=".ttl" id="turtleFileInput" style="display: none">
+  <button onclick="goHome()" class="btn btn-danger square">Exit</button>
+  <button onclick="showInstructions()" class="btn btn-secondary square">About</button>  
+  <button onclick="loadJSON()" class="btn btn-primary square">Load Graph (JSON)</button>
+    <button onclick="selectFromDropDown()" class="btn btn-primary square">Load View</button>
+    <button onclick="loadJSONLinkedData()" class="btn btn-secondary square">Load JSON-LD</button>
+    <button onclick="loadTtlFile()" class="btn btn-secondary square">Load ttl</button>
+    <button type="button" class="btn btn-secondary square" onclick="popUpSettingsModal()">ttl Settings</button>
+    <button type="button" class="btn btn-success square" onclick="popUpQuerySettingsModal()">Create View</button>
+    <button onclick="saveJSON()" class="btn btn-success square">Export</button>
+    <button class="btn btn-danger square"  onclick="clearLocalStorageAndReload()">Clear Storage</button>
+  </div>
+
+    <div id="graph"></div>
+ 
+    
+    <script>
+
+  function goHome() {
+    // Change the location of the browser to the parent directory of the current location
+    window.location.href = '../';
+  }
+//define a global for the current graph view id
+let currentGraphViewId = 'graph-3d-net-01';
+ function popUpNodeModal(thisNode) {
+  // Find links that match the clicked node's id
+const sourceValue = thisNode.id;
+//get the node json
+const nodeJson = globalGraphData.nodes.filter(node => node.id === sourceValue);
+// Use the filter method to find matching links
+const outwardLinks = globalGraphData.links.filter(link => link.source === sourceValue);
+// Create a list of outward relationships
+const outwardRelationships = outwardLinks.map(link => `${link.description} (${link.target})`);
+
+// Use the filter method to find matching links
+const inwardLinks = globalGraphData.links.filter(link => link.target === sourceValue);
+// Create a list of outward relationships
+const inwardRelationships = inwardLinks.map(link => `${link.source} ${link.description} (${link.target})`);
+  // Create a Bootstrap modal
+  const modalHtml = `
+    <div class="modal fade" id="nodeModal" tabindex="-1" aria-labelledby="nodeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-slide-left modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="nodeModalLabel">Node Information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="nodeModalContentId">${thisNode.id}</p>
+            <p id="nodeModalContentDescription">${thisNode.description}</p>
+            <h6>Outward relationships:</h6>
+            <ul>
+              ${outwardRelationships.map(relationship => `<li>${relationship}</li>`).join('')}
+            </ul>
+            <h6>Inward relationships:</h6>
+            <ul>
+              ${inwardRelationships.map(relationship => `<li>${relationship}</li>`).join('')}
+            </ul>
+            <h6>Node data:</h6>
+            <button class="btn btn-primary" id="nodeDataButton">Show / Hide</button>
+            <div id="nodeData" style="display: none;">
+              <pre><code>${JSON.stringify(nodeJson[0], null, 2)}</code></pre>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove any existing modal if it exists
+  const existingModal = document.getElementById('nodeModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Insert the modal HTML into the body
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Show the modal
+  const nodeModal = new bootstrap.Modal(document.getElementById('nodeModal'));
+  nodeModal.show();
+
+    // Get the Node Data element and the button
+    var nodeData = document.getElementById('nodeData');
+  var nodeDataButton = document.getElementById('nodeDataButton');
+
+  // Add a click event listener to the button
+  nodeDataButton.addEventListener('click', function() {
+    // Toggle the display property of the Node Data element
+    if (nodeData.style.display === 'none') {
+      nodeData.style.display = 'block';
+    } else {
+      nodeData.style.display = 'none';
+    }
+  });
+}
+    </script>
+    
+
+<script>
+
+// Define a global-level constant to store the JSON data
+let globalGraphConfig = {};
+
+// Check local storage for the globalGraphConfig object
+let storedConfig = localStorage.getItem('graph-3d-load-settings-01');
+
+if (storedConfig) {
+  // If the globalGraphConfig object is in local storage, parse it and use it
+  globalGraphConfig = JSON.parse(storedConfig);
+} else {
+  // Otherwise, initialize the globalGraphConfig object and store it in local storage
+  globalGraphConfig.ignoreNodesById = ["http://example.org/geofeature/MinSysIngredient"];
+  globalGraphConfig.removeIsolatedNodes = true;
+
+  localStorage.setItem('graph-3d-load-settings-01', JSON.stringify(globalGraphConfig));
+}
+
+
+
+
+let globalGraphData;
+
+// Define a function to fetch and store the JSON data
+function fetchAndStoreJsonData() {
+  try {
+    //from the url check for a query parameter called 'view_id' and use the value from that param as the item name in the getStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    currentGraphViewId = urlParams.get('view_id') || 'graph-3d-net-01';
+    //console.log('Chosen graph data:', currentGraphViewId);
+
+    const data = localStorage.getItem(currentGraphViewId);
+    if (!data) {
+      throw new Error('Failed to fetch JSON data');
+    }
+
+    globalGraphData = JSON.parse(data);
+    //console.log('JSON data fetched and stored:', globalGraphData);
+  } catch (error) {
+    console.error('Error fetching JSON data:', error);
+  }
+}
+
+
+
+</script>
+<script>
+function onLoadScripts()
+{
+
+// Call the async function to fetch and store the JSON data if auto pulling for a remote location
+fetchAndStoreJsonData();
+
+}
+
+</script>
+
+<script>
+  // Define an async function to load JSON data from a file input
+  async function loadJSON() {
+    const jsonFileInput = document.getElementById('jsonFileInput');
+    jsonFileInput.click(); // Trigger the file input dialog
+  }
+
+  // Handle JSON file input change
+  document.getElementById('jsonFileInput').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const jsonData = e.target.result;
+        // Store JSON data in local storage
+        localStorage.setItem('graph-3d-net-01', jsonData);
+        //strip query params and reload
+        var url = window.location.href.split('?')[0];
+        window.history.pushState({}, document.title, url);
+
+        // Reload the page
+        location.reload();
+      };
+      reader.readAsText(file);
+    }
+  });
+
+
+    // Define a function to save JSON data from Local Storage as a file
+    function saveJSON() {
+      const jsonData = localStorage.getItem(currentGraphViewId);
+      if (jsonData) {
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'graph-3d-viz-data.json';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      } else {
+        console.error('Error: No JSON data found in local storage to save.');
+      }
+    }
+
+  function clearLocalStorageAndReload() {
+  localStorage.clear(currentGraphViewId);
+  // Reload the page 
+  location.reload();
+}
+
+  //create a bootstrap model with a list of 10 links which equate to the current URL with a view_id query parameter set to graph_view_01, graph_view_02, etc.
+  function selectFromDropDown() {
+    // Create a Bootstrap modal for selecting a view
+    const modalHtml = `
+    <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-slide-left modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                  
+                    <h5 class="modal-title" id="viewModalLabel">Select a View</h5>
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <button type="button" class="btn btn-primary mb-2" onclick="window.location.href=window.location.pathname">Default View</button>
+                    ${Array.from({length: 10}, (_, i) => `
+                        <a href="?view_id=graph_view_${i+1 < 10 ? '0' : ''}${i+1}" class="btn btn-success mb-2">Graph View ${i+1}</a>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    </div>`;
+    // Append the modal to the body
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    // Initialize the modal using Bootstrap's JavaScript API
+    var myModal = new bootstrap.Modal(document.getElementById('viewModal'));
+    // Show the modal
+    myModal.show();
+}
+
+  // Define an async function to load JSON data from a file input
+  async function loadJSONLinkedData() {
+    const jsonLinkedDataFileInput = document.getElementById('jsonLinkedDataFileInput');
+    jsonLinkedDataFileInput.click(); // Trigger the file input dialog
+  }
+
+  // Handle JSON file input change
+  document.getElementById('jsonLinkedDataFileInput').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const jsonData = e.target.result;
+        // CONVERT JSON-LD TO GRAPH3D FORMAT
+        //console.log('loaded json ld data' , jsonData)
+      };
+      reader.readAsText(file);
+    }
+  });
+
+  // Define an async function to load JSON data from a file input
+  async function loadTtlFile() {
+    const turtleFileInput = document.getElementById('turtleFileInput');
+    turtleFileInput.click(); // Trigger the file input dialog
+  }
+
+  // Handle JSON file input change
+  document.getElementById('turtleFileInput').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const jsonData = e.target.result;
+        // CONVERT TTL TO JSON-LD FORMAT
+        try {
+        var t = jsonData;
+        var j = ttl2jsonld.parse(t);
+        //console.log('converted json-ld: ', j);
+      } catch (e) {
+        console.log(e);
+        alert(e);
+      }
+        // CONVERT JSON-LD TO GRAPH3D FORMAT
+
+       var convertedData = convertJsonToGraph3dV1(j);
+        alert('This feature has known issues in working with some ttl files. If your file fails to render, let us know so that a fix could go into a future version.');
+        localStorage.setItem('graph-3d-net-01',convertedData );
+        // Reload the page
+        location.reload();
+
+      };
+      reader.readAsText(file);
+    }
+  });
+</script>
+<script>
+
+function showInstructions() {
+  // Create a Bootstrap modal for editing settings
+  const modalHtml = `
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-slide-left modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingsModalLabel">About this tool</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>
+                This web tool is a visual graph display utility designed for interactive visualization of graph data. It uses <a href="https://github.com/vasturiano/react-force-graph" target="_blank">React Force Graph</a>, which is a library from the GitHub repository providing the building blocks to render both 2D and 3D force-directed graphs.
+            </p>
+            <p>
+                This tool is not supported or maintained and is to be used as-is and without warranty. It is undergoing continual development and occasional bugs and issues are likely to occur. The GSQ Labs source code (where this is hosted) can be downloaded from <a href="https://github.com/geological-survey-of-queensland/gsq-labs" target="_blank">GitHub</a> and run locally as required. Please see disclaimer <a href="https://www.qld.gov.au/legal/disclaimer" target="_blank">disclaimer</a> for further info.
+            </p>
+            <h4>Basic Functions</h4>
+            <h5>Load Graph Data</h5>
+            <ul>
+                <li><strong>Load Graph (JSON):</strong> Import graph data from a local JSON file into the visualization.</li>
+                <li><strong>Load JSON-LD:</strong> Load and visualize data from JSON-Linked Data files.</li>
+                <li><strong>Load ttl:</strong> Load Turtle (TTL) files for visualization within the graph. These are converted to JSON-LD using <a href="https://github.com/frogcat/ttl2jsonld" target = "_blank">Frogcat's Turtle to JSON-LD converter</a></li>
+            </ul>
+
+            <h5>Export and Clear Data</h5>
+            <ul>
+                <li><strong>Export:</strong> Save the currently visualized graph data as a JSON file on the local system.</li>
+                <li><strong>Clear Storage:</strong> Remove locally stored graph data and reset the visualization environment.</li>
+            </ul>
+
+            <h5>Graph Views and Settings</h5>
+            <ul>
+                <li><strong>Load View:</strong> Select and apply different predefined views of the graph data.</li>
+                <li><strong>ttl Settings:</strong> Modify settings related to the processing of TTL files.</li>
+            </ul>
+
+            <h5>Graph Configuration</h5>
+            <ul>
+                <li><strong>Create View:</strong> Define custom views by setting filters and configurations for both nodes and edges of the graph.</li>
+                <li><strong>Edit Settings:</strong> Accessible modals allow for the customization of visualization settings such as node exclusion and color theming.</li>
+            </ul>
+
+            <h4>Demo files</h4>
+            <p>
+              Here is a list of download links to help test out the tool:
+              <ul>
+                <li><a href="./demo/ChronostratChart2023-09.ttl" target="_blank" download>ChronostratChart2023-09.ttl</a>: A point in time copy of the Chronostratigraphic Chart in ttl format.</li>
+                <li><a href="./demo/ChronostratChart2023-09_filtered.json" target="_blank" download>ChronostratChart2023-09.json</a>: A visualisation of the above Chronostratigraphic with some nodes filtered out to improve readability.</li>
+                <li><a href="./demo/mkd-minsys-combined.ttl" target="_blank" download>mkd-minsys-combined.ttl</a>: A demo mockup of a mineral system and a geological setting (Mary-Kathleen Domain) in the same graph.</li>
+                <li><a href="./demo/mkd-minsys-combined.json" target="_blank" download>mkd-minsys-combined.json</a>: A visualisation of the above mockup of a mineral system and a geological setting (Mary-Kathleen Domain) with some nodes filtered out.</li>
+                <li><a href="./demo/mkd-minsys-obs-combined.ttl" target="_blank" download>mkd-minsys-obs-combined.ttl</a>: A demo mockup of a mineral system, a geological setting (Mary-Kathleen Domain) and some lab results in the same graph.</li>
+                <li><a href="./demo/mkd-minsys-obs-combined.json" target="_blank" download>mkd-minsys-obs-combined.json</a>: A visualisation of the above mockup of a mineral system, a geological setting (Mary-Kathleen Domain) and some lab results with some nodes filtered out.</li>
+                <li><a href="./demo/mkd-minsys-obs-filtered-for-iron-oxide_geoproperty.json" target="_blank" download>mkd-minsys-obs-filtered-for-iron-oxide_geoproperty.json</a>: A filtered visualisation of the above mockup of a mineral system, a geological setting (Mary-Kathleen Domain) and some lab results showing a traversal pathway between a mineral system, geofeature and its respective results.</li>
+                <li><a href="./demo/ocr-text-search_prospective + mineralisation_graph_data.json" target="_blank" download>ocr-text-search_prospective + mineralisation_graph_data.json</a>: A knowledge graph generated by automated analysis of OCR text and relevant metadata based on results from geospatially constrained search keywords. Results from <a href="https://geological-survey-of-queensland.github.io/gsq-labs/pages/ocr-search-tool/" target="_blank">OCR Search Tool</a>.</li>
+                <li><a href="./demo/ocr-text-search_prospective + mineralisation_graph_data_filtered_view.json" target="_blank" download>ocr-text-search_prospective + mineralisation_graph_data_filtered_view.json</a>: A filtered view of the above visualisation using the term 'copper mineralisation'.</li>
+              </ul>
+              </p>
+
+            <h4>Further Information</h4>
+            <p>
+                Please refer to the full documentation to gain a deeper understanding of the tool:
+            </p>
+            <ul>
+                <li>
+                    <strong>3D Graph Tool Codebase:</strong> Explore the  of the <a href="https://github.com/geological-survey-of-queensland/gsq-labs/tree/main/pages/3d-graph-tool/app" target="_blank">README.md files and codebase</a> of the 3D Graph Tool for technical details.
+                </li>
+                <li>
+                    <strong>Vasturiano React Force Graph documentation:</strong> Delve into the <a href="https://github.com/vasturiano/react-force-graph" target="_blank">complete documentation</a> of React Force Graph for detailed understanding and optimal use of the library's full feature set.
+                </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove any existing modal if it exists
+  const existingModal = document.getElementById('settingsModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Insert the modal HTML into the body
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Show the modal
+  const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+  settingsModal.show();
+
+}
+
+//load settings
+function popUpSettingsModal() {
+  // Create a Bootstrap modal for editing settings
+  const modalHtml = `
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-slide-left modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingsModalLabel">Edit Settings</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="settingsForm">
+              <div class="form-group">
+                <label for="ignoreNodes">Ignore Nodes by ID (comma-separated)</label>
+                <input type="text" class="form-control" id="ignoreNodes" value="${globalGraphConfig.ignoreNodesById ? globalGraphConfig.ignoreNodesById.join(', ') : ''}">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="removeIsolatedNodes" ${globalGraphConfig.removeIsolatedNodes ? 'checked' : ''}>
+                <label class="form-check-label" for="removeIsolatedNodes">Remove Isolated Nodes</label>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="dontShowLinkLabels" ${globalGraphConfig.dontShowLabelsOnLinks ? 'checked' : ''}>
+                <label class="form-check-label" for="dontShowLinkLabels">Don't show labels on links</label>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="useSdoColorValues" ${globalGraphConfig.useSdoColorValues ? 'checked' : ''}>
+                <label class="form-check-label" for="useSdoColorValues">Use color value set in sdo:color @value</label>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="dontRenderGraph" ${globalGraphConfig.dontRenderGraph ? 'checked' : ''}>
+                <label class="form-check-label" for="dontRenderGraph">Don't render graph (for large graphs)</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Settings</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove any existing modal if it exists
+  const existingModal = document.getElementById('settingsModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Insert the modal HTML into the body
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Show the modal
+  const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+  settingsModal.show();
+
+  // Handle form submission
+  document.getElementById('settingsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Update globalGraphConfig with form values
+    globalGraphConfig.ignoreNodesById = document.getElementById('ignoreNodes').value.split(',').map(id => id.trim());
+    globalGraphConfig.removeIsolatedNodes = document.getElementById('removeIsolatedNodes').checked;
+    globalGraphConfig.dontShowLabelsOnLinks = document.getElementById('dontShowLinkLabels').checked;
+    globalGraphConfig.useSdoColorValues = document.getElementById('useSdoColorValues').checked;
+    globalGraphConfig.dontRenderGraph = document.getElementById('dontRenderGraph').checked;
+   
+
+    // Save updated settings to local storage
+    localStorage.setItem('graph-3d-load-settings-01', JSON.stringify(globalGraphConfig));
+
+    // Close the modal
+    settingsModal.hide();
+  });
+}
+
+//query settings
+function popUpQuerySettingsModal() {
+  // Create a Bootstrap modal for editing settings
+
+  
+  const modalHtml = `
+      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-slide-left modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingsModalLabel">Query Settings</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="settingsForm">
+              <div class="form-group" style="margin-bottom: 6px;">
+                <label for="view_id">View ID</label>
+                <select class="form-control" id="view_id">
+                  <!--default to blank -->
+                  <option value="">Select a view</option>
+                  <option value="graph_view_01">Graph View 01</option>
+                  <option value="graph_view_02">Graph View 02</option>
+                  <option value="graph_view_03">Graph View 03</option>
+                  <option value="graph_view_04">Graph View 04</option>
+                  <option value="graph_view_05">Graph View 05</option>
+                  <option value="graph_view_06">Graph View 06</option>
+                  <option value="graph_view_07">Graph View 07</option>
+                  <option value="graph_view_08">Graph View 08</option>
+                  <option value="graph_view_09">Graph View 09</option>
+                  <option value="graph_view_10">Graph View 10</option>
+                </select>
+              </div><br>
+              <div class="form-group" style="margin-bottom: 6px;">
+                <h6>Node Filters</h6>
+            <label for="includeNodes">Include Nodes (comma-separated)</label>
+            <input type="text" class="form-control" id="includeNodes">
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="includeNodeProperties">Include Node Properties (object array of key value pairs)</label>
+            <textarea class="form-control" id="includeNodeProperties" rows="3" placeholder='[{"key": "value"}, ...]'></textarea>
+          </div>
+
+
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="excludeNodes">Exclude Nodes (comma-separated)</label>
+            <input type="text" class="form-control" id="excludeNodes">
+          </div>
+          <div class="form-group form-check" style="margin-bottom: 6px;">
+            <input type="checkbox" class="form-check-input" id="applyExclusionToAll">
+            <label class="form-check-label" for="applyExclusionToAll">Apply at very end?</label>
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="minNodeCount">Minimum Node Count</label>
+            <input type="number" class="form-control" id="minNodeCount" min="1">
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="selectNodeColor">Selection color (default yellow, blank to omit)</label>
+            <input type="text" class="form-control" id="selectNodeColor" value="#FFFF00">
+          </div>
+          <br>
+
+          <div class="form-group" style="margin-bottom: 6px;">
+            <h6>Relation Settings</h6>
+            <label for="relationDepth">Relation Depth (max 6)</label>
+            <input type="number" class="form-control" id="relationDepth" min="1" max="6">
+          </div><br>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <h6>Edge Filters</h6>
+            <label for="includeEdges">Include Edges (comma-separated)</label>
+            <input type="text" class="form-control" id="includeEdges">
+          </div>
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="excludeEdges">Exclude Edges (comma-separated)</label>
+            <input type="text" class="form-control" id="excludeEdges">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="minEdgeCount">Minimum Edge Count</label>
+            <input type="number" class="form-control" id="minEdgeCount" min="1">
+          </div>
+          <div class="form-group form-check" style="margin-bottom: 6px;">
+            <input type="checkbox" class="form-check-input" id="removeCurrentFromStorage">
+            <label class="form-check-label" for="removeCurrentFromStorage">Remove Current Graph?</label>
+          </div>
+              <button type="submit" class="btn btn-primary">Run Query</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove any existing modal if it exists
+  const existingModal = document.getElementById('settingsModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Insert the modal HTML into the body
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Show the modal
+  const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+  settingsModal.show();
+
+  // Handle form submission
+  document.getElementById('settingsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+  var queryObject = {};
+  // Update globalGraphConfig with form values
+  queryObject.view = document.getElementById('view_id').value;
+  queryObject.includeNodes = document.getElementById('includeNodes').value ? document.getElementById('includeNodes').value.split(',').map(id => id.trim()) : [];
+  queryObject.applyExclusionToAll = document.getElementById('applyExclusionToAll').checked;
+  queryObject.excludeNodes = document.getElementById('excludeNodes').value ? document.getElementById('excludeNodes').value.split(',').map(id => id.trim()) : [];
+  queryObject.minNodeCount = parseInt(document.getElementById('minNodeCount').value);
+  queryObject.selectNodeColor = document.getElementById('selectNodeColor').value;
+  queryObject.includeEdges = document.getElementById('includeEdges').value ? document.getElementById('includeEdges').value.split(',').map(id => id.trim()) : [];
+  queryObject.excludeEdges = document.getElementById('excludeEdges').value ? document.getElementById('excludeEdges').value.split(',').map(id => id.trim()) : [];
+  queryObject.relationDepth = parseInt(document.getElementById('relationDepth').value);
+  queryObject.minEdgeCount = parseInt(document.getElementById('minEdgeCount').value);
+  queryObject.removeCurrentFromStorage = document.getElementById('removeCurrentFromStorage').checked;
+  
+  try {
+    queryObject.includeNodeProperties = JSON.parse(document.getElementById('includeNodeProperties').value);
+  } catch (error) {
+    alert('Invalid JSON format for Node Properties.');
+    return;
+  }
+
+
+
+
+    graphQuery(queryObject);
+    
+
+
+    // Close the modal
+    settingsModal.hide();
+  });
+}
+
+</script>
+  </body>
+  </html>
