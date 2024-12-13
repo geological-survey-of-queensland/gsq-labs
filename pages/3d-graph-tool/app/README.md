@@ -1,12 +1,18 @@
 # 3D Graph Tool
 
+
+
+## Description
+
+This utility is a comprehensive web tool designed for visualizing and interacting with graph data. The HTML file contains an embedded JavaScript application that leverages several external libraries to render graph data in 2D or 3D views, allowing users to load, manipulate, and export graph data. 
+
 ## Disclaimer
 
 This documentation is provided without warranty and should be read 'as is'. There may be circumstances where this documentation may not accurately depict the current codebase. Please see the disclaimer for further information - [https://www.qld.gov.au/legal/disclaimer](https://www.qld.gov.au/legal/disclaimer).
 
-## Description
+## Quick Start
 
-This utility is a comprehensive web tool designed for visualizing and interacting with graph data. The HTML file contains an embedded JavaScript application that leverages several external libraries to render graph data in 2D or 3D views, allowing users to load, manipulate, and export graph data.
+If you want to quickly get started using the tool, there are demo files located here: [./demo](/.demo). These files can also be access from the 'About' menu within the application interface.
 
 ## How It Works
 
