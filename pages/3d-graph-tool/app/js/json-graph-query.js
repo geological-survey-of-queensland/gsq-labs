@@ -28,7 +28,7 @@ function graphQuery(query)
         graph.nodes = graph.nodes.filter(node => matchesPropertyFilter(node.properties, query.includeNodeProperties));
         //console.log("Included Node Properties: " + JSON.stringify(graph.nodes));
       }
-    alert('pause');
+    //alert('pause');
     if(query.excludeNodes.length > 0)
     {
         graph.nodes = graph.nodes.filter(node => !query.excludeNodes.includes(node.id));

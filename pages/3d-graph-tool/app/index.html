@@ -636,11 +636,13 @@ function popUpQuerySettingsModal() {
   queryObject.removeCurrentFromStorage = document.getElementById('removeCurrentFromStorage').checked;
   
   try {
-    queryObject.includeNodeProperties = JSON.parse(document.getElementById('includeNodeProperties').value);
-  } catch (error) {
-    alert('Invalid JSON format for Node Properties.');
-    return;
-  }
+  // Only attempt to parse JSON if the includeNodeProperties textarea is not empty
+  var includeNodePropertiesValue = document.getElementById('includeNodeProperties').value;
+  queryObject.includeNodeProperties = includeNodePropertiesValue ? JSON.parse(includeNodePropertiesValue) : [];
+} catch (error) {
+  alert('Invalid JSON format for Node Properties.');
+  return;
+}
 
 
 
