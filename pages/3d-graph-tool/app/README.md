@@ -12,7 +12,7 @@ This documentation is provided without warranty and should be read 'as is'. Ther
 
 ## Quick Start
 
-If you want to quickly get started using the tool, there are demo files located here: [./demo/](/.demo). These files can also be access from the 'About' menu within the application interface.
+If you want to quickly get started using the tool, there are demo files located here: [./demo](./demo). These files can also be access from the 'About' menu within the application interface.
 
 ## How It Works
 
